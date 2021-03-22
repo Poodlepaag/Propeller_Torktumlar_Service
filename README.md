@@ -5,3 +5,5 @@ Projektet är ett skolprojekt med syftet att skapa en webbapplikation i form av 
 -- Noteringar till utvecklare --
 
 * Branch "main" har bytat namn till "master" för enklare hantering vid fetch/pull
+* Glöm inte att koda enligt allmän kodstandard så långt som möjligt.
+* Inget löpande arbete i master, ändringar sker via merge efter pull-request och gemensamt godkännande av gruppen.
