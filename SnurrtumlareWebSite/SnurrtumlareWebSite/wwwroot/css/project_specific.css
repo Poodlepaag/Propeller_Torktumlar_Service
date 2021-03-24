@@ -1,0 +1,168 @@
+﻿/* Main Layout */
+/* -------------------- */
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: #f7f7f7;
+}
+
+header {
+    width: 100%;
+    background-color: #f5b553;
+    margin: 0px;
+}
+
+footer {
+    background-color: #f5b553;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
+.footer_table {
+    height: 100px;
+    width: 80%;
+    margin: auto;
+    color: #f7f7f7;
+    text-align: center;
+    margin-top: 20px;
+    font-family: Verdana;
+    font-size: 12px;
+}
+/* --------------------*/
+
+
+
+.logo_search_cart {
+    width: 80%;
+    margin: auto;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#logo {
+    width: 400px;
+    float: left;
+}
+
+#cart {
+    float: right;
+    margin-top: 10px;
+}
+
+#search_bar {
+    border-radius: 5px;
+    width: 50%;
+    height: 30px;
+    margin: auto;
+    margin-left: 100px;
+    margin-top: 10px;
+    vertical-align: central;
+    font-size: 15px;
+    opacity: 70%;
+}
+
+/* MAIN CONTENT */
+/* ------------------------------ */
+.main_wrapper {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+article {
+    width: 80%;
+    margin: auto;
+}
+
+/* NAVBAR */
+/* ------------------------------ */
+nav {
+    width: 40%;
+    min-width: 500px;
+    margin: auto;
+}
+
+#navbar_list {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    text-align: center;
+}
+
+#navbar_item {
+    display: inline;
+    width: min-content;
+    text-align: center;
+}
+
+#navbar_link {
+    color: #f7f7f7;
+    font-size: 18px;
+    text-decoration: none;
+    text-align: center;
+    float: left;
+    margin: 10px;
+    font-family: Verdana;
+    font-weight: bold;
+}
+
+#check_mark {
+    width: 14px;
+}
+
+#navbar_item a:hover {
+    color: #854836;
+}
+/* ------------------------------ */
+
+
+/* INFORMATION BAR */
+/* ------------------------------ */
+.information_bar {
+    width: 80%;
+    margin: auto;
+    height: 30px;
+    color: #f7f7f7
+}
+
+.information_text_left {
+    float: left;
+    margin-top: 5px;
+    font-family: Verdana;
+    font-size: 12px;
+}
+
+.information_text_right {
+    float: right;
+    margin-top: 5px;
+    font-family: Verdana;
+    font-size: 12px;
+}
+
+#information_bar_list {
+    margin: 0px;
+    padding: 0px;
+}
+
+#information_bar_list_item_left {
+    display: inline;
+    margin-right: 12px;
+}
+
+#information_bar_list_item_right {
+    display: inline;
+    margin-left: 12px;
+}
+
+#information_bar_link {
+    text-decoration: none;
+    color: #f7f7f7;
+}
+
+    #information_bar_link:hover {
+        color: #854836;
+    }
+/* ------------------------------ */
+
