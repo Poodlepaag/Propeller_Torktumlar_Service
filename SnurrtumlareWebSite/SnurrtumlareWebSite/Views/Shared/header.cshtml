@@ -1,5 +1,5 @@
 ﻿<head>
-    <link rel="stylesheet" href="~/css/project_specific.css" />
+    <link rel="stylesheet" href="~/css/project_specific.css/">
 </head>
 
 <header>
@@ -19,17 +19,16 @@
         </div>
     </div>
     <div class="logo_search_cart">
-        <img id="logo" src="~/assets/icons/Logo.png">
+        <a asp-controller="Home" asp-action="Index"><img id="logo" src="~/assets/icons/Logo.png"></a>
         <input type="text" id="search_bar" placeholder="Sök på varor...">
         <img id="cart" src="~/assets/icons/shopping-cart.png">
     </div>
     <nav>
         <ul id="navbar_list">
-            <li id="navbar_item"><a id="navbar_link" href="">Huvudbonader</a></li>
-            <li id="navbar_item"><a id="navbar_link" href="">Vitvaror</a></li>
-            <li id="navbar_item"><a id="navbar_link" href="">Köksatteraljer</a></li>
-            <li id="navbar_item"><a id="navbar_link" href="">Karriär</a></li>
-            <li id="navbar_item"><a id="navbar_link" href="">Om oss</a></li>
+            <li id="navbar_item"><a id="navbar_link" asp-controller="Home" asp-action="Index">Hem</a></li>
+            <li id="navbar_item"><a id="navbar_link" asp-controller="Home" asp-action="Products">Webbutik</a></li>
+            <li id="navbar_item"><a id="navbar_link" asp-controller="Home" asp-action="Career">Karriär</a></li>
+            <li id="navbar_item"><a id="navbar_link" asp-controller="Home" asp-action="About">Om oss</a></li>
         </ul>
     </nav>
 </header>
