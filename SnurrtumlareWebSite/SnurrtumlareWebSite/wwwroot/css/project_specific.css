@@ -20,14 +20,30 @@ footer {
 }
 
 .footer_table {
-    height: 100px;
+    height: 40px;
     width: 80%;
     margin: auto;
     color: #f7f7f7;
-    text-align: center;
     margin-top: 20px;
     font-family: Verdana;
     font-size: 12px;
+}
+
+#footer_link_list {
+    float: right;
+}
+
+#footer_link_list_item {
+    display: inline;
+}
+
+#footer_link {
+    color: #f7f7f7;
+}
+
+#footer_link:hover {
+    color: #854836;
+    text-decoration: none;
 }
 /* --------------------*/
 
@@ -52,7 +68,7 @@ footer {
 
 #search_bar {
     border-radius: 5px;
-    width: 50%;
+    width: 35%;
     height: 30px;
     margin: auto;
     margin-left: 100px;
@@ -78,23 +94,22 @@ article {
 /* NAVBAR */
 /* ------------------------------ */
 nav {
-    width: 40%;
+    width: 100%;
     min-width: 500px;
     margin: auto;
 }
 
 #navbar_list {
     list-style-type: none;
-    margin: 0px;
-    padding: 0px;
+    margin: auto;
     overflow: hidden;
-    text-align: center;
+    width: 55%;
+    min-width: 500px
 }
 
 #navbar_item {
     display: inline;
     width: min-content;
-    text-align: center;
 }
 
 #navbar_link {
@@ -113,7 +128,7 @@ nav {
 }
 
 #navbar_item a:hover {
-    color: #854836;
+    color: #854836
 }
 /* ------------------------------ */
 
