@@ -180,3 +180,25 @@ nav {
         color: #854836;
     }
 /* ------------------------------ */
+
+
+/* LOGIN LINKS (_LoginPartial) */
+.navbar-nav {
+    display: inline;
+}
+
+.nav-item {
+    display: inline;
+}
+
+.nav-link {
+    color: white;
+    display: inline;
+}
+
+.nav-link:hover {
+    color: #854836;
+}
+
+/* TODO: Move all css-code to site.css */
+/* TODO: Fix a collapsable navbar for the shared design */

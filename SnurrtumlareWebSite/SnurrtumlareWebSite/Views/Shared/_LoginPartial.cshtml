@@ -2,6 +2,10 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
+<head>
+    <link rel="stylesheet" href="~/css/project_specific.css" />
+</head>
+
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
@@ -17,10 +21,13 @@
 else
 {
     <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Registrera</a>
     </li>
+    <li class="nav-item"> | </li>
     <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a>
     </li>
 }
 </ul>
+
+<!-- NOTIS: class="nav-item" finns i project_specific.css. --> 
