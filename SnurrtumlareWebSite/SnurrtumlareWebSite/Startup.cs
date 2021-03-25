@@ -44,6 +44,7 @@ namespace SnurrtumlareWebSite
             {
                 app.UseDeveloperExceptionPage();
                 app.UseMigrationsEndPoint();
+                app.UseBrowserLink();
             }
             else
             {
