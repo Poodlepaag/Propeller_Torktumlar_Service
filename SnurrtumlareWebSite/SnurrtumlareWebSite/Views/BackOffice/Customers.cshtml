@@ -1,6 +1,12 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Customers";
 }
+
+<style>
+    #Input_Style {
+        margin: 5px;
+    }
+</style>
 
 <div class="row">
     <div class="col-md-12">
@@ -33,9 +39,9 @@
                     <td>0708-111 222</td>
                     <td>
                         <div>
-                            <button type="button" class="btn btn-secondary">Edit</button>
-                            <button type="button" class="btn btn-secondary">Details</button>
-                            <button type="button" class="btn btn-secondary">Delete</button>
+                            <button id="Input_Style" type="button" class="btn btn-secondary">Edit</button>
+                            <button id="Input_Style" type="button" class="btn btn-secondary">Details</button>
+                            <button id="Input_Style" type="button" class="btn btn-danger">Delete</button>
                         </div>
                     </td>
                 </tr>
