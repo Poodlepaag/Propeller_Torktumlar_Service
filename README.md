@@ -8,3 +8,8 @@ Projektet är ett skolprojekt med syftet att skapa en webbapplikation i form av 
   - fix (fix av en felaktighet)
   - addition (ny funktionallitet eller nya designelement)
   - change (ändringar i befintlig kod eller design utan att det är en bug inblandad)
+
+
+-- Designregler för alla Views (som renderas genom @RenderBody) --
+  - Padding: 15 px
+  - Margin(top och bottom): 20px 
