@@ -32,6 +32,28 @@
         width: 15%;
         margin-left: 8%;
     }
+
+    #shopping_cart_cheackout_button {
+        background-color: forestgreen;
+        width: 13%;
+        height: 5%;
+        float: right;
+        margin: 2%;
+        border-radius: 8%;
+    }
+
+    #shopping_cart_reset_button {
+        background-color: darkred;
+        width: 13%;
+        height: 5%;
+        float: right;
+        margin: 2%;
+        border-radius: 8%;
+    }
+
+    #shopping_cart_button_list_item {
+        display: inline;
+    }
 </style>
 
 <body>
@@ -79,5 +101,14 @@
                 </td>
             </tr>
         </table>
+        <ul>
+            <li id="shopping_cart_button_list_item">
+                <input type="button" id="shopping_cart_reset_button" value="Ta bort kundvagn" />
+            </li>
+            <li id="shopping_cart_button_list_item">
+                <input type="button" id="shopping_cart_cheackout_button" value="Till Kassan" />
+            </li>
+        </ul>
+        
     </div>
 </body>
