@@ -4,6 +4,7 @@ Projektet är ett skolprojekt med syftet att skapa en webbapplikation i form av 
 
 -- Noteringar till utvecklare --
 
-* Branch "main" har bytat namn till "master" för enklare hantering vid fetch/pull
-* Glöm inte att koda enligt allmän kodstandard så långt som möjligt.
-* Inget löpande arbete i master, ändringar sker via merge efter pull-request och gemensamt godkännande av gruppen.
+* Branch-namn skall med fördel börja med följande taggar beroende på syftet med branchen:
+  - fix (fix av en felaktighet)
+  - addition (ny funktionallitet eller nya designelement)
+  - change (ändringar i befintlig kod eller design utan att det är en bug inblandad)
