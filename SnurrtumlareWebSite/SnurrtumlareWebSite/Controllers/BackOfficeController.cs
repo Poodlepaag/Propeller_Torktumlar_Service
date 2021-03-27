@@ -10,6 +10,7 @@ namespace SnurrtumlareWebSite.Controllers
     {
         public IActionResult Index()
         {
+            ViewBag.Admin = 1;
             return View();
         }
         public IActionResult Products()
