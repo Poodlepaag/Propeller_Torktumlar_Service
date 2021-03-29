@@ -41,11 +41,11 @@ footer {
     color: #f7f7f7;
 }
 
-#footer_link:hover {
-    color: #854836;
-    text-decoration: none;
-}
-/* --------------------*/
+    #footer_link:hover {
+        color: #854836;
+        text-decoration: none;
+    }
+/* ------------------------------ */
 
 
 
@@ -77,6 +77,8 @@ footer {
     font-size: 15px;
     opacity: 70%;
 }
+/* ------------------------------ */
+
 
 /* MAIN CONTENT */
 /* ------------------------------ */
@@ -90,6 +92,8 @@ article {
     width: 80%;
     margin: auto;
 }
+/* ------------------------------ */
+
 
 /* NAVBAR */
 /* ------------------------------ */
@@ -176,13 +180,14 @@ nav {
     color: #f7f7f7;
 }
 
-#information_bar_link:hover {
+    #information_bar_link:hover {
         color: #854836;
     }
 /* ------------------------------ */
 
 
 /* LOGIN LINKS (_LoginPartial) */
+/* ------------------------------ */
 .navbar-nav {
     display: inline;
 }
@@ -199,6 +204,182 @@ nav {
 .nav-link:hover {
     color: #854836;
 }
+/* ------------------------------ */
 
-/* TODO: Move all css-code to site.css */
-/* TODO: Fix a collapsable navbar for the shared design */
+
+/* CSS TO SORT AND RENAME */
+/* ------------------------------ */
+
+#products_page_wrapper {
+    width: 100%;
+    margin-top: 40px;
+}
+
+#product_image {
+    width: 80%;
+    border-radius: 15px;
+}
+
+#products_list_item {
+    list-style: none;
+    width: 22%;
+    margin: 1%;
+    border: 1px solid gray;
+    border-radius: 2%;
+    padding: 1%;
+    text-align: center;
+    display: inline-block;
+    background-color: whitesmoke;
+}
+
+#products_amount_box {
+    width: 50px;
+}
+
+#products_button_add_to_cart {
+    background-color: #f5b553;
+    border-radius: 8px;
+}
+
+#shopping_cart_table {
+    width: 100%;
+    margin-top: 3%;
+}
+
+#shopping_cart_product_row {
+    border: 1px solid gray;
+}
+
+#shopping_cart_image {
+    float: left;
+    border-radius: 180px;
+    width: 10%;
+    margin: 3%;
+}
+
+#shopping_cart_button_remove {
+    width: 100px;
+    height: 40px;
+    border-radius: 8%;
+    margin-left: 8%;
+}
+
+#shopping_cart_amount_box {
+    width: 15%;
+    margin-left: 8%;
+}
+
+#shopping_cart_cheackout_button {
+    background-color: forestgreen;
+    width: 13%;
+    height: 5%;
+    float: right;
+    margin: 2%;
+    border-radius: 8%;
+}
+
+#shopping_cart_reset_button {
+    background-color: darkred;
+    width: 13%;
+    height: 5%;
+    float: right;
+    margin: 2%;
+    border-radius: 8%;
+}
+
+#shopping_cart_button_list_item {
+    display: inline;
+}
+
+#social_media_display {
+    margin: auto;
+    text-align: center;
+    padding-top: 10%;
+}
+
+#social_list_item {
+    display: inline;
+    margin: 2%;
+}
+
+#social_image {
+    width: 15%;
+}
+
+h2 {
+    margin: 5%;
+}
+
+img.d-block {
+    height: 600px;
+}
+
+h3.pos1 {
+    text-align: left;
+}
+
+h1.pos2 {
+    text-align: center;
+    padding: 20px 0px 20px 0px;
+}
+
+p.pos3 {
+    padding: 0px 0px 20px 0px;
+}
+
+h1.pos {
+    text-align: center;
+    padding: 20px 0px 20px 0px;
+}
+
+h1.pos1 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+a:link {
+    color: black;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+h1.pos1 {
+    padding: 10px;
+    margin-top: 20px;
+}
+
+h1.pos1 {
+    margin-top: 20px;
+}
+
+h3.pos1 {
+    text-align: left;
+}
+
+h1.pos1 {
+    padding: 10px;
+    margin-top: 20px;
+}
+
+h1.pos2 {
+    text-align: center;
+    padding: 20px 0px 20px 0px;
+}
+
+p.pos3 {
+    padding: 0px 0px 20px 0px;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: contain;
+}
