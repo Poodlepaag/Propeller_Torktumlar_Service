@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SnurrtumlareWebSite.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,8 @@ namespace SnurrtumlareWebSite.Controllers
         }
         public IActionResult Customers()
         {
-            return View();
+            CustomersService customersService = new CustomersService();
+            return View(customersService.GetAllCustomers());
         }
     }
 }
