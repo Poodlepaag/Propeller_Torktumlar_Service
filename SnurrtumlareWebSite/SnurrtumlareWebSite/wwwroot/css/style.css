@@ -269,8 +269,8 @@ nav {
     margin-left: 8%;
 }
 
-#shopping_cart_cheackout_button {
-    background-color: forestgreen;
+.shopping_cart_cheackout_button {
+    background-color: #f5b553;
     width: 13%;
     height: 5%;
     float: right;
@@ -278,8 +278,8 @@ nav {
     border-radius: 8%;
 }
 
-#shopping_cart_reset_button {
-    background-color: darkred;
+.shopping_cart_reset_button {
+    background-color: lightgray;
     width: 13%;
     height: 5%;
     float: right;
@@ -287,7 +287,7 @@ nav {
     border-radius: 8%;
 }
 
-#shopping_cart_button_list_item {
+.shopping_cart_button_list_item {
     display: inline;
 }
 
@@ -305,7 +305,12 @@ nav {
 #social_image {
     width: 15%;
 }
+/* ------------------------------ */
 
+
+/* OSORTERADE TAGGAR */
+/* TODO: Fixa om det finns tid i slutet av projektet*/
+/* ------------------------------ */
 h2 {
     margin: 5%;
 }
@@ -337,17 +342,17 @@ h1.pos1 {
     margin-bottom: 20px;
 }
 
-a:link {
+.cs-link:link {
     color: black;
     text-decoration: underline;
 }
 
-a:visited {
+cs-link:visited {
     color: black;
     text-decoration: none;
 }
 
-a:hover {
+cs-link:hover {
     text-decoration: none;
 }
 
