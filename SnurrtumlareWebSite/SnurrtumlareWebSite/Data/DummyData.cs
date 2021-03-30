@@ -36,11 +36,11 @@ namespace SnurrtumlareWebSite.Data
 
             TempProducts = new List<ProductModel>
             {
-            new ProductModel("Propellerkeps Deluxe", "Keps", "Kepsarnas keps", 25, 189),
-            new ProductModel("Propellerkeps Premium", "Keps", "Keps med guldskärm", 10, 179),
-            new ProductModel("Torktumlare X3", "Torktumlare", "Instegsmodell bland torktumlare", 5, 4990),
-            new ProductModel("Torktumlare XT55", "Torktumlare", "Premium Torktumlare med det lilla extra", 2, 7990),
-            new ProductModel("Propellerkeps Magenta", "Keps", "Propellerkeps med en färg som sticker ut", 5, 149)
+            new ProductModel("Propellerkeps Deluxe", "/assets/pictures/Kepsar/Prop1.png", "Keps", "Kepsarnas keps", 25, 189),
+            new ProductModel("Propellerkeps Premium", "/assets/pictures/Kepsar/Prop10.png", "Keps", "Keps med guldskärm", 10, 179),
+            new ProductModel("Torktumlare X3", "/assets/pictures/Torktumlare/Tork1.png", "Torktumlare", "Instegsmodell bland torktumlare", 5, 4990),
+            new ProductModel("Torktumlare XT55", "/assets/pictures/Torktumlare/Tork10.png", "Torktumlare", "Premium Torktumlare med det lilla extra", 2, 7990),
+            new ProductModel("Propellerkeps Crazy", "/assets/pictures/Kepsar/Prop11.png", "Keps", "Propellerkepsen för den som testar gränser", 5, 149)
             };
 
             TempCart = new CartModel

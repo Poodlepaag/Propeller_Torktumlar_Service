@@ -2,7 +2,7 @@
     ViewData["Title"] = "Customers";
 }
 
-@model SnurrtumlareWebSite.Models.CustomerModel
+@model List<CustomerModel>
 
 <style>
     #Input_Style {
@@ -33,7 +33,7 @@
 
                 <tbody>
                     <tr>
-                        @foreach (var item in Model.Customers)
+                        @foreach (var item in Model)
 
                         {
                             <td>@item.CustomerId </td>

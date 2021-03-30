@@ -15,9 +15,10 @@ namespace SnurrtumlareWebSite.Models
         public int AmountInStock { get; set; }
         public decimal ProductPrice { get; set; }
 
-        public ProductModel(string productName, string category, string productDescription, int amountInStock, decimal productPrice)
+        public ProductModel(string productName, string imageLink, string category, string productDescription, int amountInStock, decimal productPrice)
         {
             ProductName = productName;
+            ImageLink = imageLink;
             Category = category;
             ProductDescription = productDescription;
             AmountInStock = amountInStock;
