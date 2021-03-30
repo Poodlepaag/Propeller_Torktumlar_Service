@@ -2,6 +2,8 @@
     ViewData["Title"] = "Customers";
 }
 
+@model SnurrtumlareWebSite.Models.CustomerModel
+
 <style>
     #Input_Style {
         margin: 5px;
@@ -28,16 +30,22 @@
                     </tr>
                 </thead>
 
+
                 <tbody>
                     <tr>
-                        <td>1</td>
-                        <td>Michael</td>
-                        <td>Sava</td>
-                        <td>Kantatgatan 8</td>
-                        <td>215 70</td>
-                        <td>Malmö</td>
-                        <td>miki@mail.com</td>
-                        <td>0708-111 222</td>
+                        @foreach (var item in Model.Customers)
+
+                        {
+                            <td>@item.CustomerId </td>
+                            <td>@item.FirstName </td>
+                            <td>@item.LastName </td>
+                            <td>@item.Address</td>
+                            <td>@item.ZipCode </td>
+                            <td>@item.City </td>
+                            <td>@item.Email </td>
+                            <td>@item.Phone</td>
+                        }
+
                         <td>
                             <div>
                                 <button id="Input_Style" type="button" class="btn btn-secondary">Edit</button>

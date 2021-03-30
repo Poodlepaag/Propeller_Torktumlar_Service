@@ -39,7 +39,8 @@ namespace SnurrtumlareWebSite.Controllers
 
         public IActionResult Customers()
         {
-            return View();
+            CustomersService customersService = new CustomersService();
+            return View(customersService.GetAllCustomers());
         }
     }
 }
