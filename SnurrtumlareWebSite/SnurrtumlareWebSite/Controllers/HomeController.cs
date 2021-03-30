@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SnurrtumlareWebSite.Models;
+using SnurrtumlareWebSite.Services;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,6 +13,8 @@ namespace SnurrtumlareWebSite.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+
+        ProductsService productsService = new ProductsService();
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -25,7 +28,9 @@ namespace SnurrtumlareWebSite.Controllers
 
         public IActionResult Products()
         {
-            return View();
+            var listOfProducts = productsService.GetAllProducts();
+            
+            return View(listOfProducts);
         }
 
         public IActionResult About()

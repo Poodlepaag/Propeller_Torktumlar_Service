@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Products";
 }
-
+@model List<ProductModel>
 
 <style>
     #Input_Style {
@@ -25,12 +25,14 @@
                     </tr>
                 </thead>
 
+                @foreach (var product in Model)
+                {
                 <tbody>
                     <tr>
-                        <td>1</td>
-                        <td>Propeller keps 1</td>
-                        <td>En riktigt jävla snygg propeller keps</td>
-                        <td>5st</td>
+                        <td>@product.ProductId</td>
+                        <td>@product.ProductName</td>
+                        <td>@product.ProductDescription</td>
+                        <td>@product.AmountInStock</td>
                         <td>
                             <div class="form-check-inline">
                                 <button id="Input_Style" type="button" class="btn btn-secondary">Edit</button>
@@ -40,6 +42,7 @@
                         </td>
                     </tr>
                 </tbody>
+                }
             </table>
         </div>
     </div>

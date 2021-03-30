@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SnurrtumlareWebSite.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,23 +9,34 @@ namespace SnurrtumlareWebSite.Controllers
 {
     public class BackOfficeController : Controller
     {
+        OrdersService ordersService = new OrdersService();
+        ProductsService productsService = new ProductsService();
+
         public IActionResult Index()
         {
             ViewBag.Admin = 1;
             return View();
         }
+
         public IActionResult Products()
         {
-            return View();
+            var listOfProducts = productsService.GetAllProducts();
+
+            return View(listOfProducts);
         }
+
         public IActionResult Orders()
         {
-            return View();
+            var listOfOrders = ordersService.Get();
+            
+            return View(listOfOrders);
         }
+
         public IActionResult Profile()
         {
             return View();
         }
+
         public IActionResult Customers()
         {
             return View();

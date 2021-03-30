@@ -14,6 +14,4 @@ namespace SnurrtumlareWebSite.Models
         public int AmountInStock { get; set; }
         public decimal ProductPrice { get; set; }
     }
-
-   
 }

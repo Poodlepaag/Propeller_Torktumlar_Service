@@ -1,4 +1,5 @@
-﻿using SnurrtumlareWebSite.Models;
+﻿using SnurrtumlareWebSite.Data;
+using SnurrtumlareWebSite.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,16 @@ namespace SnurrtumlareWebSite.Services
     {
         DummyData dummyData = new DummyData();
 
-        public List<OrderModel> Get()
-        { 
-            return dummyData.TempOrders; 
+        public IEnumerable<OrderModel> Get()
+        {
+            var listOfOrders = dummyData.TempOrders;
+
+            return listOfOrders; 
+        }
+
+        public List<OrderModel> Get(CustomerModel customer)
+        {
+            return dummyData.TempOrders.Where(c => c.Customer == customer).ToList(); ;
         }
     }
 }
