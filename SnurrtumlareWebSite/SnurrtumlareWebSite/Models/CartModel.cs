@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace SnurrtumlareWebSite.Models
 {
-    public class Cart
+    public class CartModel
     {
-        public List<Product> ProductsInCart { get; set; }
+        public List<ProductModel> ProductsInCart { get; set; }
         public bool ContainsItems { get; set; } = false;
     }
 }
