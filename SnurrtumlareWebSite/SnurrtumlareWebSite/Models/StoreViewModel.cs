@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SnurrtumlareWebSite.Models
 {
-    public class View
+    public class StoreViewModel
     {
         public List<Product> AvailableProducts { get; set; }
         public List<Customer> StoreCustomers { get; set; }
