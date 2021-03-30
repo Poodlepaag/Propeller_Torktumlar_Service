@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SnurrtumlareWebSite.Models
 {
-    public class AdminUser
+    public class AdminUserModel
     {
         public string UserName { get; set; }
         public string Password { get; set; }

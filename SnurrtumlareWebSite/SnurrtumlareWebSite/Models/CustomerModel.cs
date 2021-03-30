@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SnurrtumlareWebSite.Models
 {
-    public class Customer
+    public class CustomerModel
     {
         public int CustomerId { get; set; }
         public string FirstName { get; set; }
