@@ -1,125 +1,119 @@
-﻿@*
+﻿@{
+    ViewData["Title"] = "Webbutik";
+}
+
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
     In future updates the products will be displayed by the help of a foreach-loop as follows:
 
     @foreach (var product in Model)
     {
-        <ul id="product_list">
-            <li id="product_list_item">
-                Produktbild
-                Produktnamn
-                Produktinfo
-                Pris
-                Button (Lägg i kundvagn)
-                Dropdown (Antal)
-            </li>
-        </ul>
+    <ul id="product_list">
+    <li id="product_list_item">
+    Produktbild
+    Produktnamn
+    Produktinfo
+    Pris
+    Button (Lägg i kundvagn)
+    Dropdown (Antal)
+    </li>
+    </ul>
     }
 *@
 @{
     /* model = list of products */
 }
-<style>
-    #products_page_wrapper {
-        width: 100%;
-        margin-top: 40px;
-    }
-
-    #product_image {
-        width: 80%;
-        border-radius: 15px;
-    }
-
-    #products_list_item {
-        list-style: none;
-        width: 22%;
-        margin: 1%;
-        border: 1px solid gray;
-        border-radius: 2%;
-        padding: 1%;
-        text-align: center;
-        display: inline-block;
-        background-color: whitesmoke;
-    }
-
-    #products_amount_box {
-        width: 50px;
-    }
-
-    #products_button_add_to_cart {
-        background-color: #f5b553;
-        border-radius: 8px;
-    }
-</style>
 
 <body>
-    <div id="products_page_wrapper">
-        <ul id="products_list">
-            <li id="products_list_item">
-                <img id="product_image" src="http://placeimg.com/640/360/any" alt="Produktbild" />
-                <h6 id="product_header">Produktnamn</h6>
-                <p id="product_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                <p id="product_price">169 SEK</p>
-                <input type="button" id="products_button_add_to_cart" value="Lägg i varukorg" />
-                <input type="number" id="products_amount_box" value="1" />
-            </li>
-            <li id="products_list_item">
-                <img id="product_image" src="http://placeimg.com/640/360/any" alt="Produktbild" />
-                <h6 id="product_header">Produktnamn</h6>
-                <p id="product_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                <p id="product_price">169 SEK</p>
-                <input type="button" id="products_button_add_to_cart" value="Lägg i varukorg" />
-                <input type="number" id="products_amount_box" value="1" />
-            </li>
-            <li id="products_list_item">
-                <img id="product_image" src="http://placeimg.com/640/360/any" alt="Produktbild" />
-                <h6 id="product_header">Produktnamn</h6>
-                <p id="product_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                <p id="product_price">169 SEK</p>
-                <input type="button" id="products_button_add_to_cart" value="Lägg i varukorg" />
-                <input type="number" id="products_amount_box" value="1" />
-            </li>
-            <li id="products_list_item">
-                <img id="product_image" src="http://placeimg.com/640/360/any" alt="Produktbild" />
-                <h6 id="product_header">Produktnamn</h6>
-                <p id="product_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                <p id="product_price">169 SEK</p>
-                <input type="button" id="products_button_add_to_cart" value="Lägg i varukorg" />
-                <input type="number" id="products_amount_box" value="1" />
-            </li>
-            <li id="products_list_item">
-                <img id="product_image" src="http://placeimg.com/640/360/any" alt="Produktbild" />
-                <h6 id="product_header">Produktnamn</h6>
-                <p id="product_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                <p id="product_price">169 SEK</p>
-                <input type="button" id="products_button_add_to_cart" value="Lägg i varukorg" />
-                <input type="number" id="products_amount_box" value="1" />
-            </li>
-            <li id="products_list_item">
-                <img id="product_image" src="http://placeimg.com/640/360/any" alt="Produktbild" />
-                <h6 id="product_header">Produktnamn</h6>
-                <p id="product_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                <p id="product_price">169 SEK</p>
-                <input type="button" id="products_button_add_to_cart" value="Lägg i varukorg" />
-                <input type="number" id="products_amount_box" value="1" />
-            </li>
-            <li id="products_list_item">
-                <img id="product_image" src="http://placeimg.com/640/360/any" alt="Produktbild" />
-                <h6 id="product_header">Produktnamn</h6>
-                <p id="product_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                <p id="product_price">169 SEK</p>
-                <input type="button" id="products_button_add_to_cart" value="Lägg i varukorg" />
-                <input type="number" id="products_amount_box" value="1" />
-            </li>
-            <li id="products_list_item">
-                <img id="product_image" src="http://placeimg.com/640/360/any" alt="Produktbild" />
-                <h6 id="product_header">Produktnamn</h6>
-                <p id="product_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                <p id="product_price">169 SEK</p>
-                <input type="button" id="products_button_add_to_cart" value="Lägg i varukorg" />
-                <input type="number" id="products_amount_box" value="1" />
-            </li>
-        </ul>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div id="products_page_wrapper">
+                    <ul id="products_list">
+                        <li id="products_list_item">
+                            <img id="product_image" src="http://placeimg.com/640/360/any" alt="Produktbild" />
+                            <h6 id="product_header">Produktnamn</h6>
+                            <p id="product_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                            <p id="product_price">169 SEK</p>
+                            <input type="button" id="products_button_add_to_cart" value="Lägg i varukorg" />
+                            <input type="number" id="products_amount_box" value="1" />
+                        </li>
+                        <li id="products_list_item">
+                            <img id="product_image" src="http://placeimg.com/640/360/any" alt="Produktbild" />
+                            <h6 id="product_header">Produktnamn</h6>
+                            <p id="product_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                            <p id="product_price">169 SEK</p>
+                            <input type="button" id="products_button_add_to_cart" value="Lägg i varukorg" />
+                            <input type="number" id="products_amount_box" value="1" />
+                        </li>
+                        <li id="products_list_item">
+                            <img id="product_image" src="http://placeimg.com/640/360/any" alt="Produktbild" />
+                            <h6 id="product_header">Produktnamn</h6>
+                            <p id="product_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                            <p id="product_price">169 SEK</p>
+                            <input type="button" id="products_button_add_to_cart" value="Lägg i varukorg" />
+                            <input type="number" id="products_amount_box" value="1" />
+                        </li>
+                        <li id="products_list_item">
+                            <img id="product_image" src="http://placeimg.com/640/360/any" alt="Produktbild" />
+                            <h6 id="product_header">Produktnamn</h6>
+                            <p id="product_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                            <p id="product_price">169 SEK</p>
+                            <input type="button" id="products_button_add_to_cart" value="Lägg i varukorg" />
+                            <input type="number" id="products_amount_box" value="1" />
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <div @*id="products_page_wrapper"*@> @* <--Margin-top ger för mycket mellanrum. Av kommentera för att lägga tillbakamargin*@
+                    <ul id="products_list">
+                        <li id="products_list_item">
+                            <img id="product_image" src="http://placeimg.com/640/360/any" alt="Produktbild" />
+                            <h6 id="product_header">Produktnamn</h6>
+                            <p id="product_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                            <p id="product_price">169 SEK</p>
+                            <input type="button" id="products_button_add_to_cart" value="Lägg i varukorg" />
+                            <input type="number" id="products_amount_box" value="1" />
+                        </li>
+                        <li id="products_list_item">
+                            <img id="product_image" src="http://placeimg.com/640/360/any" alt="Produktbild" />
+                            <h6 id="product_header">Produktnamn</h6>
+                            <p id="product_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                            <p id="product_price">169 SEK</p>
+                            <input type="button" id="products_button_add_to_cart" value="Lägg i varukorg" />
+                            <input type="number" id="products_amount_box" value="1" />
+                        </li>
+                        <li id="products_list_item">
+                            <img id="product_image" src="http://placeimg.com/640/360/any" alt="Produktbild" />
+                            <h6 id="product_header">Produktnamn</h6>
+                            <p id="product_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                            <p id="product_price">169 SEK</p>
+                            <input type="button" id="products_button_add_to_cart" value="Lägg i varukorg" />
+                            <input type="number" id="products_amount_box" value="1" />
+                        </li>
+                        <li id="products_list_item">
+                            <img id="product_image" src="http://placeimg.com/640/360/any" alt="Produktbild" />
+                            <h6 id="product_header">Produktnamn</h6>
+                            <p id="product_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                            <p id="product_price">169 SEK</p>
+                            <input type="button" id="products_button_add_to_cart" value="Lägg i varukorg" />
+                            <input type="number" id="products_amount_box" value="1" />
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 </body>
