@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Html;
 
 namespace SnurrtumlareWebSite.Services
 {
@@ -32,9 +31,16 @@ namespace SnurrtumlareWebSite.Services
             return dummyData.TempProducts.Where(p => p.Category == category).ToList();
         }
 
-        public void Add(int productId, string productName, string category, string productDescription, int amountInStock, decimal productPrice)
+        public void Add(string productName, string category, string productDescription, int amountInStock, decimal productPrice)
         {
-           // dummyData.TempProducts.Add(id, productName, category, productDescription, amountInStock, price);
+            ProductModel product = new ProductModel(productName, category, productDescription, amountInStock, productPrice);
+
+            dummyData.TempProducts.Add(product);
+        }
+
+        public void Delete(ProductModel product)
+        {
+            dummyData.TempProducts.Remove(product);
         }
 
         // This can be removed if not needed

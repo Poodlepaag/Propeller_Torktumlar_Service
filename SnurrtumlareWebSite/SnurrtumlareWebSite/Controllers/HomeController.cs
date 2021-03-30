@@ -33,6 +33,13 @@ namespace SnurrtumlareWebSite.Controllers
             return View(listOfProducts);
         }
 
+        public IActionResult DeleteProducts()
+        {
+            // productsService.Delete();  (Fixar denna vid ett senare tillfälle!)
+
+            return RedirectToAction(nameof(Products));
+        }
+
         public IActionResult About()
         {
             return View();
