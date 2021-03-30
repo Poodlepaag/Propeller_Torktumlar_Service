@@ -4,6 +4,7 @@ body {
     margin: 0px;
     padding: 0px;
     background-color: #f7f7f7;
+    font-family: Arial, sans-serif;
 }
 
 header {
@@ -321,25 +322,30 @@ img.d-block {
 
 h3.pos1 {
     text-align: left;
+    font-weight: bold;
 }
 
 h1.pos2 {
     text-align: center;
     padding: 20px 0px 20px 0px;
+    font-weight: bold;
 }
 
 p.pos3 {
     padding: 0px 0px 20px 0px;
+    font-style: italic;
 }
 
 h1.pos {
     text-align: center;
     padding: 20px 0px 20px 0px;
+    font-weight: bold;
 }
 
 h1.pos1 {
     margin-top: 20px;
     margin-bottom: 20px;
+    font-weight: bold;
 }
 
 .cs-link:link {
@@ -359,10 +365,12 @@ cs-link:hover {
 h1.pos1 {
     padding: 10px;
     margin-top: 20px;
+    font-weight: bold;
 }
 
 h1.pos1 {
     margin-top: 20px;
+    font-weight: bold;
 }
 
 h3.pos1 {
@@ -372,11 +380,13 @@ h3.pos1 {
 h1.pos1 {
     padding: 10px;
     margin-top: 20px;
+    font-weight: bold;
 }
 
 h1.pos2 {
     text-align: center;
     padding: 20px 0px 20px 0px;
+    font-weight: bold;
 }
 
 p.pos3 {
