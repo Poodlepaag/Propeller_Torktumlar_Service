@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SnurrtumlareWebSite.Services;
+using SnurrtumlareWebSite.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace SnurrtumlareWebSite.Controllers
     {
         OrdersService ordersService = new OrdersService();
         ProductsService productsService = new ProductsService();
+        CustomersService customersService = new CustomersService();
 
         public IActionResult Index()
         {
@@ -39,8 +41,12 @@ namespace SnurrtumlareWebSite.Controllers
 
         public IActionResult Customers()
         {
-            CustomersService customersService = new CustomersService();
-            return View(customersService.GetAllCustomers());
+            var listOfCustomers = GetCustomers();
+            return View(listOfCustomers);
+        }
+        private IEnumerable<CustomerModel> GetCustomers()
+        {
+            return customersService.GetAllCustomers();
         }
     }
 }

@@ -19,7 +19,7 @@ namespace SnurrtumlareWebSite.Services
             Customers = dummyData.TempCustomers;
         }
 
-        public List<CustomerModel> GetAllCustomers()
+        public IEnumerable<CustomerModel> GetAllCustomers()
         {
             return dummyData.TempCustomers;
         }

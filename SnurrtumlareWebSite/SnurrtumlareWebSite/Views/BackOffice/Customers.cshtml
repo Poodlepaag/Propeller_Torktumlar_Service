@@ -1,8 +1,9 @@
-﻿@{
+﻿@model IEnumerable<SnurrtumlareWebSite.Models.CustomerModel> 
+
+@{
     ViewData["Title"] = "Customers";
 }
 
-@model SnurrtumlareWebSite.Models.CustomerModel
 
 <style>
     #Input_Style {
@@ -32,28 +33,28 @@
 
 
                 <tbody>
-                    <tr>
-                        @foreach (var item in Model.Customers)
+                     @foreach (var customer in Model)
+                     {
+                            <tr>
+                                <td>@customer.CustomerId</td>
+                                <td>@customer.FirstName</td>
+                                <td>@customer.LastName</td>
+                                <td>@customer.Address</td>
+                                <td>@customer.ZipCode</td>
+                                <td>@customer.City</td>
+                                <td>@customer.Email</td>
+                                <td>@customer.Phone</td>
+                                
 
-                        {
-                            <td>@item.CustomerId </td>
-                            <td>@item.FirstName </td>
-                            <td>@item.LastName </td>
-                            <td>@item.Address</td>
-                            <td>@item.ZipCode </td>
-                            <td>@item.City </td>
-                            <td>@item.Email </td>
-                            <td>@item.Phone</td>
-                        }
-
-                        <td>
-                            <div>
-                                <button id="Input_Style" type="button" class="btn btn-secondary">Edit</button>
-                                <button id="Input_Style" type="button" class="btn btn-secondary">Details</button>
-                                <button id="Input_Style" type="button" class="btn btn-danger">Delete</button>
-                            </div>
-                        </td>
-                    </tr>
+                                <td>
+                                    <div>
+                                        <button id="Input_Style" type="button" class="btn btn-secondary btn-sm">Edit</button>
+                                        <button id="Input_Style" type="button" class="btn btn-secondary btn-sm">Details</button>
+                                        <button id="Input_Style" type="button" class="btn btn-danger btn-sm">Delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                    }
                 </tbody>
             </table>
         </div>
