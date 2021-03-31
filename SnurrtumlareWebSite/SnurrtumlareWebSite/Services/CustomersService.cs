@@ -10,7 +10,7 @@ namespace SnurrtumlareWebSite.Services
     public class CustomersService
     {
 
-        public List<CustomerModel> Customers { get; set; }
+        public List<Customer> Customers { get; set; }
 
         DummyData dummyData = new DummyData();
 
@@ -19,19 +19,19 @@ namespace SnurrtumlareWebSite.Services
             Customers = dummyData.TempCustomers;
         }
 
-        public IEnumerable<CustomerModel> GetAllCustomers()
+        public IEnumerable<Customer> GetAllCustomers()
         {
             return dummyData.TempCustomers;
         }
 
-        public IEnumerable<CustomerModel> GetCustomer(int id)
+        public IEnumerable<Customer> GetCustomer(int id)
         {
             return Customers.Where(c => c.CustomerId == id).ToList();
         }
         
         public void CreateCustomer(int customerId, string firstName, string lastName, string address, string zipCode, string city, string email, string phone)
         {
-            Customers.Add(new CustomerModel
+            Customers.Add(new Customer
             { CustomerId = customerId, FirstName = firstName, LastName = lastName, Address = address, ZipCode = zipCode, City = city, Email = email, Phone = phone });
         }
 
