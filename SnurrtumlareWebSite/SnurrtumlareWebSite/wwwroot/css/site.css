@@ -12,6 +12,14 @@ a {
   color: #0366d6;
 }
 
+.table td {
+    vertical-align: middle;
+}
+
+#Input_Style {
+    margin-left: 5px;
+}
+
 .btn-primary {
   color: #fff;
   background-color: #1b6ec2;

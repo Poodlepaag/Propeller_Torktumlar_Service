@@ -31,9 +31,9 @@ namespace SnurrtumlareWebSite.Services
             return dummyData.TempProducts.Where(p => p.Category == category).ToList();
         }
 
-        public void Add(string productName, string imageLink, string category, string productDescription, int amountInStock, decimal productPrice)
+        public void Add(int productId, string productName, string imageLink, string category, string productDescription, int amountInStock, decimal productPrice)
         {
-            ProductModel product = new ProductModel(productName, imageLink, category, productDescription, amountInStock, productPrice);
+            ProductModel product = new ProductModel(productId, productName, imageLink, category, productDescription, amountInStock, productPrice);
 
             dummyData.TempProducts.Add(product);
         }

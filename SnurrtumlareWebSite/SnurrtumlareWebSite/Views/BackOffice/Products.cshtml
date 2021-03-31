@@ -1,13 +1,9 @@
-﻿@{
+﻿@model IEnumerable<SnurrtumlareWebSite.Models.ProductModel>
+
+
+@{
     ViewData["Title"] = "Products";
 }
-@model List<ProductModel>
-
-<style>
-    #Input_Style {
-        margin: 5px;
-    }
-</style>
 
 <div class="container-fluid">
     <div class="row">
@@ -25,24 +21,24 @@
                     </tr>
                 </thead>
 
-                @foreach (var product in Model)
-                {
                 <tbody>
-                    <tr>
-                        <td>@product.ProductId</td>
-                        <td>@product.ProductName</td>
-                        <td>@product.ProductDescription</td>
-                        <td>@product.AmountInStock</td>
-                        <td>
-                            <div class="form-check-inline">
-                                <button id="Input_Style" type="button" class="btn btn-secondary">Edit</button>
-                                <button id="Input_Style" type="button" class="btn btn-secondary">Details</button>
-                                <button id="Input_Style" type="button" class="btn btn-danger">Delete</button>
-                            </div>
-                        </td>
-                    </tr>
+                    @foreach (var product in Model)
+                    {
+                        <tr>
+                            <td>@product.ProductId</td>
+                            <td>@product.ProductName</td>
+                            <td>@product.ProductDescription</td>
+                            <td>@product.AmountInStock</td>
+                            <td>
+                                <div class="form-check-inline">
+                                    <button id="Input_Style" type="button" class="btn btn-secondary btn-sm">Edit</button>
+                                    <button id="Input_Style" type="button" class="btn btn-secondary btn-sm">Details</button>
+                                    <button id="Input_Style" type="button" class="btn btn-danger btn-sm">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
-                }
             </table>
         </div>
     </div>
