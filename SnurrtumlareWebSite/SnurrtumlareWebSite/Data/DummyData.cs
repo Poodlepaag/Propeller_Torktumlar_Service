@@ -36,11 +36,11 @@ namespace SnurrtumlareWebSite.Data
 
             TempProducts = new List<ProductModel>
             {
-            new ProductModel(){ProductId = 123456, ProductName = "Propellerkeps Deluxe", Category = "Keps", ProductDescription =  "Kepsarnas keps", AmountInStock =  25, ProductPrice = 189 },
-            new ProductModel(){ProductId = 234561, ProductName = "Propellerkeps Premium", Category =  "Keps", ProductDescription =   "Keps med guldskärm", AmountInStock =  10, ProductPrice =  179 },
-            new ProductModel(){ProductId = 345612, ProductName = "Torktumlare X3", Category =  "Torktumlare", ProductDescription =   "Instegsmodell bland torktumlare", AmountInStock =  5, ProductPrice =  4990 },
-            new ProductModel(){ProductId = 456123, ProductName = "Torktumlare XT55", Category =  "Torktumlare", ProductDescription =   "Premium Torktumlare med det lilla extra", AmountInStock =  2, ProductPrice =  7990 },
-            new ProductModel(){ProductId = 561234, ProductName = "Propellerkeps Magenta", Category =  "Keps", ProductDescription =   "Propellerkeps med en färg som sticker ut", AmountInStock =  5, ProductPrice = 149 }
+            new ProductModel("Propellerkeps Deluxe", "/assets/pictures/Kepsar/Prop1.png", "Keps", "Kepsarnas keps", 25, 189),
+            new ProductModel("Propellerkeps Premium", "/assets/pictures/Kepsar/Prop10.png", "Keps", "Keps med guldskärm", 10, 179),
+            new ProductModel("Torktumlare X3", "/assets/pictures/Torktumlare/Tork1.png", "Torktumlare", "Instegsmodell bland torktumlare", 5, 4990),
+            new ProductModel("Torktumlare XT55", "/assets/pictures/Torktumlare/Tork10.png", "Torktumlare", "Premium Torktumlare med det lilla extra", 2, 7990),
+            new ProductModel("Propellerkeps Crazy", "/assets/pictures/Kepsar/Prop11.png", "Keps", "Propellerkepsen för den som testar gränser", 5, 149)
             };
 
             TempCart = new CartModel

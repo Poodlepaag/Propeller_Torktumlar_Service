@@ -10,8 +10,9 @@
 </head>
 
 <body>
-
-    @Html.Partial("_Header") <!--Edit code in header.cshtml to change how the header looks-->
+    <header>
+        @Html.Partial("_Header") <!--Edit code in header.cshtml to change how the header looks-->
+    </header>
 
     <div class="container">
         <main role="main" class="pb-3">
@@ -19,7 +20,9 @@
         </main>
     </div>
 
-    @Html.Partial("_Footer") <!--Edit code in footer.cshtml to change how the footer looks-->
+    <div class="footer">
+        @Html.Partial("_Footer") <!--Edit code in footer.cshtml to change how the footer looks-->
+    </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
