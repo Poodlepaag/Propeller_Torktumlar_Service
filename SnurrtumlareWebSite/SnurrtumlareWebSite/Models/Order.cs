@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace SnurrtumlareWebSite.Models
 {
-    public class OrderModel
+    public class Order
     {
         public int OrderId { get; set; }
-        public CustomerModel Customer { get; set; }
-        public List<ProductModel> ProductsFromCart { get; set; }
+        public Customer Customer { get; set; }
+        public List<Product> ProductsFromCart { get; set; }
         public decimal TotalOrderCost { get; set; }
         public bool IsDelivered { get; set; } = false;
     }

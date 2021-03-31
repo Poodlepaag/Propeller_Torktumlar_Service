@@ -11,14 +11,14 @@ namespace SnurrtumlareWebSite.Services
     {
         DummyData dummyData = new DummyData();
 
-        public IEnumerable<OrderModel> Get()
+        public IEnumerable<Order> Get()
         {
             var listOfOrders = dummyData.TempOrders;
 
             return listOfOrders; 
         }
 
-        public List<OrderModel> Get(CustomerModel customer)
+        public List<Order> Get(Customer customer)
         {
             return dummyData.TempOrders.Where(c => c.Customer == customer).ToList(); ;
         }
