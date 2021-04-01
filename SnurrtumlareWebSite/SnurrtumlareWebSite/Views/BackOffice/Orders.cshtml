@@ -24,7 +24,7 @@
                 @foreach (var order in Model)
                 {
                     <tr>
-                        <td>@order.Customer.CustomerId</td>
+                        <td>@order.Customer.UserId</td>
                         <td>@order.Customer.FirstName @order.Customer.LastName</td>
                         <td>@order.Customer.Email</td>
                         <td>@order.ProductsFromCart</td>  @{/*TODO: Fixa med en foreach loop*/ } 

@@ -26,18 +26,18 @@ namespace SnurrtumlareWebSite.Services
 
         public IEnumerable<User> GetCustomer(int id)
         {
-            return Customers.Where(c => c.CustomerId == id).ToList();
+            return Customers.Where(c => c.UserId == id).ToList();
         }
         
         public void CreateCustomer(int customerId, string firstName, string lastName, string address, string zipCode, string city, string email, string phone)
         {
             Customers.Add(new User
-            { CustomerId = customerId, FirstName = firstName, LastName = lastName, Address = address, ZipCode = zipCode, City = city, Email = email, Phone = phone });
+            { UserId = customerId, FirstName = firstName, LastName = lastName, Address = address, ZipCode = zipCode, City = city, Email = email, Phone = phone });
         }
 
         public void EditCustomer(int id, string firstName, string lastName, string address, string zipCode, string city, string email, string phone)
         {
-            Customers = Customers.Where(c => c.CustomerId == id).ToList();
+            Customers = Customers.Where(c => c.UserId == id).ToList();
             
             Customers[0].FirstName = firstName;           
             Customers[0].LastName = lastName;           
@@ -50,7 +50,7 @@ namespace SnurrtumlareWebSite.Services
 
         public void DeleteCustomer(int id)
         {
-            Customers.RemoveAll(c => c.CustomerId == id);
+            Customers.RemoveAll(c => c.UserId == id);
         }
 
     }
