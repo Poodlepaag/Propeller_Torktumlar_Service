@@ -1,4 +1,6 @@
-﻿using SnurrtumlareWebSite.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using SnurrtumlareWebSite.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,21 +45,30 @@ namespace SnurrtumlareWebSite.Data
             };
 
 
-            //OrderRow uniqueProduct1 = new OrderRow()
-       
-            
+            List<OrderRow> productsInCart = new List<OrderRow>()
+
+             {
+                new OrderRow() { Product = TempProducts[0], ProductPrice = TempProducts[0].ProductPrice, Quantity = 5 },
+                new OrderRow() { Product = TempProducts[1], ProductPrice = TempProducts[1].ProductPrice, Quantity = 1 },
+                new OrderRow() { Product = TempProducts[2], ProductPrice = TempProducts[2].ProductPrice, Quantity = 3 }
+             };
+
+
+            Cart TempCart = new Cart() { ProductsInCart = productsInCart, ContainsItems = true, TotalCost = 500 };
+
             TempOrders = new List<Order>
             {
-                new Order() {OrderId = 1, Customer = TempCustomers[0], IsDelivered = false, ProductsFromCart = TempCart.ProductsFromCart, TotalOrderCost = 500},
-                new Order() {OrderId = 2, Customer = TempCustomers[5], IsDelivered = false, ProductsFromCart = TempCart.ProductsFromCart, TotalOrderCost = 650},
-                new Order() {OrderId = 3, Customer = TempCustomers[5], IsDelivered = true, ProductsFromCart = TempCart.ProductsFromCart, TotalOrderCost = 800},
-                new Order() {OrderId = 4, Customer = TempCustomers[1], IsDelivered = true, ProductsFromCart = TempCart.ProductsFromCart, TotalOrderCost = 700},
-                new Order() {OrderId = 5, Customer = TempCustomers[10], IsDelivered = true, ProductsFromCart = TempCart.ProductsFromCart, TotalOrderCost = 100}
+                new Order() {OrderId = 1, Customer = TempCustomers[0], IsDelivered = false, ProductsFromCart = TempCart.ProductsInCart, TotalOrderCost = 500},
+                new Order() {OrderId = 2, Customer = TempCustomers[5], IsDelivered = false, ProductsFromCart = TempCart.ProductsInCart, TotalOrderCost = 650},
+                new Order() {OrderId = 3, Customer = TempCustomers[5], IsDelivered = true, ProductsFromCart = TempCart.ProductsInCart, TotalOrderCost = 800},
+                new Order() {OrderId = 4, Customer = TempCustomers[1], IsDelivered = true, ProductsFromCart = TempCart.ProductsInCart, TotalOrderCost = 700},
+                new Order() {OrderId = 5, Customer = TempCustomers[10], IsDelivered = true, ProductsFromCart = TempCart.ProductsInCart, TotalOrderCost = 100}
             };
 
+            
 
 
+
+            }
         }
-
     }
-}

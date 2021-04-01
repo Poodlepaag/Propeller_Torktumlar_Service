@@ -9,10 +9,11 @@ namespace SnurrtumlareWebSite.Models
     public class OrderRow
     {
         public DbContext ProductData { get; set; }
-        Product product { get; set; }
+        public Product Product { get; set; }
+        public int Quantity { get; set; }
 
-        decimal ProductPrice { get; set; }
+        public decimal ProductPrice { get; set; }
 
-        int Quantity { get; set; }
     }
+
 }

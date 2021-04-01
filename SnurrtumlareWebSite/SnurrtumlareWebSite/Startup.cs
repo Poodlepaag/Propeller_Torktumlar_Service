@@ -25,9 +25,14 @@ namespace SnurrtumlareWebSite
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+
+        string connectionString = @"Data Source = (localdb)\MSSQLLocalDB;Initial Catalog = SnurrtumlareDB;";
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<SnurrtumlareDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();

@@ -13,9 +13,20 @@ namespace SnurrtumlareWebSite.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
 
+        public SnurrtumlareDbContext(DbContextOptions<SnurrtumlareDbContext> options)
+            : base(options)
+        { }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SnurrtumlareDB;");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Ignore<OrderRow>();
+            modelBuilder.SeedUser();
+            modelBuilder.SeedProduct();
         }
     }
 }
