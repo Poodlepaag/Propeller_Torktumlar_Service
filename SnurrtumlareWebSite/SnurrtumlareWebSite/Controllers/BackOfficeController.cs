@@ -44,7 +44,7 @@ namespace SnurrtumlareWebSite.Controllers
             var listOfCustomers = GetCustomers();
             return View(listOfCustomers);
         }
-        private IEnumerable<Customer> GetCustomers()
+        private IEnumerable<User> GetCustomers()
         {
             return customersService.GetAllCustomers();
         }

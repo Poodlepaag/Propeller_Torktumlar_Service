@@ -7,7 +7,8 @@ namespace SnurrtumlareWebSite.Models
 {
     public class Cart
     {
-        public List<Product> ProductsInCart { get; set; }
+        public List<OrderRow> ProductsInCart { get; set; }
         public bool ContainsItems { get; set; } = false;
+        public decimal TotalCost { get; set; }
     }
 }

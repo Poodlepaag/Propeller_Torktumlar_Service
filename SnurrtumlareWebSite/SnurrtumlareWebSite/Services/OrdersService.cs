@@ -18,7 +18,7 @@ namespace SnurrtumlareWebSite.Services
             return listOfOrders; 
         }
 
-        public List<Order> Get(Customer customer)
+        public List<Order> Get(User customer)
         {
             return dummyData.TempOrders.Where(c => c.Customer == customer).ToList(); ;
         }
