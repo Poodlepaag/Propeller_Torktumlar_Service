@@ -42,22 +42,20 @@ namespace SnurrtumlareWebSite.Data
             new Product(5, "Propellerkeps Crazy", "/assets/pictures/Kepsar/Prop11.png", "Keps", "Propellerkepsen för den som testar gränser", 5, 149)
             };
 
-            //TempCart = new Cart
-            //{
-            //    ContainsItems = true,
-            //    ProductsInCart = TempProducts
-            //};
 
-            //TempOrders = new List<Order>
-            //{
-            //    new Order() {OrderId = 1, Customer = TempCustomers[0], IsDelivered = false, ProductsFromCart = TempCart.ProductsInCart, TotalOrderCost = 500},
-            //    new Order() {OrderId = 2, Customer = TempCustomers[5], IsDelivered = false, ProductsFromCart = TempCart.ProductsInCart, TotalOrderCost = 650},
-            //    new Order() {OrderId = 3, Customer = TempCustomers[5], IsDelivered = true, ProductsFromCart = TempCart.ProductsInCart, TotalOrderCost = 800},
-            //    new Order() {OrderId = 4, Customer = TempCustomers[1], IsDelivered = true, ProductsFromCart = TempCart.ProductsInCart, TotalOrderCost = 700},
-            //    new Order() {OrderId = 5, Customer = TempCustomers[10], IsDelivered = true, ProductsFromCart = TempCart.ProductsInCart, TotalOrderCost = 100}
-            //};
-
+            //OrderRow uniqueProduct1 = new OrderRow()
+       
             
+            TempOrders = new List<Order>
+            {
+                new Order() {OrderId = 1, Customer = TempCustomers[0], IsDelivered = false, ProductsFromCart = TempCart.ProductsFromCart, TotalOrderCost = 500},
+                new Order() {OrderId = 2, Customer = TempCustomers[5], IsDelivered = false, ProductsFromCart = TempCart.ProductsFromCart, TotalOrderCost = 650},
+                new Order() {OrderId = 3, Customer = TempCustomers[5], IsDelivered = true, ProductsFromCart = TempCart.ProductsFromCart, TotalOrderCost = 800},
+                new Order() {OrderId = 4, Customer = TempCustomers[1], IsDelivered = true, ProductsFromCart = TempCart.ProductsFromCart, TotalOrderCost = 700},
+                new Order() {OrderId = 5, Customer = TempCustomers[10], IsDelivered = true, ProductsFromCart = TempCart.ProductsFromCart, TotalOrderCost = 100}
+            };
+
+
 
         }
 
