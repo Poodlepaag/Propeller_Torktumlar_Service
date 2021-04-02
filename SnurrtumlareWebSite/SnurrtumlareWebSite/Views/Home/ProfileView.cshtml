@@ -1,0 +1,98 @@
+﻿
+
+@model Views_BackOffice_Customers
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div>
+                <h1 class="pos2" style="font-size:300%;">Kund Profil</h1>
+
+            </div>
+
+           
+
+           
+
+
+            <form>
+                <div class="row">
+                    <div class="col-6">
+                        <h2 class="text-info">Kund Profiler</h2>
+                    </div>
+                    <div class="col-6 text-right">
+                        
+                          
+                    </div>
+                </div>
+
+                <div class="border bg-white">
+                    <br />
+                    <div>
+                        <table class="table table-striped border">
+                            <tr class="table-DisplayName">
+
+                                <th>
+                                    <p>User Id</p>
+                                </th>
+                                <th>
+                                    <p>First Name</p>
+                                </th>
+                                <th>
+                                    <p>Last Name</p>
+                                </th>
+                                <th>
+                                    <p>Address</p>
+                                </th>
+                                <th>
+                                    <p>ZipCode</p>
+                                </th>
+                                <th>
+                                    <p>City</p>
+                                </th>
+                                <th>
+                                    <p>Email</p>
+                                </th>
+                                <th>
+                                    <p>Phone</p>
+                                </th>
+                            </tr>
+
+                            
+
+                             @foreach (var customer in Model)
+                             {
+                              <tr>
+                                                    <td>
+                                                        @Html.DisplayFor(m => customer.UserId)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(m => customer.FirstName)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(m => customer.LastName)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(m => customer.Address)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(m => customer.ZipCode)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(m => customer.City)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(m => customer.Email)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(m => customer.Phone)
+                                                    </td>
+                            
+                            </tr>
+
+                            }
+                        </table>
+                                    </div>
+                                </div>
+                            </form>

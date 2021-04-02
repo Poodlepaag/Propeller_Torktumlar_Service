@@ -60,6 +60,12 @@ namespace SnurrtumlareWebSite.Controllers
             return View();
         }
 
+        public IActionResult ProfileView()
+        {
+            return View();
+        }
+
+
         public IActionResult DeliveryTerms()
         {
             return View();
