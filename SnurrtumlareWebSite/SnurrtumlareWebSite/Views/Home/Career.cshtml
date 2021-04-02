@@ -2,13 +2,14 @@
     ViewData["Title"] = "Karriär";
 }
 
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
 
             <h1 class="pos1">Lediga jobb hos Snurrtumlare AB</h1>
 
-            <p>
+            <p style="margin-left: 12px">
                 Se våra lediga tjänster nedan! Du kan också skicka en spontanansökan till oss via <a href="mailto:jobs@snurrtumlare.se">mail. </a> Vi hoppas att höra från dig!
             </p>
 
@@ -79,17 +80,16 @@
     </div>
 </div>
 
-<p><center><a href="www.sökjobbethär.se">Sök tjänst</a></center></p>
 
 <!-- Button trigger modal -->
 <center>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter1">
         Sök tjänst
     </button>
 </center>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -100,60 +100,59 @@
             </div>
 
             <div class="modal-body">
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <form>
-
-                            Förnamn:<br>
-                            <input type="text"/> <br>
-
-                            Efternamn:<br>
-                            <input type="text"/> <br>
-
-                            E-postadress:<br>
-                            <input type="text"/> <br>
-
-                            Meddelande:<br>
-                            <textarea cols="23" rows="5"></textarea> <br>
-
-                            @*<input type="submit" name="skicka" id="skicka" value="Skicka meddelandet" />*@
-
-                        </form>
-                    </div>
-
-
+                <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-6 ml-auto">
-                            <form>
+                        <div class="col-sm-12">
+                            <div class="row">
 
-                                Haur va som krävs:<br>
-                                <input type="text" value="Jau el Naj"/> <br>
-                                @*<textarea cols="25" rows="5"></textarea> <br>*@
+                                <div class="col-6 col-sm-6">
 
-                                Vill du hau jubbet:<br>
-                                <input type="text" value="Jau el Naj"/> <br>
-                                @*<textarea cols="25" rows="5"></textarea> <br>*@
+                                    <p>
+                                        Leg te Förnamn:<br>
+                                        <input type="text" />
+                                    </p>
 
-                                När vill du börja:<br>
-                                <input type="text" value="Lägg i dautum"/> <br>
-                                @*<textarea cols="25" rows="5"></textarea> <br>*@
+                                    <p>
+                                        Leg te Efternamn:<br>
+                                        <input type="text" />
+                                    </p>
 
-                                @*Meddelande:<br>
-                                    <textarea name="meddelande" id="meddelande" cols="23" rows="5"></textarea> <br>*@
+                                    <p>
+                                        Leg te E-postadress:<br>
+                                        <input type="text" />
+                                    </p>
 
-                                @*<input type="submit" name="skicka" id="skicka" value="Skicka meddelandet" />*@
+                                    <p>
+                                        Leg te Middilande:<br>
+                                        <textarea cols="23" rows="6"></textarea>
+                                    </p>
 
-                            </form>
+                                </div>
+
+                                <div class="col-6 col-sm-6">
+
+                                    <p>Haur va som krävs: <input type="checkbox" /></p>
+
+                                    <p>Vill du hau jubbet: <input type="checkbox" /></p>
+
+                                    <div class="form-group">
+                                        <label for="start">Nårr vill du börja jubba:</label>
+
+                                        <input type="date" id="start" name="trip-start"
+                                               value="@DateTime.Now.Year"
+                                               min="2018-01-01" max="2025-12-31">
+                                    </div>
+
+                                </div>
+
+                            </div>
                         </div>
                     </div>
-
                 </div>
-
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Skicka</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Skicka</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Avbryt</button>
             </div>
         </div>
@@ -221,7 +220,84 @@
     </div>
 </div>
 
-<p><center><a href="www.sökjobbethär.se">Sök tjänst</a></center></p>
+
+<!-- Button trigger modal -->
+<center>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2">
+        Sök tjänst
+    </button>
+</center>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Torktumlarteknikerassistent</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+
+                                <div class="col-6 col-sm-6">
+
+                                    <p>
+                                        Leg te Förnamn:<br>
+                                        <input type="text" />
+                                    </p>
+
+                                    <p>
+                                        Leg te Efternamn:<br>
+                                        <input type="text" />
+                                    </p>
+
+                                    <p>
+                                        Leg te E-postadress:<br>
+                                        <input type="text" />
+                                    </p>
+
+                                    <p>
+                                        Leg te Middilande:<br>
+                                        <textarea cols="23" rows="6"></textarea>
+                                    </p>
+
+                                </div>
+
+                                <div class="col-6 col-sm-6">
+
+                                    <p>Haur va som krävs: <input type="checkbox" /></p>
+
+                                    <p>Vill du hau jubbet: <input type="checkbox" /></p>
+
+                                    <div class="form-group">
+                                        <label for="start">Nårr vill du börja jubba:</label>
+
+                                        <input type="date" id="start" name="trip-start"
+                                               value="@DateTime.Now.Year"
+                                               min="2018-01-01" max="2025-12-31">
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Skicka</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Avbryt</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -299,4 +375,123 @@
     </div>
 </div>
 
-<p><center><a href="www.sökjobbethär.se">Sök tjänst</a></center></p>
+<!-- Button trigger modal -->
+<center>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter3">
+        Sök tjänst
+    </button>
+</center>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Smart Device Manager</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+
+                                <div class="col-6 col-sm-6">
+
+                                    <p>
+                                        Leg te Förnamn:<br>
+                                        <input type="text" />
+                                    </p>
+
+                                    <p>
+                                        Leg te Efternamn:<br>
+                                        <input type="text" />
+                                    </p>
+
+                                    <p>
+                                        Leg te E-postadress:<br>
+                                        <input type="text" />
+                                    </p>
+
+                                    <p>
+                                        Leg te Middilande:<br>
+                                        <textarea cols="23" rows="6"></textarea>
+                                    </p>
+
+                                </div>
+
+                                <div class="col-6 col-sm-6">
+
+                                    <p>Haur va som krävs: <input type="checkbox" /></p>
+
+                                    <p>Vill du hau jubbet: <input type="checkbox" /></p>
+
+                                    <div class="form-group">
+                                        <label for="start">Nårr vill du börja jubba:</label>
+
+                                        <input type="date" id="start" name="trip-start"
+                                               value="@DateTime.Now.Year"
+                                               min="2018-01-01" max="2025-12-31">
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Skicka</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Avbryt</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<br />
+<br />
+<br />
+
+
+
+
+
+<script type="text/javascript">
+    $(function () { 
+                // will trigger when the document is ready
+                //Initialise all datepickers whose class name are mydatepicker
+                // Display them with a button which containes a small calendar icon.
+                $(".mydatepicker")
+                    .wrap('＜div class="input-group"＞')
+                    .datepicker({
+                        dateFormat: "dd.mm.yy",
+                        changeYear: true,
+                        yearRange: "-70:+0",//year selection is possible from starting 70 years before now
+                        showOn: "both"
+                    })
+                    .next("button").button({
+                        icons: { primary: "ui-icon-calendar" },
+                        label: "Select Date",
+                        text: false
+                    })
+                    .addClass("btn btn-default")
+                    .wrap('＜span class="input-group-btn"＞')
+                    .find('.ui-button-text')
+                    .css({
+                        'visibility': 'hidden',
+                        'display': 'inline'
+                    });
+            });
+
+
+</script>
+
+<script>
+            $('#myModal').modal('dispose')
+</script>
