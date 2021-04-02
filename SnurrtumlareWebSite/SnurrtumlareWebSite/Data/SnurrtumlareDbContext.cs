@@ -24,7 +24,6 @@ namespace SnurrtumlareWebSite.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Ignore<OrderRow>();
             modelBuilder.SeedUser();
             modelBuilder.SeedProduct();
         }

@@ -38,5 +38,11 @@ namespace SnurrtumlareWebSite.Models
                 );
         }
 
+
+        public static void SeedOrder(this ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Order>().HasData(
+                new Order() { OrderId}
+        }
     }
 }

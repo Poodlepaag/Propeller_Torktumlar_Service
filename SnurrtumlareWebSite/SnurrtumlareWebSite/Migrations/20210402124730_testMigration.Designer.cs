@@ -10,8 +10,8 @@ using SnurrtumlareWebSite.Data;
 namespace SnurrtumlareWebSite.Migrations
 {
     [DbContext(typeof(SnurrtumlareDbContext))]
-    [Migration("20210401131624_SeedUserAndProducts")]
-    partial class SeedUserAndProducts
+    [Migration("20210402124730_testMigration")]
+    partial class testMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
