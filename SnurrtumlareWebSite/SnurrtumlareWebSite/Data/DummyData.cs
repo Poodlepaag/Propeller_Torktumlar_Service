@@ -56,14 +56,14 @@ namespace SnurrtumlareWebSite.Data
 
             Cart TempCart = new Cart() { ProductsInCart = productsInCart, ContainsItems = true, TotalCost = 500 };
 
-            TempOrders = new List<Order>
-            {
-                new Order() {OrderId = 1, Customer = TempCustomers[0], IsDelivered = false, ProductsFromCart = TempCart.ProductsInCart, TotalOrderCost = 500},
-                new Order() {OrderId = 2, Customer = TempCustomers[5], IsDelivered = false, ProductsFromCart = TempCart.ProductsInCart, TotalOrderCost = 650},
-                new Order() {OrderId = 3, Customer = TempCustomers[5], IsDelivered = true, ProductsFromCart = TempCart.ProductsInCart, TotalOrderCost = 800},
-                new Order() {OrderId = 4, Customer = TempCustomers[1], IsDelivered = true, ProductsFromCart = TempCart.ProductsInCart, TotalOrderCost = 700},
-                new Order() {OrderId = 5, Customer = TempCustomers[10], IsDelivered = true, ProductsFromCart = TempCart.ProductsInCart, TotalOrderCost = 100}
-            };
+            //TempOrders = new List<Order>
+            //{
+            //    new Order() {OrderId = 1, Customer = TempCustomers[0], IsDelivered = false, ProductsFromCart = TempCart.ProductsInCart, TotalOrderCost = 500},
+            //    new Order() {OrderId = 2, Customer = TempCustomers[5], IsDelivered = false, ProductsFromCart = TempCart.ProductsInCart, TotalOrderCost = 650},
+            //    new Order() {OrderId = 3, Customer = TempCustomers[5], IsDelivered = true, ProductsFromCart = TempCart.ProductsInCart, TotalOrderCost = 800},
+            //    new Order() {OrderId = 4, Customer = TempCustomers[1], IsDelivered = true, ProductsFromCart = TempCart.ProductsInCart, TotalOrderCost = 700},
+            //    new Order() {OrderId = 5, Customer = TempCustomers[10], IsDelivered = true, ProductsFromCart = TempCart.ProductsInCart, TotalOrderCost = 100}
+            //};
 
             
 

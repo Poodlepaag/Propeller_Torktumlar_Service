@@ -8,8 +8,9 @@ namespace SnurrtumlareWebSite.Models
     public class Order
     {
         public int OrderId { get; set; }
-        public User Customer { get; set; }
-        public List<OrderRow> ProductsFromCart { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
+        public List<OrderRow> OrderRows { get; set; }
         public decimal TotalOrderCost { get; set; }
         public bool IsDelivered { get; set; } = false;
     }

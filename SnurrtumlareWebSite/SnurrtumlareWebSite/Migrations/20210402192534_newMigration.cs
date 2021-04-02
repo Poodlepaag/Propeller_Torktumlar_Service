@@ -2,7 +2,7 @@
 
 namespace SnurrtumlareWebSite.Migrations
 {
-    public partial class testMigration : Migration
+    public partial class newMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,7 +49,7 @@ namespace SnurrtumlareWebSite.Migrations
                 {
                     OrderId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CustomerUserId = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     TotalOrderCost = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     IsDelivered = table.Column<bool>(type: "bit", nullable: false)
                 },
@@ -57,10 +57,38 @@ namespace SnurrtumlareWebSite.Migrations
                 {
                     table.PrimaryKey("PK_Orders", x => x.OrderId);
                     table.ForeignKey(
-                        name: "FK_Orders_Users_CustomerUserId",
-                        column: x => x.CustomerUserId,
+                        name: "FK_Orders_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrderRow",
+                columns: table => new
+                {
+                    OrderRowId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrderId = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: true),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    ProductPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderRow", x => x.OrderRowId);
+                    table.ForeignKey(
+                        name: "FK_OrderRow_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "OrderId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_OrderRow_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "ProductId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -94,14 +122,37 @@ namespace SnurrtumlareWebSite.Migrations
                     { 11, "Rödmålavägen 7", "Lund", "anderspersson52@irra.se", "Anders", "Persson", "0701238545", "22242" }
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Orders_CustomerUserId",
+            migrationBuilder.InsertData(
                 table: "Orders",
-                column: "CustomerUserId");
+                columns: new[] { "OrderId", "IsDelivered", "TotalOrderCost", "UserId" },
+                values: new object[] { 123456, false, 0m, 1 });
+
+            migrationBuilder.InsertData(
+                table: "OrderRow",
+                columns: new[] { "OrderRowId", "OrderId", "ProductId", "ProductPrice", "Quantity" },
+                values: new object[] { 12, 123456, null, 0m, 0 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderRow_OrderId",
+                table: "OrderRow",
+                column: "OrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderRow_ProductId",
+                table: "OrderRow",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_UserId",
+                table: "Orders",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "OrderRow");
+
             migrationBuilder.DropTable(
                 name: "Orders");
 

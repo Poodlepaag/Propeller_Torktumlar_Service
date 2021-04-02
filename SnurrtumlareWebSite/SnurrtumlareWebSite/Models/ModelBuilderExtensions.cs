@@ -41,8 +41,8 @@ namespace SnurrtumlareWebSite.Models
 
         public static void SeedOrder(this ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Order>().HasData(
-                new Order() { OrderId}
+            modelBuilder.Entity<Order>().HasData(new Order() { OrderId = 123456, UserId = 1 } );
+            modelBuilder.Entity<OrderRow>().HasData(new List<OrderRow>() { new OrderRow() { OrderRowId = 12, OrderId = 123456 } });
         }
     }
 }

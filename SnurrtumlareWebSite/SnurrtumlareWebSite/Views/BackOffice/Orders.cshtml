@@ -11,9 +11,9 @@
             <table style="width:100%" class="table table-bordered table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>Customer Id</th>
-                        <th>Customer Name</th>
-                        <th>Customer Email</th>
+                        <th>User Id</th>
+                        <th>User Name</th>
+                        <th>User Email</th>
                         <th>Product</th>
                         <th>Total Cost</th>
                         <th>Is Delivered</th>
@@ -24,12 +24,12 @@
                 @foreach (var order in Model)
                 {
                     <tr>
-                        <td>@order.Customer.UserId</td>
-                        <td>@order.Customer.FirstName @order.Customer.LastName</td>
-                        <td>@order.Customer.Email</td>
-                        <td>@order.ProductsFromCart</td>  @{/*TODO: Fixa med en foreach loop*/ } 
-                        <td>@order.TotalOrderCost</td>
-                        <td>@order.IsDelivered</td>
+                        <td>@order.OrderId</td>
+                        <td>@foreach (var row in order.OrderRows)
+                            {
+                                @row.Product
+                            }
+                            </td>  @{/*TODO: Fixa med en foreach loop*/ }
                         <td>
                             <div class="form-check-inline">
                                 <button id="Input_Style" type="button" class="btn btn-secondary btn-sm">Edit</button>

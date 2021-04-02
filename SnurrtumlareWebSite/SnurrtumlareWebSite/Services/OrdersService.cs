@@ -9,21 +9,18 @@ namespace SnurrtumlareWebSite.Services
 {
     public class OrdersService
     {
-        DummyData dummyData = new DummyData();
+        SnurrtumlareDbContext dbContext = new SnurrtumlareDbContext();
 
         public IEnumerable<Order> Get()
         {
-            var listOfOrders = dummyData.TempOrders;
+            var listOfOrders = dbContext.Orders.ToList();
 
             return listOfOrders; 
         }
 
-        public List<Order> Get(User customer)
+        public List<Order> Get(User user)
         {
-            return dummyData.TempOrders.Where(c => c.Customer == customer).ToList(); ;
+            return dbContext.Orders.Where(c => c.User == user).ToList(); ;
         }
     }
 }
-      
-
-

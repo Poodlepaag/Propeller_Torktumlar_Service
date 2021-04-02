@@ -10,8 +10,8 @@ using SnurrtumlareWebSite.Data;
 namespace SnurrtumlareWebSite.Migrations
 {
     [DbContext(typeof(SnurrtumlareDbContext))]
-    [Migration("20210402124730_testMigration")]
-    partial class testMigration
+    [Migration("20210402192534_newMigration")]
+    partial class newMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,20 +28,66 @@ namespace SnurrtumlareWebSite.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CustomerUserId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsDelivered")
                         .HasColumnType("bit");
 
                     b.Property<decimal>("TotalOrderCost")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("OrderId");
 
-                    b.HasIndex("CustomerUserId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Orders");
+
+                    b.HasData(
+                        new
+                        {
+                            OrderId = 123456,
+                            IsDelivered = false,
+                            TotalOrderCost = 0m,
+                            UserId = 1
+                        });
+                });
+
+            modelBuilder.Entity("SnurrtumlareWebSite.Models.OrderRow", b =>
+                {
+                    b.Property<int>("OrderRowId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("ProductPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderRowId");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderRow");
+
+                    b.HasData(
+                        new
+                        {
+                            OrderRowId = 12,
+                            OrderId = 123456,
+                            ProductPrice = 0m,
+                            Quantity = 0
+                        });
                 });
 
             modelBuilder.Entity("SnurrtumlareWebSite.Models.Product", b =>
@@ -284,11 +330,33 @@ namespace SnurrtumlareWebSite.Migrations
 
             modelBuilder.Entity("SnurrtumlareWebSite.Models.Order", b =>
                 {
-                    b.HasOne("SnurrtumlareWebSite.Models.User", "Customer")
+                    b.HasOne("SnurrtumlareWebSite.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("CustomerUserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Customer");
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("SnurrtumlareWebSite.Models.OrderRow", b =>
+                {
+                    b.HasOne("SnurrtumlareWebSite.Models.Order", null)
+                        .WithMany("OrderRows")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SnurrtumlareWebSite.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("SnurrtumlareWebSite.Models.Order", b =>
+                {
+                    b.Navigation("OrderRows");
                 });
 #pragma warning restore 612, 618
         }
