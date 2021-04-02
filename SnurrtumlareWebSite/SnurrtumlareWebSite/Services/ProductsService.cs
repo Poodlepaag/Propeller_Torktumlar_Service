@@ -19,9 +19,9 @@ namespace SnurrtumlareWebSite.Services
         public List<Product> GetProductsBySearch(string searchString)
         {
             var result = dummyData.TempProducts.Where(p =>
-                        p.ProductName.Contains(searchString) ||
-                        p.ProductDescription.Contains(searchString) ||
-                        p.Category.Contains(searchString));
+                        p.ProductName.ToLower().Contains(searchString.ToLower()) ||
+                        p.ProductDescription.ToLower().Contains(searchString.ToLower()) ||
+                        p.Category.ToLower().Contains(searchString.ToLower()));
 
             return result.ToList();
         }

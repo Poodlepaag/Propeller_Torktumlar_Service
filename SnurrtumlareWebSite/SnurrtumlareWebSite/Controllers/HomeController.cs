@@ -26,13 +26,21 @@ namespace SnurrtumlareWebSite.Controllers
             return View();
         }
 
-        public IActionResult Products()
+        
+        public IActionResult Products(string searchString)
         {
-            var listOfProducts = productsService.GetAllProducts();
+            var result = new List<Product>();
+            if (string.IsNullOrEmpty(searchString))
+            {
+                result = productsService.GetAllProducts();
+            }
+            else
+            {
+                result = productsService.GetProductsBySearch(searchString);
+            }
             
-            return View(listOfProducts);
+            return View(result);
         }
-
         public IActionResult DeleteProducts()
         {
             // productsService.Delete();  (Fixar denna vid ett senare tillfälle!)

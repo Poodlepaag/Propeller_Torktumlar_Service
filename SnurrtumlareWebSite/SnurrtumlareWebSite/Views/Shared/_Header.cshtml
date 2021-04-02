@@ -11,9 +11,12 @@
     </div>
 </div>
 <div class="logo_search_cart">
-    <a asp-controller="Home" asp-action="Index"><img id="logo" src="~/assets/icons/Logo.png"></a>
-    <input type="text" id="search_bar" placeholder="Sök på varor...">
-    <a asp-controller="Home" asp-action="ShoppingCart"><img id="cart" src="~/assets/icons/shopping-cart.png"></a>
+    <form asp-controller="Home" asp-action="Products" method="get">
+        <a asp-controller="Home" asp-action="Index"><img id="logo" src="~/assets/icons/Logo.png"></a>
+        <input type="text" id="search_bar" placeholder="Sök på varor..." name="searchstring">
+        <input type="submit" value="Sök" />
+        <a asp-controller="Home" asp-action="ShoppingCart"><img id="cart" src="~/assets/icons/shopping-cart.png"></a>
+    </form>
 </div>
 
 <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light navbar-right border-bottom box-shadow justify-content-right mb-3">
