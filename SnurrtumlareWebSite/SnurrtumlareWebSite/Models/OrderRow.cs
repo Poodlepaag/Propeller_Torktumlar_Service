@@ -10,8 +10,8 @@ namespace SnurrtumlareWebSite.Models
     {
         public int OrderRowId { get; set; }
         public int OrderId { get; set; }
-        public Product Product { get; set; }
         public int Quantity { get; set; }
-        public decimal ProductPrice { get; set; }
+
+        public virtual Product Product { get; set; }
     }
 }

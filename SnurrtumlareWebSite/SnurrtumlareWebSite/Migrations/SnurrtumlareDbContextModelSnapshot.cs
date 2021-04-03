@@ -32,7 +32,7 @@ namespace SnurrtumlareWebSite.Migrations
                     b.Property<decimal>("TotalOrderCost")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("OrderId");
@@ -46,8 +46,13 @@ namespace SnurrtumlareWebSite.Migrations
                         {
                             OrderId = 123456,
                             IsDelivered = false,
-                            TotalOrderCost = 0m,
-                            UserId = 1
+                            TotalOrderCost = 0m
+                        },
+                        new
+                        {
+                            OrderId = 234567,
+                            IsDelivered = false,
+                            TotalOrderCost = 0m
                         });
                 });
 
@@ -63,9 +68,6 @@ namespace SnurrtumlareWebSite.Migrations
 
                     b.Property<int?>("ProductId")
                         .HasColumnType("int");
-
-                    b.Property<decimal>("ProductPrice")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -83,7 +85,24 @@ namespace SnurrtumlareWebSite.Migrations
                         {
                             OrderRowId = 12,
                             OrderId = 123456,
-                            ProductPrice = 0m,
+                            Quantity = 0
+                        },
+                        new
+                        {
+                            OrderRowId = 13,
+                            OrderId = 123456,
+                            Quantity = 0
+                        },
+                        new
+                        {
+                            OrderRowId = 14,
+                            OrderId = 234567,
+                            Quantity = 0
+                        },
+                        new
+                        {
+                            OrderRowId = 15,
+                            OrderId = 234567,
                             Quantity = 0
                         });
                 });
@@ -330,9 +349,7 @@ namespace SnurrtumlareWebSite.Migrations
                 {
                     b.HasOne("SnurrtumlareWebSite.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });

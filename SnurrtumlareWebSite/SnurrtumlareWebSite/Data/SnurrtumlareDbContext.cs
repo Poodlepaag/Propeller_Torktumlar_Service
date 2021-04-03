@@ -29,9 +29,7 @@ namespace SnurrtumlareWebSite.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.SeedUser();
-            modelBuilder.SeedProduct();
-            modelBuilder.SeedOrder();
+            modelBuilder.SeedData();
         }
     }
 }

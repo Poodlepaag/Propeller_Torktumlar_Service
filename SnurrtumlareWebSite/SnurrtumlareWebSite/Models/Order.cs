@@ -7,11 +7,10 @@ namespace SnurrtumlareWebSite.Models
 {
     public class Order
     {
+        public virtual List<OrderRow> OrderRows { get; set; }
         public int OrderId { get; set; }
-        public int UserId { get; set; }
-        public User User { get; set; }
-        public List<OrderRow> OrderRows { get; set; }
         public decimal TotalOrderCost { get; set; }
         public bool IsDelivered { get; set; } = false;
+        public virtual User User { get; set; }
     }
 }
