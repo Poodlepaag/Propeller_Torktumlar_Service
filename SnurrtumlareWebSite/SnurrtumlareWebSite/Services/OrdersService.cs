@@ -10,7 +10,7 @@ namespace SnurrtumlareWebSite.Services
 {
     public class OrdersService
     {
-        SnurrtumlareDbContext dbContext = new SnurrtumlareDbContext();
+        private readonly SnurrtumlareDbContext dbContext = new();
 
         public IEnumerable<Order> Get()
         {

@@ -12,15 +12,15 @@ namespace SnurrtumlareWebSite.Models
         public static void SeedData(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Order>().HasData(
-                new Order() { OrderId = 123456 },
-                new Order() { OrderId = 234567 });
+                new Order() { OrderId = 123456, UserId = 1, IsDelivered = false, TotalOrderCost = 999},
+                new Order() { OrderId = 234567, UserId = 2, IsDelivered = true, TotalOrderCost = 4995});
 
             modelBuilder.Entity<OrderRow>().HasData(
                 new List<OrderRow>() {
-                    new OrderRow() { OrderRowId = 12, OrderId = 123456 },
-                    new OrderRow() { OrderRowId = 13, OrderId = 123456 },
-                    new OrderRow() { OrderRowId = 14, OrderId = 234567 },
-                    new OrderRow() { OrderRowId = 15, OrderId = 234567 }
+                    new OrderRow() { OrderRowId = 12, OrderId = 123456, ProductId = 1, Quantity = 1},
+                    new OrderRow() { OrderRowId = 13, OrderId = 123456, ProductId = 2, Quantity = 2},
+                    new OrderRow() { OrderRowId = 14, OrderId = 234567, ProductId = 3, Quantity = 1},
+                    new OrderRow() { OrderRowId = 15, OrderId = 234567, ProductId = 4, Quantity = 1}
                 });
 
             modelBuilder.Entity<User>().HasData(

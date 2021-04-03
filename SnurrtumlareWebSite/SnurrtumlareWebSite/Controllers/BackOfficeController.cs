@@ -10,9 +10,9 @@ namespace SnurrtumlareWebSite.Controllers
 {
     public class BackOfficeController : Controller
     {
-        OrdersService _ordersService = new OrdersService();
-        ProductsService _productsService = new ProductsService();
-        UsersService _usersService = new UsersService();
+        readonly OrdersService _ordersService = new();
+        readonly ProductsService _productsService = new();
+        readonly UsersService _usersService = new();
 
         public IActionResult Index()
         {
@@ -20,18 +20,14 @@ namespace SnurrtumlareWebSite.Controllers
             return View();
         }
 
-        public IActionResult Products()
+        public IActionResult Products(string searchString)
         {
-            var listOfProducts = _productsService.GetAllProducts();
-
-            return View(listOfProducts);
+            return View(_productsService.Get(searchString));
         }
 
         public IActionResult Orders()
         {
-            var listOfOrders = _ordersService.Get();
-            
-            return View(listOfOrders);
+            return View(_ordersService.Get());
         }
 
         public IActionResult Profile(User user)
@@ -41,9 +37,7 @@ namespace SnurrtumlareWebSite.Controllers
 
         public IActionResult Users()
         {
-            var listOfCustomers = _usersService.GetUsers();
-
-            return View(listOfCustomers);
+            return View(_usersService.GetUsers());
         }
     }
 }

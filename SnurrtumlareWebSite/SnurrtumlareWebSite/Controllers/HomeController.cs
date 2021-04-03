@@ -13,8 +13,7 @@ namespace SnurrtumlareWebSite.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        ProductsService productsService = new ProductsService();
+        private readonly ProductsService productsService = new();
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -26,20 +25,9 @@ namespace SnurrtumlareWebSite.Controllers
             return View();
         }
 
-        
         public IActionResult Products(string searchString)
         {
-            var result = new List<Product>();
-            if (string.IsNullOrEmpty(searchString))
-            {
-                result = productsService.GetAllProducts();
-            }
-            else
-            {
-                result = productsService.GetProductsBySearch(searchString);
-            }
-            
-            return View(result);
+            return View(productsService.Get(searchString));
         }
         public IActionResult DeleteProducts()
         {

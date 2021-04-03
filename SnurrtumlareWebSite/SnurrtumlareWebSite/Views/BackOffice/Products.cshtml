@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<SnurrtumlareWebSite.Models.Product>
 
-
 @{
     ViewData["Title"] = "Products";
 }
@@ -24,19 +23,26 @@
                 <tbody>
                     @foreach (var product in Model)
                     {
-                        <tr>
-                            <td>@product.ProductId</td>
-                            <td>@product.ProductName</td>
-                            <td>@product.ProductDescription</td>
-                            <td>@product.AmountInStock</td>
-                            <td>
-                                <div class="form-check-inline">
-                                    <button id="Input_Style" type="button" class="btn btn-secondary btn-sm">Edit</button>
-                                    <button id="Input_Style" type="button" class="btn btn-secondary btn-sm">Details</button>
-                                    <button id="Input_Style" type="button" class="btn btn-danger btn-sm">Delete</button>
-                                </div>
-                            </td>
-                        </tr>
+                        @if (Model.Count() == 0)
+                        {
+                            <tr><td><h3>Inga produkter hittades..</h3></td></tr>
+                        }
+                        else 
+                        {
+                            <tr>
+                                <td>@product.ProductId</td>
+                                <td>@product.ProductName</td>
+                                <td>@product.ProductDescription</td>
+                                <td>@product.AmountInStock</td>
+                                <td>
+                                    <div class="form-check-inline">
+                                        <button id="Input_Style" type="button" class="btn btn-secondary btn-sm">Edit</button>
+                                        <button id="Input_Style" type="button" class="btn btn-secondary btn-sm">Details</button>
+                                        <button id="Input_Style" type="button" class="btn btn-danger btn-sm">Delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
                     }
                 </tbody>
             </table>

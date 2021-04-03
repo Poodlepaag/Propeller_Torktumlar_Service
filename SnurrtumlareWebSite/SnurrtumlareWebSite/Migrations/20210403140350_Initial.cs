@@ -2,7 +2,7 @@
 
 namespace SnurrtumlareWebSite.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,9 +49,9 @@ namespace SnurrtumlareWebSite.Migrations
                 {
                     OrderId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     TotalOrderCost = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    IsDelivered = table.Column<bool>(type: "bit", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true)
+                    IsDelivered = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -61,7 +61,7 @@ namespace SnurrtumlareWebSite.Migrations
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -71,8 +71,8 @@ namespace SnurrtumlareWebSite.Migrations
                     OrderRowId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OrderId = table.Column<int>(type: "int", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: true)
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -88,16 +88,7 @@ namespace SnurrtumlareWebSite.Migrations
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "ProductId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.InsertData(
-                table: "Orders",
-                columns: new[] { "OrderId", "IsDelivered", "TotalOrderCost", "UserId" },
-                values: new object[,]
-                {
-                    { 123456, false, 0m, null },
-                    { 234567, false, 0m, null }
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -117,28 +108,38 @@ namespace SnurrtumlareWebSite.Migrations
                 columns: new[] { "UserId", "Address", "City", "Email", "FirstName", "LastName", "Phone", "ZipCode" },
                 values: new object[,]
                 {
-                    { 9, "Marsipanvägen 45", "Växjö", "unouno@saltsill.com", "Uno", "Svenningsson", "0729875214", "35258" },
-                    { 8, "Polartorget 2", "Åtvidaberg", "amiina_asghar_84@yahoo.se", "Amina", "Asghar", "0704563289", "59791" },
-                    { 7, "Gesslegatan 70", "Halmstad", "pedro_velasquez@hotmail.se", "Pedro", "Velasquez", "0736974121", "30261" },
-                    { 6, "Forskningsvägen 2", "Umeå", "janinamuller@ichbin.de", "Janina", "Müller", "0702026978", "90638" },
-                    { 2, "Sillstigen 12", "Karlstad", "lind.cecilia@coldmail.com", "Cecilia", "Lind", "0736545285", "65225" },
-                    { 4, "Nobelvägen 62", "Malmö", "marljung@yahoo.it", "Märta", "Ljunquist", "040979797", "21215" },
-                    { 3, "Gnejsvägen 45", "Hammarstrand", "darko.petrovic@gomail.com", "Darko", "Petrovic", "0726547894", "84070" },
-                    { 10, "Trälgatan 102", "Örebro", "juha_1337@suomisoundi.fi", "Juha", "Määki", "0768521498", "70510" },
                     { 1, "Himlastråket 666", "Himmelriket", "send_me_your_prayers@abdi.com", "Abdi", "Benådsson", "0704563212", "12345" },
+                    { 2, "Sillstigen 12", "Karlstad", "lind.cecilia@coldmail.com", "Cecilia", "Lind", "0736545285", "65225" },
+                    { 3, "Gnejsvägen 45", "Hammarstrand", "darko.petrovic@gomail.com", "Darko", "Petrovic", "0726547894", "84070" },
+                    { 4, "Nobelvägen 62", "Malmö", "marljung@yahoo.it", "Märta", "Ljunquist", "040979797", "21215" },
                     { 5, "Smultronstråket 11", "Farsta", "robbyfire@msm.com", "Robert", "Fayer", "0762316497", "12323" },
+                    { 6, "Forskningsvägen 2", "Umeå", "janinamuller@ichbin.de", "Janina", "Müller", "0702026978", "90638" },
+                    { 7, "Gesslegatan 70", "Halmstad", "pedro_velasquez@hotmail.se", "Pedro", "Velasquez", "0736974121", "30261" },
+                    { 8, "Polartorget 2", "Åtvidaberg", "amiina_asghar_84@yahoo.se", "Amina", "Asghar", "0704563289", "59791" },
+                    { 9, "Marsipanvägen 45", "Växjö", "unouno@saltsill.com", "Uno", "Svenningsson", "0729875214", "35258" },
+                    { 10, "Trälgatan 102", "Örebro", "juha_1337@suomisoundi.fi", "Juha", "Määki", "0768521498", "70510" },
                     { 11, "Rödmålavägen 7", "Lund", "anderspersson52@irra.se", "Anders", "Persson", "0701238545", "22242" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Orders",
+                columns: new[] { "OrderId", "IsDelivered", "TotalOrderCost", "UserId" },
+                values: new object[] { 123456, false, 999m, 1 });
+
+            migrationBuilder.InsertData(
+                table: "Orders",
+                columns: new[] { "OrderId", "IsDelivered", "TotalOrderCost", "UserId" },
+                values: new object[] { 234567, true, 4995m, 2 });
 
             migrationBuilder.InsertData(
                 table: "OrderRow",
                 columns: new[] { "OrderRowId", "OrderId", "ProductId", "Quantity" },
                 values: new object[,]
                 {
-                    { 12, 123456, null, 0 },
-                    { 13, 123456, null, 0 },
-                    { 14, 234567, null, 0 },
-                    { 15, 234567, null, 0 }
+                    { 12, 123456, 1, 1 },
+                    { 13, 123456, 2, 2 },
+                    { 14, 234567, 3, 1 },
+                    { 15, 234567, 4, 1 }
                 });
 
             migrationBuilder.CreateIndex(

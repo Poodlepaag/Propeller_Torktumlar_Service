@@ -9,19 +9,19 @@ namespace SnurrtumlareWebSite.Services
 {
     public class ProductsService
     {
-        SnurrtumlareDbContext DbContext = new SnurrtumlareDbContext();
+        private readonly SnurrtumlareDbContext DbContext = new();
 
-        public List<Product> GetAllProducts()
+        public List<Product> Get(string searchString)
         {
-            return DbContext.Products.ToList();
-        }
+            if (string.IsNullOrEmpty(searchString))
+            {
+                return DbContext.Products.ToList();
+            }
 
-        public List<Product> GetProductsBySearch(string searchString)
-        {
             var result = DbContext.Products.Where(p =>
-                        p.ProductName.ToLower().Contains(searchString.ToLower()) ||
-                        p.ProductDescription.ToLower().Contains(searchString.ToLower()) ||
-                        p.Category.ToLower().Contains(searchString.ToLower()));
+                    p.ProductName.ToLower().Contains(searchString.ToLower()) ||
+                    p.ProductDescription.ToLower().Contains(searchString.ToLower()) ||
+                    p.Category.ToLower().Contains(searchString.ToLower()));
 
             return result.ToList();
         }
@@ -42,11 +42,5 @@ namespace SnurrtumlareWebSite.Services
         //{
         //    dummyData.TempProducts.Remove(product);
         //}
-
-        // This can be removed if not needed
-        public int GetNumberOfHits(List<Product> result) // Method to get the number of items in a list
-        {
-            return result.Count();
-        }
     }
 }

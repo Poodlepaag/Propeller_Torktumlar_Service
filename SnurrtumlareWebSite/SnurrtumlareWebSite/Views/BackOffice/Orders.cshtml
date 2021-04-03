@@ -13,6 +13,7 @@
                     <tr>
                         <th>Order Id</th>
                         <th>User Id</th>
+                        <th>User Name</th>
                         <th>Order Rows</th>
                         <th>Total Cost</th>
                         <th>Is Delivered</th>
@@ -23,13 +24,9 @@
                 {
                     <tr>
                         <td>@order.OrderId</td>
-                        <td>@order.User.FirstName.</td>
-                        <td>
-                            @foreach (var row in order.OrderRows)
-                            {
-                                @row.Product.ProductName <br />
-                            }
-                        </td>
+                        <td>@order.User.UserId</td>
+                        <td>@order.User.FirstName @order.User.LastName</td>
+                        <td>@order.OrderRows.Count</td>
                         <td>@order.TotalOrderCost</td>
                         <td>@order.IsDelivered</td>
                         <td>
