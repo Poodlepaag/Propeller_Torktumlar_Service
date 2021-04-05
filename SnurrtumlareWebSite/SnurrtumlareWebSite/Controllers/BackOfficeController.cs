@@ -5,9 +5,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SnurrtumlareWebSite.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class BackOfficeController : Controller
     {
         readonly OrdersService _ordersService = new();
@@ -16,7 +18,6 @@ namespace SnurrtumlareWebSite.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.Admin = 1;
             return View();
         }
 

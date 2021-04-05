@@ -1,4 +1,9 @@
-﻿<div class="information_bar">
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+<div class="information_bar">
     <div class="information_text_left">
         <ul id="information_bar_list">
             <li id="information_bar_list_item_left"><img id="check_mark" src="~/assets/icons/check-mark.png"> Snurriga priser</li>
@@ -25,13 +30,20 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-        <ul class="navbar-nav flex-grow-1" id="navbar_list">
-            <li id="navbar_item"><a id="navbar_link" asp-controller="Home" asp-action="Index">Hem</a></li>
-            <li id="navbar_item"><a id="navbar_link" asp-controller="Home" asp-action="Products">Webbutik</a></li>
-            <li id="navbar_item"><a id="navbar_link" asp-controller="Home" asp-action="Career">Karriär</a></li>
-            <li id="navbar_item"><a id="navbar_link" asp-controller="Home" asp-action="About">Om oss</a></li>
-            <li id="navbar_item"><a id="navbar_link" asp-controller="BackOffice" asp-action="Index">BackOffice</a></li>
-        </ul>
-    </div>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1" id="navbar_list">
+                <li id="navbar_item"><a id="navbar_link" asp-controller="Home" asp-action="Index">Hem</a></li>
+                <li id="navbar_item"><a id="navbar_link" asp-controller="Home" asp-action="Products">Webbutik</a></li>
+                <li id="navbar_item"><a id="navbar_link" asp-controller="Home" asp-action="Career">Karriär</a></li>
+                <li id="navbar_item"><a id="navbar_link" asp-controller="Home" asp-action="About">Om oss</a></li>
+
+                @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                {
+                <li id="navbar_item"><a id="navbar_link" asp-controller="BackOffice" asp-action="Index">BackOffice</a></li>
+                }
+            </ul>
+        </div>
+
+    </nav>
+
 </nav>
