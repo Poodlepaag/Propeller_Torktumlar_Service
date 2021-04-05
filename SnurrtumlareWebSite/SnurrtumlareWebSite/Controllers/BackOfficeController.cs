@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace SnurrtumlareWebSite.Controllers
 {
+    [Authorize]
     public class BackOfficeController : Controller
     {
         OrdersService ordersService = new OrdersService();
