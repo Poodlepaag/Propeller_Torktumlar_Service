@@ -1,14 +1,5 @@
 ﻿@{
     ViewData["Title"] = "Index";
-
-    if (ViewBag.Admin == 1)
-    {
-        Layout = "~/Views/Shared/_LayoutBackOffice.cshtml";
-    }
-    else
-    {
-        Layout = "~/Views/Shared/_Layout.cshtml";
-    }
 }
 
 
@@ -32,17 +23,10 @@
                     </li>
                 </ul>
 
-                Please contact your <a href="mailto:sysadmin@snurrtumlare.se">system administrator</a> if you run into errors or have questions.
-
-                <br>
                 <br>
 
                 Please contact your <a href="#bannerformmodal" data-toggle="modal" data-target="#exampleModal">system administrator</a> if you run into errors or have questions.
 
-                @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open modal for @fat</button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>*@
-                
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">

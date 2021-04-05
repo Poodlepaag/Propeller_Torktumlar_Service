@@ -9,17 +9,15 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace SnurrtumlareWebSite.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class BackOfficeController : Controller
     {
         OrdersService ordersService = new OrdersService();
         ProductsService productsService = new ProductsService();
         CustomersService customersService = new CustomersService();
 
-        [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
-            ViewBag.Admin = 1;
             return View();
         }
 

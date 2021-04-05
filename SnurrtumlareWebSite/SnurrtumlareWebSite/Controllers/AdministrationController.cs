@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SnurrtumlareWebSite.ViewModels;
 using SnurrtumlareWebSite.Views.Administration;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace SnurrtumlareWebSite.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdministrationController : Controller
     {
         private readonly RoleManager<IdentityRole> roleManager;
