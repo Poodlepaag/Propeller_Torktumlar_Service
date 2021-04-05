@@ -9,6 +9,8 @@ namespace SnurrtumlareWebSite.Data
 {
     public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
+        public DbSet<IdentityRole> Identities { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
