@@ -14,16 +14,5 @@ namespace SnurrtumlareWebSite.Models
         public string ProductDescription { get; set; }
         public int AmountInStock { get; set; }
         public decimal ProductPrice { get; set; }
-
-        public Product(int productId, string productName, string imageLink, string category, string productDescription, int amountInStock, decimal productPrice)
-        {
-            ProductId = productId; 
-            ProductName = productName;
-            ImageLink = imageLink;
-            Category = category;
-            ProductDescription = productDescription;
-            AmountInStock = amountInStock;
-            ProductPrice = productPrice;
-        }
     }
 }

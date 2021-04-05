@@ -15,5 +15,7 @@ namespace SnurrtumlareWebSite.Models
         public string City { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+        
+        public virtual List<Order> Orders { get; set; }
     }
 }

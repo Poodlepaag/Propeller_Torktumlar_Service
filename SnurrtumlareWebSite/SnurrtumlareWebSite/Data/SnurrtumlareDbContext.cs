@@ -13,6 +13,11 @@ namespace SnurrtumlareWebSite.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
 
+        public SnurrtumlareDbContext()
+        {
+
+        }
+
         public SnurrtumlareDbContext(DbContextOptions<SnurrtumlareDbContext> options)
             : base(options)
         { }
@@ -29,9 +34,7 @@ namespace SnurrtumlareWebSite.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Ignore<OrderRow>();
-            modelBuilder.SeedUser();
-            modelBuilder.SeedProduct();
+            modelBuilder.SeedData();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using SnurrtumlareWebSite.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SnurrtumlareWebSite.Data;
 using SnurrtumlareWebSite.Models;
 using System;
 using System.Collections.Generic;
@@ -9,21 +10,13 @@ namespace SnurrtumlareWebSite.Services
 {
     public class OrdersService
     {
-        DummyData dummyData = new DummyData();
+        private readonly SnurrtumlareDbContext dbContext = new();
 
         public IEnumerable<Order> Get()
         {
-            var listOfOrders = dummyData.TempOrders;
+            var listOfOrders = dbContext.Orders.Include(u => u.User).Include(o => o.OrderRows).ThenInclude(p => p.Product);
 
             return listOfOrders; 
         }
-
-        public List<Order> Get(User customer)
-        {
-            return dummyData.TempOrders.Where(c => c.Customer == customer).ToList(); ;
-        }
     }
 }
-      
-
-

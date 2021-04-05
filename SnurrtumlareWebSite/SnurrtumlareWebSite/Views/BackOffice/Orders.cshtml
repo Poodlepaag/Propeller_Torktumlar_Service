@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SnurrtumlareWebSite.Models.Order>
+﻿@model IEnumerable<Order>
 
 @{
     ViewData["Title"] = "Orders";
@@ -11,23 +11,22 @@
             <table style="width:100%" class="table table-bordered table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>Customer Id</th>
-                        <th>Customer Name</th>
-                        <th>Customer Email</th>
-                        <th>Product</th>
+                        <th>Order Id</th>
+                        <th>User Id</th>
+                        <th>User Name</th>
+                        <th>Order Rows</th>
                         <th>Total Cost</th>
                         <th>Is Delivered</th>
                     </tr>
                 </thead>
-
                 <tbody>
                 @foreach (var order in Model)
                 {
                     <tr>
-                        <td>@order.Customer.UserId</td>
-                        <td>@order.Customer.FirstName @order.Customer.LastName</td>
-                        <td>@order.Customer.Email</td>
-                        <td>@order.ProductsFromCart</td>  @{/*TODO: Fixa med en foreach loop*/ }
+                        <td>@order.OrderId</td>
+                        <td>@order.User.UserId</td>
+                        <td>@order.User.FirstName @order.User.LastName</td>
+                        <td>@order.OrderRows.Count</td>
                         <td>@order.TotalOrderCost</td>
                         <td>@order.IsDelivered</td>
                         <td>
