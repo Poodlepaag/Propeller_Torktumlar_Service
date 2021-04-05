@@ -10,6 +10,7 @@
 @if (Model.Any())
 {
     <a class="btn btn-primary mb-3" style="width:auto" asp-action="CreateRole" asp-controller="administration">Add new role</a>
+
     foreach (var role in Model)
     {
         <div class="card mb-3">
@@ -33,7 +34,9 @@
 
                     <span id="confirmDeleteSpan_@role.Id" style="display:none">
                         <span>Are you sure you want to delete?</span>
+
                         <button type="submit" class="btn btn-danger btn-sm">Yes</button>
+
                         <a href="#" class="btn btn-primary btn-sm"
                             onclick="confirmDelete('@role.Id', false)">No</a>
                     </span>
