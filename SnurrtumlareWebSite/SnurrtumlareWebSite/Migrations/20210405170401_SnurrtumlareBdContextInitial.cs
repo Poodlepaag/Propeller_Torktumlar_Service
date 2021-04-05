@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace SnurrtumlareWebSite.Migrations
+namespace SnurrtumlareWebSite.Migrations.SnurrtumlareDb
 {
-    public partial class testingstuffyay : Migration
+    public partial class SnurrtumlareBdContextInitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
