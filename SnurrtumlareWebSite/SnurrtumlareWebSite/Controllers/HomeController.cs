@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SnurrtumlareWebSite.Data;
 using SnurrtumlareWebSite.Models;
 using SnurrtumlareWebSite.Services;
 using System;
@@ -67,6 +68,14 @@ namespace SnurrtumlareWebSite.Controllers
         {
             return View();
         }
+
+        public IActionResult ProfileView()
+        {
+            SnurrtumlareDbContext snurris = new SnurrtumlareDbContext();
+            var listOfUser = snurris.Users.ToList();
+            return View(listOfUser);
+        }
+
 
         public IActionResult DeliveryTerms()
         {
