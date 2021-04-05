@@ -2,15 +2,14 @@
 
  @{
     ViewBag.Title = "Roles in Db";
-}
+  }
 
 <h1>All Roles</h1>
 
 @if (Model.Any())
 {
     <a class="btn btn-primary mb-3" style="width:auto" asp-action="CreateRole"
-       asp-controller="administration">Add new role</a>
-
+   asp-controller="administration">Add new role</a>
     foreach (var role in Model)
     {
         <div class="card mb-3">
@@ -38,7 +37,7 @@ else
                 Use the button below to create a role
             </h5>
             <a class="btn btn-primary" style="width:auto"
-               asp-controller="administration" asp-action="CreateRole">
+           asp-controller="administration" asp-action="CreateRole">
                 Create Role
             </a>
         </div>
