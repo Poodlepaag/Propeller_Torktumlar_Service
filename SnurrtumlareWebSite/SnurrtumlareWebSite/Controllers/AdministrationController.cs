@@ -103,7 +103,7 @@ namespace SnurrtumlareWebSite.Controllers
             if (role == null)
             {
                 ViewBag.ErrorMessage = $"Role with Id: {model.Id} cannot be found";
-                return View("NotFound");
+                return View("NotFoundAdministration");
             }
             else
             {
@@ -123,6 +123,35 @@ namespace SnurrtumlareWebSite.Controllers
                 }
 
                 return View(model);
+            }
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteRole(string id)
+        {
+            var role = await roleManager.FindByIdAsync(id);
+
+            if (role == null)
+            {
+                ViewBag.ErrorMessage = $"Role with Id: {id} cannot be found";
+                return View("NotFoundAdministration");
+            }
+            else
+            {
+                var result = await roleManager.DeleteAsync(role);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("ListRoles");
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+
+                return View("ListRoles");
             }
         }
 

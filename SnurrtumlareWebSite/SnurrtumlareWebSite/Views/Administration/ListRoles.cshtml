@@ -1,32 +1,50 @@
-﻿@model IEnumerable<IdentityRole>
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<IdentityRole>
 
  @{
     ViewBag.Title = "Roles in Db";
-  }
+}
 
 <h1>All Roles</h1>
 
 @if (Model.Any())
 {
     <a class="btn btn-primary mb-3" style="width:auto" asp-action="CreateRole" asp-controller="administration">Add new role</a>
-
     foreach (var role in Model)
     {
         <div class="card mb-3">
             <div class="card-header">
                 Role Id : @role.Id
             </div>
+
             <div class="card-body">
                 <h5 class="card-title">@role.Name</h5>
             </div>
-            <div class="card-footer">
-                <a class="btn btn-primary"
-                   asp-action="EditRole"
-                   asp-controller="Administration"
-                   asp-route-id="@role.Id">
-                Edit</a>
 
-                <a href="#" class="btn btn-danger">Delete</a>
+            <div class="card-footer">
+                <form asp-action="DeleteRole" asp-route-id="@role.Id" method="post">
+
+                    <a class="btn btn-primary btn-sm"
+                        asp-action="EditRole"
+                        asp-controller="Administration"
+                        asp-route-id="@role.Id">
+                        Edit
+                    </a>
+
+                    <span id="confirmDeleteSpan_@role.Id" style="display:none">
+                        <span>Are you sure you want to delete?</span>
+                        <button type="submit" class="btn btn-danger btn-sm">Yes</button>
+                        <a href="#" class="btn btn-primary btn-sm"
+                            onclick="confirmDelete('@role.Id', false)">No</a>
+                    </span>
+
+                    <span id="deleteSpan_@role.Id">
+                        <a href="#" class="btn btn-danger btn-sm"
+                   onclick="confirmDelete('@role.Id', true)">Delete</a>
+                    </span>
+                </form>
+
+
             </div>
         </div>
     }
@@ -47,4 +65,8 @@ else
             </a>
         </div>
     </div>
+}
+
+@section Scripts {
+<script src="~/js/DeleteScript.js"></script>
 }
