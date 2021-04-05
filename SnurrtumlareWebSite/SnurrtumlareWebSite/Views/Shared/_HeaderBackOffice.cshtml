@@ -9,25 +9,53 @@
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
 
-                    <li class="nav-item">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Manage BackOffice
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            @*<a class="dropdown-item" asp-controller="BackOffice" asp-action="Index">Index</a>*@
+                            <a class="dropdown-item" asp-controller="BackOffice" asp-action="Customers">Customers</a>
+                            <a class="dropdown-item" asp-controller="BackOffice" asp-action="Orders">Orders</a>
+                            <a class="dropdown-item" asp-controller="BackOffice" asp-action="Products">Products</a>
+                            <a class="dropdown-item" asp-controller="BackOffice" asp-action="Profile">Profile</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Manage Identity DB
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" asp-controller="Administration" asp-action="Index">Index</a>
+                            <a class="dropdown-item" asp-controller="Administration" asp-action="ListUsers">List Users</a>
+                            <a class="dropdown-item" asp-controller="Administration" asp-action="ListRoles">List Roles</a>
+                            <a class="dropdown-item" asp-controller="Administration" asp-action="CreateRole">Create Role</a>
+                        </div>
+                    </li>
+
+
+                    @*<li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="BackOffice" asp-action="Customers">Customers</a>
-                    </li>
+                        </li>
 
-                    <li class="nav-item">
+                        <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="BackOffice" asp-action="Orders">Orders</a>
-                    </li>
+                        </li>
 
-                    <li class="nav-item">
+                        <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="BackOffice" asp-action="Products">Products</a>
-                    </li>
+                        </li>
 
-                    <li class="nav-item">
+                        <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="BackOffice" asp-action="Profile">Profile</a>
-                    </li>
+                        </li>
 
-                    <li class="nav-item">
+                        <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Administration" asp-action="Index">Identity Administration</a>
-                    </li>
+                        </li>*@
 
                 </ul>
 
