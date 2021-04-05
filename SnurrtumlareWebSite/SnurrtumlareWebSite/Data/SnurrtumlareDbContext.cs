@@ -22,11 +22,7 @@ namespace SnurrtumlareWebSite.Data
             : base(options)
         { }
 
-        public SnurrtumlareDbContext()
-        {
-
-        }
-
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SnurrtumlareDB;");
