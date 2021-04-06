@@ -37,7 +37,7 @@ namespace SnurrtumlareWebSite.Controllers
 
         public IActionResult AddItemToCart(Product product)
         {
-            cartService.AddItemToCart(HttpContext.Session.GetString(JsonConvert.SerializeObject(product)))
+            //cartService.AddItemToCart(HttpContext.Session.GetString(JsonConvert.SerializeObject(product)))
 
             return RedirectToAction(nameof(Products));
         }
