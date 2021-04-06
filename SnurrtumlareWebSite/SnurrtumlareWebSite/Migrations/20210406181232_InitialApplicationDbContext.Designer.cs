@@ -10,8 +10,8 @@ using SnurrtumlareWebSite.Data;
 namespace SnurrtumlareWebSite.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210406150925_InitialApplicationDbContextMigrate")]
-    partial class InitialApplicationDbContextMigrate
+    [Migration("20210406181232_InitialApplicationDbContext")]
+    partial class InitialApplicationDbContext
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,15 +50,15 @@ namespace SnurrtumlareWebSite.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6c7a485c-f51f-4482-a469-ad78b7145e6e",
-                            ConcurrencyStamp = "193ef39f-2cf0-409c-85c1-78e9d217a2f8",
+                            Id = "115d1d3c-db70-43d7-86d9-7456791ef3bc",
+                            ConcurrencyStamp = "0cbfdbca-6792-4269-9c5c-f0a8203f54c3",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "a4dc0b2a-ea74-4775-b966-8153d73f4464",
-                            ConcurrencyStamp = "5c6dd9a8-a493-4ad3-96cd-7635fc97f09a",
+                            Id = "63de0c56-6715-4150-ab36-34e1c18b89a2",
+                            ConcurrencyStamp = "661846e3-3a53-42de-9c3e-59a67fb97f34",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -155,35 +155,35 @@ namespace SnurrtumlareWebSite.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c785fe58-744b-4674-86af-6c7ba0c66c38",
+                            Id = "7947a162-2138-429c-bd4a-e79142dcafff",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b2720d6e-4df1-451f-b261-a3c216a9519a",
+                            ConcurrencyStamp = "ea7fadcf-b1e3-4d69-bf32-fab284dc695f",
                             Email = "send_me_your_prayers@abdi.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "SEND_ME_YOUR_PRAYERS@ABDI.COM",
                             NormalizedUserName = "SEND_ME_YOUR_PRAYERS@ABDI.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMrNRvumgEvaN+PdIFn6W/bzI2ieWxn2Z3bc+w4d19y0nDC3ByngXJr9tm6ouxgmLA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEE9NLzcSDgpOr0yzU2/KYDF24Fj2X7YiRGS4sHitmLG1yIEM5eBluCWBm8dWfMP/5A==",
                             PhoneNumber = "0704563212",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "ffa3ed76-a5be-4196-a900-b8b22eafb3bc",
+                            SecurityStamp = "312ddf46-080c-4a98-8022-d7c4809d9905",
                             TwoFactorEnabled = false,
                             UserName = "send_me_your_prayers@abdi.com"
                         },
                         new
                         {
-                            Id = "e134f05d-2fb7-4da2-a02e-f265eb577f28",
+                            Id = "6afdeb4b-fa40-45ba-8c38-730622350f73",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f48eba8e-f94d-4369-b644-bb88c8e353bb",
+                            ConcurrencyStamp = "85812eb7-7909-4a2d-ba13-2c419dea8ccc",
                             Email = "juha_1337@suomisoundi.fi",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "JUHA_1337@SUOMISOUNDI.FI",
                             NormalizedUserName = "JUHA_1337@SUOMISOUNDI.FI",
-                            PasswordHash = "AQAAAAEAACcQAAAAEA1zXVII7+PxZhNdigJjQ2+bqHeopjfTH4NywALOFE9M1DNAtiR7oNYi4twOeFL7kA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELV+Datkiv+DO9Bf4RIVETx3gPUkR0NG/jlnvqrYw6JLfpctjQQ8SdTuAAmLtPVD7w==",
                             PhoneNumber = "0768521498",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "b15d6288-5243-411a-b9cd-ee27454ab1f9",
+                            SecurityStamp = "275fca12-fbb5-4061-9d2d-bcc7d4d7a35d",
                             TwoFactorEnabled = false,
                             UserName = "juha_1337@suomisoundi.fi"
                         });
@@ -254,13 +254,13 @@ namespace SnurrtumlareWebSite.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "c785fe58-744b-4674-86af-6c7ba0c66c38",
-                            RoleId = "6c7a485c-f51f-4482-a469-ad78b7145e6e"
+                            UserId = "7947a162-2138-429c-bd4a-e79142dcafff",
+                            RoleId = "115d1d3c-db70-43d7-86d9-7456791ef3bc"
                         },
                         new
                         {
-                            UserId = "e134f05d-2fb7-4da2-a02e-f265eb577f28",
-                            RoleId = "a4dc0b2a-ea74-4775-b966-8153d73f4464"
+                            UserId = "6afdeb4b-fa40-45ba-8c38-730622350f73",
+                            RoleId = "63de0c56-6715-4150-ab36-34e1c18b89a2"
                         });
                 });
 
