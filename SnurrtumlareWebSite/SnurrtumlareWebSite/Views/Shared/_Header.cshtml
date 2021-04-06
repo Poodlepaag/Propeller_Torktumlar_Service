@@ -17,14 +17,11 @@
 </div>
 <div class="logo_search_cart">
     <a asp-controller="Home" asp-action="Index"><img id="logo" src="~/assets/icons/Logo.png"></a>
-    <form asp-controller="Home" asp-action="Products" method="get">
-        <p>
-            <input id="search_bar" type="text" placeholder="Sök på varor..." name="SearchString" />
-        </p>
+    <a asp-controller="Home" asp-action="ProfileView" class="small-logo"><img src="~/assets/icons/User-Icon.png"></a>
+    <a asp-controller="Home" asp-action="ShoppingCart" class="small-logo"><img src="~/assets/icons/shopping-cart.png"></a>
+    <form class="search-bar-form" asp-controller="Home" asp-action="Products" method="get">
+        <input id="search_bar" type="text" name="SearchString" placeholder="Sök på varor..." />
     </form>
-    <a asp-controller="Home" asp-action="ProfileView" ><img align ="right" id="profileview" src="~/assets/icons/User-Icon.png"></a>
-    <a asp-controller="Home" asp-action="ShoppingCart"><img  id="cart" src="~/assets/icons/shopping-cart.png"></a>
-
 </div>
 
 <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light navbar-right border-bottom box-shadow justify-content-right mb-3">

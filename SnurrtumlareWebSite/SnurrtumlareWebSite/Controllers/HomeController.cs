@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using SnurrtumlareWebSite.Data;
 using SnurrtumlareWebSite.Models;
 using SnurrtumlareWebSite.Services;
@@ -16,6 +18,7 @@ namespace SnurrtumlareWebSite.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ProductsService productsService = new();
+        private readonly CartService cartService = new();
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -30,6 +33,13 @@ namespace SnurrtumlareWebSite.Controllers
         public IActionResult Products(string searchString)
         {
             return View(productsService.Get(searchString));
+        }
+
+        public IActionResult AddItemToCart(Product product)
+        {
+            //cartService.AddItemToCart(HttpContext.Session.GetString(JsonConvert.SerializeObject(product)))
+
+            return RedirectToAction(nameof(Products));
         }
         public IActionResult DeleteProducts()
         {
@@ -50,6 +60,10 @@ namespace SnurrtumlareWebSite.Controllers
 
         public IActionResult ShoppingCart()
         {
+            List<Product> cart = new List<Product>();
+
+            
+
             return View();
         }
 
