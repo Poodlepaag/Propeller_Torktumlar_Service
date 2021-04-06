@@ -15,11 +15,7 @@ namespace SnurrtumlareWebSite
         public static void Main(string[] args)
         {
             //CreateHostBuilder(args).Build().Run();
-<<<<<<< HEAD
             CreateHostBuilder(args).Build().MigrateDb().Run();
-=======
-            CreateHostBuilder(args).Build().MigrateDb().MigrateSnurrtumlareDb().Run();
->>>>>>> parent of cdc0dd9 (Minor changes)
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
