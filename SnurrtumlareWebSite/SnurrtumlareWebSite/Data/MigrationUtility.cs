@@ -27,5 +27,22 @@ namespace SnurrtumlareWebSite.Data
 
             return host;
         }
+
+        public static IHost MigrateSnurrtumlareDb(this IHost host)
+        {
+            using var scope = host.Services.CreateScope();
+            using var context = scope.ServiceProvider.GetRequiredService<SnurrtumlareDbContext>();
+            try
+            {
+                context.Database.Migrate();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                throw;
+            }
+
+            return host;
+        }
     }
 }

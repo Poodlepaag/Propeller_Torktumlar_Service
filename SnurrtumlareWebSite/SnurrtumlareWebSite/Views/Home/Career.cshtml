@@ -3,6 +3,8 @@
 }
 
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -463,7 +465,7 @@
 
 
 <script type="text/javascript">
-    $(function () { 
+    $(function () {
                 // will trigger when the document is ready
                 //Initialise all datepickers whose class name are mydatepicker
                 // Display them with a button which containes a small calendar icon.
@@ -493,5 +495,17 @@
 </script>
 
 <script>
-            $('#myModal').modal('dispose')
+    $('#exampleModalCenter3').modal('dispose')
 </script>
+
+@*<script>
+    $('#exampleModalCenter3').on('hidden.bs.modal', function(event) {
+        $('#exampleModalCenter3').empty();
+        });
+</script>
+
+<script>
+    $('body').on('hidden.bs.modal', '.modal', function () {
+            $(this).removeData('bs.modal');
+          });
+</script>*@
