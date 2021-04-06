@@ -1,0 +1,78 @@
+﻿@model IEnumerable<SnurrtumlareWebSite.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <p>
+                <a id="Input_Style" type="button" class="btn btn-primary btn-sm" asp-action="Create">Create New</a>
+            </p>
+            <table style="width:100%" class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.ImageLink)
+                            </th>*@
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProductName)
+                        </th>
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.Category)
+                            </th>*@
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProductDescription)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AmountInStock)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProductPrice)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.ImageLink)
+                                </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductName)
+                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.Category)
+                                </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductDescription)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AmountInStock)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductPrice)
+                            </td>
+
+
+                            <td>
+                                <div class="form-check-inline">
+                                    <a id="Input_Style" type="button" class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.ProductId">Edit</a>
+                                    <a id="Input_Style" type="button" class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.ProductId">Details</a>
+                                    <a id="Input_Style" type="button" class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>         
