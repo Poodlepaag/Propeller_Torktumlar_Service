@@ -15,6 +15,7 @@ namespace SnurrtumlareWebSite
         public static void Main(string[] args)
         {
             //CreateHostBuilder(args).Build().Run();
+            //CreateHostBuilder(args).Build().MigrateDb().Run();
             CreateHostBuilder(args).Build().MigrateDb().MigrateSnurrtumlareDb().Run();
         }
 
