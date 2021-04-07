@@ -1,0 +1,52 @@
+﻿@model IEnumerable<SnurrtumlareWebSite.Models.Order>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Orders - Start page</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Order ID
+            </th>
+            <th>
+                User e-mail
+            </th>
+            <th>
+                Total order cost
+            </th>
+            <th>
+                Delivery status
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalOrderCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDelivered)
+            </td>
+            <td>
+                <div class="form-check-inline">
+                    <a id="Input_Style" type="button" class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.OrderId">Edit</a>
+                    <a id="Input_Style" type="button" class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.OrderId">Details</a>
+                </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
