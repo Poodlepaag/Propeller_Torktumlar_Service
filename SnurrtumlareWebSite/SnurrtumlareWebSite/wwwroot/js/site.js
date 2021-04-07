@@ -17,8 +17,5 @@ function confirmDelete(uniqueId, isTrue) {
     }
 }
 
-function anonymizeUser(userId, isTrue) {
-    var elem = document.getElementById('firstName');
-    elem.textContent = 'anonymous';
-}
+
 
