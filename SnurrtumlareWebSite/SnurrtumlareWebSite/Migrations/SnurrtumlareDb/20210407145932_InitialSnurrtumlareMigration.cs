@@ -2,7 +2,7 @@
 
 namespace SnurrtumlareWebSite.Migrations.SnurrtumlareDb
 {
-    public partial class InitialSnurrtumlareDbContext : Migration
+    public partial class InitialSnurrtumlareMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
