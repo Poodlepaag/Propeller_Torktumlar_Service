@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SnurrtumlareWebSite.Migrations
 {
-    public partial class InitialApplicationMigration : Migration
+    public partial class InitialApplicationDbContext : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -157,8 +157,8 @@ namespace SnurrtumlareWebSite.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "b456987c-e3f9-462d-aaa3-474583716ba8", "e52285d1-0b08-431b-aa62-6b213cff6f02", "Admin", "ADMIN" },
-                    { "eadc8734-5da2-472c-94f7-b442fbef5752", "64f63ef7-813c-49cd-ba5a-73a90a580423", "User", "USER" }
+                    { "b4f77b1b-bb39-432f-88a6-3cba9f98c302", "ff27690e-d345-46c5-8271-827352b00423", "Admin", "ADMIN" },
+                    { "b5b027b4-5488-4989-b7ae-2f62f347818b", "fdc7cf9f-9613-460e-830d-085d11b88708", "User", "USER" }
                 });
 
             migrationBuilder.InsertData(
@@ -166,19 +166,19 @@ namespace SnurrtumlareWebSite.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "822d276b-cbf5-46b5-a602-c30123d8d059", 0, "24d6a269-0b68-45af-8a35-be0fbcb5de03", "send_me_your_prayers@abdi.com", true, false, null, "SEND_ME_YOUR_PRAYERS@ABDI.COM", "SEND_ME_YOUR_PRAYERS@ABDI.COM", "AQAAAAEAACcQAAAAECCCcZP1kEB/TiOTEzMDSQTcXtxPq64UrA680YtEB3vNB2stP7ZI37H7u3YGq6WNVw==", "0704563212", true, "68ed949c-7a91-464f-afaf-921820e00004", false, "send_me_your_prayers@abdi.com" },
-                    { "f1b64189-86f9-45b3-8d28-edfffc0f4f3d", 0, "611ea17b-c239-4143-a9d3-880105b1d68c", "juha_1337@suomisoundi.fi", true, false, null, "JUHA_1337@SUOMISOUNDI.FI", "JUHA_1337@SUOMISOUNDI.FI", "AQAAAAEAACcQAAAAELauknDYEQkurRFDKrvsEwO44wRcM6Okk+F+qSEv0PFYz9NEQYBGbVTAWeIN7rF0dQ==", "0768521498", true, "d5cfcbaa-c2cb-4328-bdff-22af3a632e7e", false, "juha_1337@suomisoundi.fi" }
+                    { "f525d08d-b144-4f72-acca-ae1e382c697e", 0, "d162de85-a6db-4a71-b4ee-8698cd3984d1", "send_me_your_prayers@abdi.com", true, false, null, "SEND_ME_YOUR_PRAYERS@ABDI.COM", "SEND_ME_YOUR_PRAYERS@ABDI.COM", "AQAAAAEAACcQAAAAELAA4Ud9rJfn1M2wzoYn9szwt+ba0zxCnrIDyeImjN9mZt+UKtbvnHPhntRH2vx8Tw==", "0704563212", true, "3a67bad7-6fff-47c4-b1e7-9ff6259d07ee", false, "send_me_your_prayers@abdi.com" },
+                    { "9b20b106-ed46-4178-b104-c2ae96710f3e", 0, "31714df5-63ba-43c2-bde1-af196ddb18b9", "juha_1337@suomisoundi.fi", true, false, null, "JUHA_1337@SUOMISOUNDI.FI", "JUHA_1337@SUOMISOUNDI.FI", "AQAAAAEAACcQAAAAEG+vMN8xYJYoXZCCBV7nlDJnIt84wRC5MZ6NAfdIwpUAGTDfOotdESWWigtOCH0aSA==", "0768521498", true, "9a27b787-127c-4801-97a3-8026623e1aad", false, "juha_1337@suomisoundi.fi" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "b456987c-e3f9-462d-aaa3-474583716ba8", "822d276b-cbf5-46b5-a602-c30123d8d059" });
+                values: new object[] { "b4f77b1b-bb39-432f-88a6-3cba9f98c302", "f525d08d-b144-4f72-acca-ae1e382c697e" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "eadc8734-5da2-472c-94f7-b442fbef5752", "f1b64189-86f9-45b3-8d28-edfffc0f4f3d" });
+                values: new object[] { "b5b027b4-5488-4989-b7ae-2f62f347818b", "9b20b106-ed46-4178-b104-c2ae96710f3e" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

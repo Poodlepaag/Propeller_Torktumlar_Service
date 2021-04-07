@@ -9,8 +9,8 @@ using SnurrtumlareWebSite.Data;
 namespace SnurrtumlareWebSite.Migrations.SnurrtumlareDb
 {
     [DbContext(typeof(SnurrtumlareDbContext))]
-    [Migration("20210407145932_InitialSnurrtumlareMigration")]
-    partial class InitialSnurrtumlareMigration
+    [Migration("20210407161645_InitialSnurrtumlareDbContext")]
+    partial class InitialSnurrtumlareDbContext
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
