@@ -16,6 +16,5 @@ namespace SnurrtumlareWebSite.Controllers
         {
             return View();
         }
-
     }
 }
