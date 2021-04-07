@@ -1,0 +1,81 @@
+﻿@model Cart
+
+@{
+    ViewData["Title"] = "Kundvagn";
+}
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <table table style="width:100%" class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Produkt ID</th>
+                            <th>Namn</th>
+                            <th>Beskrivning</th>
+                            <th>Pris</th>
+                            <th>Antal</th>
+                            <th>Total Kostnad</th>
+                            <th>Alternativ</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            @foreach (var item in Model.ProductsInCart)
+                            {
+                                <tr>
+                                    <th>@item.ProductId</th>
+                                    <th>@item.ProductName</th>
+                                    <th>@item.ProductDescription</th>
+                                    <th>@item.ProductPrice</th>
+                                    <th><input type="number" style="width: 50px" value=@item.Quantity /></th>
+                                    <th>@(item.ProductPrice * item.Quantity)</th>
+                                    <th>
+                                        <div class="form-check-inline">
+                                            <form asp-controller="Cart" asp-action="ChangeOfQuantity" method="post">
+                                                <input type="hidden" name="ProductId" value="@item.ProductId" />
+                                                <input type="hidden" name="Quantity" value="@item.Quantity" />
+                                                <button type="submit">Uppdatera</button>
+                                            </form>
+                                            <button type="submit">Ta bort</button>
+                                        </div>
+                                    </th>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>Inga produkter i kundvagnen</tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th hidden></th>
+                            <th hidden></th>
+                            <th hidden></th>
+                            <th hidden></th>
+                            <th hidden></th>
+                            <th colspan="6" style="text-align: right">Total kostnad: @Model.CartTotalCost</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+                <ul>
+                    <li class="shopping-cart-button-list-item">
+                        <input type="submit" class="shopping-cart-reset-button" value="Ta bort kundvagn" />
+                    </li>
+                    <li class="shopping-cart-button-list-item">
+                        <input type="submit" class="shopping-cart-checkout-button" value="Till Kassan" />
+                    </li>
+                    <li class="shopping-cart-button-list-item">
+                        <input type="submit" class="shopping-cart-checkout-button" value="Fortsätt handla" />
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</body>
