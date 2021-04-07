@@ -20,25 +20,5 @@ namespace SnurrtumlareWebSite.Controllers
         {
             return View();
         }
-
-        public IActionResult Products(string searchString)
-        {
-            return View(_productsService.Get(searchString));
-        }
-
-        public IActionResult Orders()
-        {
-            return View(_ordersService.Get());
-        }
-
-        public IActionResult Profile(User user)
-        {
-            return View(user);
-        }
-
-        public IActionResult Users()
-        {
-            return View(_usersService.GetUsers());
-        }
     }
 }
