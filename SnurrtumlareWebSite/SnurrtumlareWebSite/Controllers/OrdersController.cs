@@ -74,6 +74,14 @@ namespace SnurrtumlareWebSite.Controllers
         // GET: Orders/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            OrderViewModel orderViewModel = new OrderViewModel();
+            {
+                orderViewModel.Order = await _context.Orders
+                .Include(o => o.User)
+                .Include(o => o.OrderRows)
+                .FirstOrDefaultAsync(m => m.OrderId == id);
+            }
+
             if (id == null)
             {
                 return NotFound();
@@ -85,7 +93,7 @@ namespace SnurrtumlareWebSite.Controllers
                 return NotFound();
             }
             ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", order.UserId);
-            return View(order);
+            return View(orderViewModel);
         }
 
         // POST: Orders/Edit/5
