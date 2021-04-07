@@ -6,14 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="js\DeleteScript.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="js\DeleteScript.js">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
+    <Compile Remove="js\**" />
+    <Content Remove="js\**" />
+    <EmbeddedResource Remove="js\**" />
+    <None Remove="js\**" />
   </ItemGroup>
 
   <ItemGroup>
