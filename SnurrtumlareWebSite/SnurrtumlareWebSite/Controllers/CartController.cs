@@ -37,12 +37,15 @@ namespace SnurrtumlareWebSite.Controllers
             }
 
             var productId = int.Parse(HttpContext.Request.Form["ProductId"]);
-
             foreach (var item in cart.ProductsInCart)
             {
                 if (item.ProductId == productId)
                 {
                     item.Quantity++;
+
+                    HttpContext.Session.SetObjectAsJson("cart", cart);
+
+                    return RedirectToAction(nameof(Cart));
                 }
             }
 

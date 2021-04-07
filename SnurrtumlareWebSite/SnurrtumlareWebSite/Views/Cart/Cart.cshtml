@@ -8,15 +8,15 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <table table style="width:100%" class="table table-bordered table-striped table-hover">
+                <table table style="width:100%"  class="table table-bordered table-striped table-hover">
                     <thead>
                         <tr>
                             <th>Produkt ID</th>
                             <th>Namn</th>
                             <th>Beskrivning</th>
-                            <th>Pris</th>
+                            <th>á Pris</th>
                             <th>Antal</th>
-                            <th>Total Kostnad</th>
+                            <th>Summa</th>
                             <th>Alternativ</th>
                         </tr>
 
@@ -26,24 +26,26 @@
                         {
                             @foreach (var item in Model.ProductsInCart)
                             {
-                                <tr>
+                            <tr>
+                                <form asp-controller="Cart" asp-action="ChangeOfQuantity">
                                     <th>@item.ProductId</th>
                                     <th>@item.ProductName</th>
                                     <th>@item.ProductDescription</th>
                                     <th>@item.ProductPrice</th>
-                                    <th><input type="number" style="width: 50px" value=@item.Quantity /></th>
+                                    <th>
+                                        <input type="number" style="width: 50px" name="Quantity" value="@item.Quantity" />
+                                        <input type="hidden" name="ProductId" value="@item.ProductId" />
+                                    </th>
                                     <th>@(item.ProductPrice * item.Quantity)</th>
                                     <th>
                                         <div class="form-check-inline">
-                                            <form asp-controller="Cart" asp-action="ChangeOfQuantity" method="post">
-                                                <input type="hidden" name="ProductId" value="@item.ProductId" />
-                                                <input type="hidden" name="Quantity" value="@item.Quantity" />
-                                                <button type="submit">Uppdatera</button>
-                                            </form>
-                                            <button type="submit">Ta bort</button>
+                                            <button type="submit" class="shopping-cart-checkout-button">Uppdatera</button>
+                                            <input type="button" class="shopping-cart-checkout-button" asp-controller="Cart" asp-action="" value="Ta bort"/>
                                         </div>
                                     </th>
-                                </tr>
+                                </form>
+                            </tr>
+                            
                             }
                         }
                         else
@@ -58,8 +60,14 @@
                             <th hidden></th>
                             <th hidden></th>
                             <th hidden></th>
-                            <th colspan="6" style="text-align: right">Total kostnad: @Model.CartTotalCost</th>
-                            <th></th>
+                            <th hidden></th>
+                            <th colspan="7" style="text-align: right">
+                                @foreach (var item in Model.ProductsInCart)
+                                {
+                                    Model.CartTotalCost += item.ProductPrice * item.Quantity;
+                                }
+                                <h3>Totalt: @Model.CartTotalCost</h3>
+                            </th>
                         </tr>
                     </tfoot>
                 </table>
