@@ -7,7 +7,7 @@
 <h1>Orders - Start page</h1>
 
 
-<table class="table">
+<table style="width:100%" class="table table-bordered table-striped table-hover">
     <thead>
         <tr>
             <th>
@@ -26,26 +26,27 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalOrderCost)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsDelivered)
-            </td>
-            <td>
-                <div class="form-check-inline">
-                    <a id="Input_Style" type="button" class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.OrderId">Edit/Details</a>
-                </div>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalOrderCost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsDelivered)
+                </td>
+                <td>
+                    <div class="form-check-inline">
+                        <a id="Input_Style" type="button" class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.OrderId">Edit/Details</a>
+                    </div>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
