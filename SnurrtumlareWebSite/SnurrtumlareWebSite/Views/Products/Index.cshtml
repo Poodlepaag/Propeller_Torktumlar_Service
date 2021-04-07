@@ -4,34 +4,43 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Products - Start page</h1>
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
             <p>
-                <a id="Input_Style" type="button" class="btn btn-primary btn-sm" asp-action="Create">Create New</a>
+                <a id="Input_Style" type="button" class="btn btn-primary btn-md" asp-action="Create">Create New Product</a>
             </p>
             <table style="width:100%" class="table table-bordered table-striped table-hover">
                 <thead>
                     <tr>
+                        <th>
+                            Id
+                            @*@Html.DisplayNameFor(model => model.ProductName)*@
+                        </th>
+
                         @*<th>
-                                @Html.DisplayNameFor(model => model.ImageLink)
+                            @Html.DisplayNameFor(model => model.ImageLink)
                             </th>*@
                         <th>
-                            @Html.DisplayNameFor(model => model.ProductName)
+                            Product Name
+                            @*@Html.DisplayNameFor(model => model.ProductName)*@
                         </th>
                         @*<th>
-                                @Html.DisplayNameFor(model => model.Category)
+                            @Html.DisplayNameFor(model => model.Category)
                             </th>*@
                         <th>
-                            @Html.DisplayNameFor(model => model.ProductDescription)
+                            Description
+                            @*@Html.DisplayNameFor(model => model.ProductDescription)*@
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.AmountInStock)
+                            Amount in Stock
+                            @*@Html.DisplayNameFor(model => model.AmountInStock)*@
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.ProductPrice)
+                            Price
+                            @*@Html.DisplayNameFor(model => model.ProductPrice)*@
                         </th>
                         <th></th>
                     </tr>
@@ -40,14 +49,17 @@
                     @foreach (var item in Model)
                     {
                         <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductId)
+                            </td>
                             @*<td>
-                                    @Html.DisplayFor(modelItem => item.ImageLink)
+                                @Html.DisplayFor(modelItem => item.ImageLink)
                                 </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.ProductName)
                             </td>
                             @*<td>
-                                    @Html.DisplayFor(modelItem => item.Category)
+                                @Html.DisplayFor(modelItem => item.Category)
                                 </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.ProductDescription)
