@@ -12,10 +12,6 @@ namespace SnurrtumlareWebSite.Controllers
     [Authorize(Roles = "Admin")]
     public class BackOfficeController : Controller
     {
-        readonly OrdersService _ordersService = new();
-        readonly ProductsService _productsService = new();
-        readonly UsersService _usersService = new();
-
         public IActionResult Index()
         {
             return View();
