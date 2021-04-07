@@ -27,7 +27,7 @@
                             @foreach (var item in Model.ProductsInCart)
                             {
                             <tr>
-                                <form asp-controller="Cart" asp-action="ChangeOfQuantity">
+                                <form asp-controller="Cart" method="post">
                                     <th>@item.ProductId</th>
                                     <th>@item.ProductName</th>
                                     <th>@item.ProductDescription</th>
@@ -39,8 +39,8 @@
                                     <th>@(item.ProductPrice * item.Quantity)</th>
                                     <th>
                                         <div class="form-check-inline">
-                                            <button type="submit" class="shopping-cart-checkout-button">Uppdatera</button>
-                                            <input type="button" class="shopping-cart-checkout-button" asp-controller="Cart" asp-action="" value="Ta bort"/>
+                                            <button type="submit" class="shopping-cart-checkout-button" formaction="UpdateQuantity" value="@item.ProductId, @item.Quantity">Uppdatera</button>
+                                            <button type="submit" class="shopping-cart-danger" formaction="DeleteItemFromCart" value="@item.ProductId">Ta bort</button>
                                         </div>
                                     </th>
                                 </form>
@@ -73,13 +73,13 @@
                 </table>
                 <ul>
                     <li class="shopping-cart-button-list-item">
-                        <input type="submit" class="shopping-cart-reset-button" value="Ta bort kundvagn" />
+                        <input type="submit" class="shopping-cart-danger" value="Ta bort kundvagn" />
                     </li>
                     <li class="shopping-cart-button-list-item">
                         <input type="submit" class="shopping-cart-checkout-button" value="Till Kassan" />
                     </li>
                     <li class="shopping-cart-button-list-item">
-                        <input type="submit" class="shopping-cart-checkout-button" value="Fortsätt handla" />
+                        <a href="~/Home/Products"><input type="submit" class="shopping-cart-checkout-button" value="Fortsätt handla" /></a> <!--TODO: Maby we should change this link to a more correct routing strategy?-->
                     </li>
                 </ul>
 

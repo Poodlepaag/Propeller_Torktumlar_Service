@@ -27,7 +27,8 @@ namespace SnurrtumlareWebSite.Controllers
             return View(cart);
         }
 
-        public IActionResult AddItemToCart()
+        [HttpPost]
+        public IActionResult AddItemToCart(int productId)
         {
             cart = HttpContext.Session.GetObjectFronJson<Cart>("cart");
 
@@ -35,8 +36,6 @@ namespace SnurrtumlareWebSite.Controllers
             {
                 cart = new Cart();
             }
-
-            var productId = int.Parse(HttpContext.Request.Form["ProductId"]);
             foreach (var item in cart.ProductsInCart)
             {
                 if (item.ProductId == productId)
@@ -57,20 +56,38 @@ namespace SnurrtumlareWebSite.Controllers
             return RedirectToAction(nameof(Cart));
         }
 
-        public IActionResult ChangeOfQuantity()
+        [HttpPost]
+        public IActionResult UpdateQuantity(int productId, int quantity)
         {
             cart = HttpContext.Session.GetObjectFronJson<Cart>("cart");
 
-            var newQuantity = int.Parse(HttpContext.Request.Form["Quantity"]);
-            var productId = int.Parse(HttpContext.Request.Form["ProductId"]);
+            //var newQuantity = int.Parse(HttpContext.Request.Form["Quantity"]);
+            //var productId = int.Parse(HttpContext.Request.Form["ProductId"]);
 
             foreach (var item in cart.ProductsInCart)
             {
                 if (item.ProductId == productId)
                 {
-                    item.Quantity = newQuantity;
+                    item.Quantity = quantity;
+
+                    if (item.Quantity <= 0)
+                    {
+                        DeleteItemFromCart(productId);
+                    }
                 }
             }
+
+            HttpContext.Session.SetObjectAsJson("cart", cart);
+
+            return RedirectToAction(nameof(Cart));
+        }
+
+        [HttpPost]
+        public IActionResult DeleteItemFromCart(int productId)
+        {
+            cart = HttpContext.Session.GetObjectFronJson<Cart>("cart");
+
+            cart.ProductsInCart.Remove(cart.ProductsInCart.Single<Product>(p => p.ProductId == productId));
 
             HttpContext.Session.SetObjectAsJson("cart", cart);
 

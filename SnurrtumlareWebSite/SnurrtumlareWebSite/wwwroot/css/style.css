@@ -306,15 +306,16 @@ nav {
 
 .shopping-cart-checkout-button {
     background-color: #f5b553;
-    width: max-content;
+    width: 120px;
     height: 5%;
     float: right;
     margin: 2%;
     border-radius: 8%;
 }
 
-.shopping-cart-reset-button {
-    background-color: #dc4e4e;
+.shopping-cart-danger {
+    background-color: #e53939;
+    min-width: 120px;
     width: max-content;
     height: 5%;
     float: right;
