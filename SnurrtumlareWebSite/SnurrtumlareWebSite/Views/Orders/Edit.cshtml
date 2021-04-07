@@ -38,7 +38,7 @@
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Order.IsDelivered" /> Mark order as delivered?
+                    <input class="form-check-input-" asp-for="Order.IsDelivered" /> Mark order as delivered?
                 </label>
             </div>
             <div class="form-group">
@@ -57,23 +57,24 @@
                 <th>Product ID</th>
                 <th>Quantity</th>
             </tr>
-            @for (int i = 0; i < Model.Order.OrderRows.Count(); i++)
+            
+            @foreach (var orderRow in Model.Order.OrderRows)
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => Model.Order.OrderRows[i].OrderRowId)
+                        @Html.DisplayFor(modelItem => orderRow.OrderRowId)
                     </td>
 
                     <td>
-                        @Html.DisplayFor(modelItem => Model.OrderRows[i].Product.ProductName)
+                        @Html.DisplayFor(modelItem => orderRow.Product.ProductName)
                     </td>
 
                     <td>
-                        @Html.DisplayFor(modelItem => Model.OrderRows[i].Product.ProductId)
+                        @Html.DisplayFor(modelItem => orderRow.Product.ProductId)
                     </td>
 
                     <td>
-                        @Html.DisplayFor(modelItem => Model.Order.OrderRows[i].Quantity)
+                        @Html.DisplayFor(modelItem => orderRow.Quantity)
                     </td>
                 </tr>
             }
