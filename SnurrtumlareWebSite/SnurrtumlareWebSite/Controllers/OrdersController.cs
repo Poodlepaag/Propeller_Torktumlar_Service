@@ -59,7 +59,7 @@ namespace SnurrtumlareWebSite.Controllers
         // GET: Orders/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            OrderViewModel orderViewModel = new OrderViewModel();
+            OrderViewModel orderViewModel = new();
             {
                 orderViewModel.Order = await _context.Orders
                 .Include(o => o.User)

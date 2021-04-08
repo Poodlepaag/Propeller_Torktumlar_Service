@@ -104,26 +104,23 @@ namespace SnurrtumlareWebSite.Services
 
         public OrderViewModel CreateOrder(OrderViewModel owm)
         {
-            
-            owm.Order = new Order();
 
-            
-
-            owm.Order.IsDelivered = false;
-            owm.Order.UserId = owm.User.UserId;
-            owm.Order.TotalOrderCost = owm.Cart.CartTotalCost;
+            owm.Order = new Order
+            {
+                IsDelivered = false,
+                UserId = owm.User.UserId,
+                TotalOrderCost = owm.Cart.CartTotalCost
+            };
 
             foreach (var item in owm.Cart.ProductsInCart)
             {
-                var orderRow = new OrderRow();
+                OrderRow orderRow = new();
 
                 orderRow.ProductId = item.ProductId;
                 orderRow.Quantity = item.Quantity;
 
                 owm.Order.OrderRows.Add(orderRow);
             }
-
-            
 
             DbContext.Orders.Add(owm.Order);
             DbContext.SaveChanges();
