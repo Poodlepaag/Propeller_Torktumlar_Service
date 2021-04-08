@@ -11,9 +11,6 @@ header {
     margin: 0px;
 }
 
-
-
-
 .footer_table {
     width: 100%;
     margin: auto;
@@ -37,8 +34,6 @@ header {
 }
 /* ------------------------------ */
 
-
-
 .logo_search_cart {
     width: 80%;
     margin: auto;
@@ -49,6 +44,7 @@ header {
 
 #logo {
     width: 25%;
+    min-width: 100px;
     float: left;
 }
 
@@ -60,6 +56,7 @@ header {
 
 .search-bar-form {
     width: 35%;
+    min-width: 250px;
     margin: auto;
 }
 

@@ -33,7 +33,7 @@
                                     <th>@item.ProductDescription</th>
                                     <th>@item.ProductPrice</th>
                                     <th>
-                                        <input type="number" style="width: 50px" name="Quantity" value="@item.Quantity" />
+                                        <input type="number" min="0" style="width: 50px" name="Quantity" value="@item.Quantity" />
                                         <input type="hidden" name="ProductId" value="@item.ProductId" />
                                     </th>
                                     <th>@(item.ProductPrice * item.Quantity)</th>
@@ -74,7 +74,7 @@
                 <ul>
                     <li class="shopping-cart-button-list-item">
                         <form asp-controller="Cart" method="post">
-                            <input type="submit" class="shopping-cart-danger" formaction="ResetCart" onclick="return confirm('Vill du ta bort kundvagnen?'" value="Ta bort kundvagn" />
+                            <input type="submit" class="shopping-cart-danger" formaction="ResetCart" onclick="return confirm('Vill du verkligen ta bort kundvagnen?')" value="Ta bort kundvagn" />
                         </form>
                     </li>
                     <li class="shopping-cart-button-list-item">

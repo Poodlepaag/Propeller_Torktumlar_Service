@@ -12,17 +12,20 @@ namespace SnurrtumlareWebSite.Controllers
     public class CartController : Controller
     {
         private Cart cart { get; set; }
-        SnurrtumlareDbContext snurrtumlareDbContext = new();
+        private CartsService cartsService { get; set; }
+
+        public CartController()
+        {
+            cartsService = new CartsService();
+        }
 
         public IActionResult Cart()
         {
             cart = HttpContext.Session.GetObjectFronJson<Cart>("cart");
 
-            if (cart == null)
-            {
-                cart = new Cart();
-                HttpContext.Session.SetObjectAsJson("cart", cart);
-            }
+            cart = cartsService.GetCart(cart);
+
+            HttpContext.Session.SetObjectAsJson("cart", cart);
             
             return View(cart);
         }
@@ -32,24 +35,7 @@ namespace SnurrtumlareWebSite.Controllers
         {
             cart = HttpContext.Session.GetObjectFronJson<Cart>("cart");
 
-            if (cart == null)
-            {
-                cart = new Cart();
-            }
-            foreach (var item in cart.ProductsInCart)
-            {
-                if (item.ProductId == productId)
-                {
-                    item.Quantity++;
-
-                    HttpContext.Session.SetObjectAsJson("cart", cart);
-
-                    return RedirectToAction(nameof(Cart));
-                }
-            }
-
-            cart.ProductsInCart.Add(snurrtumlareDbContext.Products.Single<Product>(p => p.ProductId == productId));
-            cart.ContainsItems = true;
+            cart = cartsService.AddItemToCart(cart, productId);
 
             HttpContext.Session.SetObjectAsJson("cart", cart);
 
@@ -61,23 +47,7 @@ namespace SnurrtumlareWebSite.Controllers
         {
             cart = HttpContext.Session.GetObjectFronJson<Cart>("cart");
 
-            foreach (var item in cart.ProductsInCart)
-            {
-                if (item.ProductId == productId)
-                {
-                    item.Quantity = quantity;
-
-                    if (item.Quantity <= 0)
-                    {
-                        DeleteItemFromCart(productId);
-
-                        if (cart.ProductsInCart.Count == 0)
-                        {
-                            cart.ContainsItems = false;
-                        }
-                    }
-                }
-            }
+            cart = cartsService.UpdateQuantity(cart, productId, quantity);
 
             HttpContext.Session.SetObjectAsJson("cart", cart);
 
@@ -89,12 +59,7 @@ namespace SnurrtumlareWebSite.Controllers
         {
             cart = HttpContext.Session.GetObjectFronJson<Cart>("cart");
 
-            cart.ProductsInCart.Remove(cart.ProductsInCart.Single<Product>(p => p.ProductId == productId));
-
-            if (cart.ProductsInCart.Count == 0)
-            {
-                cart.ContainsItems = false;
-            }
+            cart = cartsService.DeleteItemFromCart(cart, productId);
 
             HttpContext.Session.SetObjectAsJson("cart", cart);
 
@@ -106,9 +71,7 @@ namespace SnurrtumlareWebSite.Controllers
         {
             cart = HttpContext.Session.GetObjectFronJson<Cart>("cart");
 
-            cart.ProductsInCart.Clear();
-
-            cart.ContainsItems = false;
+            cart = cartsService.ClearCart(cart);
 
             HttpContext.Session.SetObjectAsJson("cart", cart);
 
