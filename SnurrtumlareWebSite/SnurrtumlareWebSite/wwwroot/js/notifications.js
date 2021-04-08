@@ -3,30 +3,19 @@
 var connection = new signalR.HubConnectionBuilder().withUrl("/notificationHub").build();
 
 //Disable send button until connection is established
-document.getElementById("sendButton").disabled = true;
 
-connection.on("ReceiveMessage", function (user, message) {
+connection.on("ReceiveMessage", function () {
     var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    var encodedMsg = user + " says " + msg;
-    var li = document.createElement("li");
+    var encodedMsg = "hello, i made it";
     var ul = document.createElement("ul");
-    li.textContent = encodedMsg;
     ul.textContent = encodedMsg;
-    document.getElementById("messagesList").appendChild(li);
-    document.getElementById("notificationToast").appendChild(ul);
+    document.getElementById("notificationToast").val(encodedMsg);
 });
 
 connection.start().then(function () {
-    document.getElementById("sendButton").disabled = false;
+    document.getElementById("confirmOrderButton").disabled = false;
 }).catch(function (err) {
     return console.error(err.toString());
 });
 
-document.getElementById("sendButton").addEventListener("click", function (event) {
-    var user = document.getElementById("userInput").value;
-    var message = document.getElementById("messageInput").value;
-    connection.invoke("SendMessage", user, message).catch(function (err) {
-        return console.error(err.toString());
-    });
-    event.preventDefault();
-});
+
