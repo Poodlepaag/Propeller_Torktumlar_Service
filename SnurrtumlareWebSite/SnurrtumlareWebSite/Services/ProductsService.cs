@@ -1,4 +1,5 @@
-﻿using SnurrtumlareWebSite.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SnurrtumlareWebSite.Data;
 using SnurrtumlareWebSite.Models;
 using System;
 using System.Collections.Generic;
@@ -36,16 +37,45 @@ namespace SnurrtumlareWebSite.Services
             return _context.Products.Where(p => p.Category == category).ToList();
         }
 
-        //public void Add(int productId, string productName, string imageLink, string category, string productDescription, int amountInStock, decimal productPrice)
-        //{
-        //    Product product = new Product(productId, productName, imageLink, category, productDescription, amountInStock, productPrice);
+        public async Task<List<Product>> GetAllProducts()
+        {
+            return await _context.Products.ToListAsync();
+        }
 
-        //    dummyData.TempProducts.Add(product);
-        //}
+        public async Task<Product> GetProductById(int? id)
+        {
+            return await _context.Products.FirstOrDefaultAsync(m => m.ProductId == id);
+        }
 
-        //public void Delete(Product product)
-        //{
-        //    dummyData.TempProducts.Remove(product);
-        //}
+        public async Task AddNewProduct(Product product)
+        {
+            _context.Add(product);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<Product> FindProductById(int? id)
+        {
+            return await _context.Products.FindAsync(id);
+        }
+
+        public async Task UpdateProduct(Product product)
+        {
+            _context.Update(product);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteProductById(int id)
+        {
+            var product = await FindProductById(id);
+            _context.Products.Remove(product);
+            await _context.SaveChangesAsync();
+        }
+
+
+        public bool ProductExists(int id)
+        {
+            return _context.Products.Any(e => e.ProductId == id);
+        }
+
     }
 }
