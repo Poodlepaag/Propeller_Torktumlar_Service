@@ -61,9 +61,6 @@ namespace SnurrtumlareWebSite.Controllers
         {
             cart = HttpContext.Session.GetObjectFronJson<Cart>("cart");
 
-            //var newQuantity = int.Parse(HttpContext.Request.Form["Quantity"]);
-            //var productId = int.Parse(HttpContext.Request.Form["ProductId"]);
-
             foreach (var item in cart.ProductsInCart)
             {
                 if (item.ProductId == productId)
@@ -73,6 +70,11 @@ namespace SnurrtumlareWebSite.Controllers
                     if (item.Quantity <= 0)
                     {
                         DeleteItemFromCart(productId);
+
+                        if (cart.ProductsInCart.Count == 0)
+                        {
+                            cart.ContainsItems = false;
+                        }
                     }
                 }
             }
@@ -88,6 +90,25 @@ namespace SnurrtumlareWebSite.Controllers
             cart = HttpContext.Session.GetObjectFronJson<Cart>("cart");
 
             cart.ProductsInCart.Remove(cart.ProductsInCart.Single<Product>(p => p.ProductId == productId));
+
+            if (cart.ProductsInCart.Count == 0)
+            {
+                cart.ContainsItems = false;
+            }
+
+            HttpContext.Session.SetObjectAsJson("cart", cart);
+
+            return RedirectToAction(nameof(Cart));
+        }
+
+        [HttpPost]
+        public IActionResult ResetCart()
+        {
+            cart = HttpContext.Session.GetObjectFronJson<Cart>("cart");
+
+            cart.ProductsInCart.Clear();
+
+            cart.ContainsItems = false;
 
             HttpContext.Session.SetObjectAsJson("cart", cart);
 

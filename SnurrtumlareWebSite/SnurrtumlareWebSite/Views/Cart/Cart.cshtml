@@ -73,7 +73,9 @@
                 </table>
                 <ul>
                     <li class="shopping-cart-button-list-item">
-                        <input type="submit" class="shopping-cart-danger" value="Ta bort kundvagn" />
+                        <form asp-controller="Cart" method="post">
+                            <input type="submit" class="shopping-cart-danger" formaction="ResetCart" onclick="return confirm('Vill du ta bort kundvagnen?'" value="Ta bort kundvagn" />
+                        </form>
                     </li>
                     <li class="shopping-cart-button-list-item">
                         <input type="submit" class="shopping-cart-checkout-button" value="Till Kassan" />
