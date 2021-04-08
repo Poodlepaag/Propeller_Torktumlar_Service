@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SnurrtumlareWebSite.Data;
 using SnurrtumlareWebSite.Models;
-using SnurrtumlareWebSite.Services;
+using SnurrtumlareWebSite.ViewModels;
 
 namespace SnurrtumlareWebSite.Controllers
 {
@@ -61,7 +61,7 @@ namespace SnurrtumlareWebSite.Controllers
         // GET: Orders/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            OrderViewModel orderViewModel = new OrderViewModel();
+            OrderViewModel orderViewModel = new();
             {
                 orderViewModel.Order = await _context.Orders
                 .Include(o => o.User)

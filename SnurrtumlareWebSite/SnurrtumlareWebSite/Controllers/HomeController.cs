@@ -58,7 +58,6 @@ namespace SnurrtumlareWebSite.Controllers
             return View(listOfUser);
         }
 
-
         public IActionResult DeliveryTerms()
         {
             return View();

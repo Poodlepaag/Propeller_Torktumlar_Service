@@ -24,6 +24,13 @@ namespace SnurrtumlareWebSite.Services
                 cart = new Cart();
             }
 
+            cart.CartTotalCost = 0;
+
+            foreach (var item in cart.ProductsInCart)
+            {
+                cart.CartTotalCost += item.ProductPrice * item.Quantity;
+            }
+
             return cart;
         }
 
@@ -93,6 +100,32 @@ namespace SnurrtumlareWebSite.Services
             cart.ContainsItems = false;
 
             return cart;
+        }
+
+        public OrderViewModel CreateOrder(OrderViewModel owm)
+        {
+
+            owm.Order = new Order
+            {
+                IsDelivered = false,
+                UserId = owm.User.UserId,
+                TotalOrderCost = owm.Cart.CartTotalCost
+            };
+
+            foreach (var item in owm.Cart.ProductsInCart)
+            {
+                OrderRow orderRow = new();
+
+                orderRow.ProductId = item.ProductId;
+                orderRow.Quantity = item.Quantity;
+
+                owm.Order.OrderRows.Add(orderRow);
+            }
+
+            DbContext.Orders.Add(owm.Order);
+            DbContext.SaveChanges();
+
+            return owm;
         }
     }
 
