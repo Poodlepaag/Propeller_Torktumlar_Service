@@ -102,11 +102,33 @@ namespace SnurrtumlareWebSite.Services
             return cart;
         }
 
-        public OrderViewModel CreateOrder(OrderViewModel orderViewModel)
+        public OrderViewModel CreateOrder(OrderViewModel owm)
         {
-            orderViewModel.Order = new Order();
+            
+            owm.Order = new Order();
 
-            return orderViewModel;
+            
+
+            owm.Order.IsDelivered = false;
+            owm.Order.UserId = owm.User.UserId;
+            owm.Order.TotalOrderCost = owm.Cart.CartTotalCost;
+
+            foreach (var item in owm.Cart.ProductsInCart)
+            {
+                var orderRow = new OrderRow();
+
+                orderRow.ProductId = item.ProductId;
+                orderRow.Quantity = item.Quantity;
+
+                owm.Order.OrderRows.Add(orderRow);
+            }
+
+            
+
+            DbContext.Orders.Add(owm.Order);
+            DbContext.SaveChanges();
+
+            return owm;
         }
     }
 

@@ -11,8 +11,8 @@ namespace SnurrtumlareWebSite.Models
         public int UserId { get; set; }
         public decimal TotalOrderCost { get; set; }
         public bool IsDelivered { get; set; } = false;
+        public List<OrderRow> OrderRows { get; set; }
 
-        public virtual List<OrderRow> OrderRows { get; set; }
         public virtual User User { get; set; }
 
         public Order()

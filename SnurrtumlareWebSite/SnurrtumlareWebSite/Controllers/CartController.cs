@@ -93,6 +93,8 @@ namespace SnurrtumlareWebSite.Controllers
             var EmailToFind = User.FindFirstValue(ClaimTypes.Email);
 
             owm.User = cartsService.DbContext.Users.First(u => u.Email == EmailToFind);
+
+            HttpContext.Session.SetObjectAsJson("order", owm);
             
             return View(owm);
         }
@@ -100,9 +102,13 @@ namespace SnurrtumlareWebSite.Controllers
         [Authorize]
         public IActionResult FinalizeOrder()
         {
+            owm = HttpContext.Session.GetObjectFronJson<OrderViewModel>("order");
+
             owm = cartsService.CreateOrder(owm);
 
-            return View("~/Home/Index");
+            HttpContext.Session.Clear();
+
+            return RedirectToAction(nameof(Cart));
         }
     }
 }
