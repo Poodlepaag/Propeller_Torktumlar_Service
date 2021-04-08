@@ -11,9 +11,6 @@ header {
     margin: 0px;
 }
 
-
-
-
 .footer_table {
     width: 100%;
     margin: auto;
@@ -37,8 +34,6 @@ header {
 }
 /* ------------------------------ */
 
-
-
 .logo_search_cart {
     width: 80%;
     margin: auto;
@@ -49,6 +44,7 @@ header {
 
 #logo {
     width: 25%;
+    min-width: 100px;
     float: left;
 }
 
@@ -60,6 +56,7 @@ header {
 
 .search-bar-form {
     width: 35%;
+    min-width: 250px;
     margin: auto;
 }
 
@@ -291,8 +288,9 @@ nav {
     margin: 3%;
 }
 
-#shopping_cart_button_remove {
+.shopping_cart_remove_button {
     width: 100px;
+    background-color: #dc4e4e;
     height: 40px;
     border-radius: 8%;
     margin-left: 8%;
@@ -303,26 +301,33 @@ nav {
     margin-left: 8%;
 }
 
-.shopping_cart_checkout_button {
+.shopping-cart-checkout-button {
     background-color: #f5b553;
-    width: 13%;
+    width: 120px;
     height: 5%;
     float: right;
     margin: 2%;
     border-radius: 8%;
 }
 
-.shopping_cart_reset_button {
-    background-color: lightgray;
-    width: 13%;
+.shopping-cart-danger {
+    background-color: #e53939;
+    min-width: 120px;
+    width: max-content;
     height: 5%;
     float: right;
     margin: 2%;
     border-radius: 8%;
 }
 
-.shopping_cart_button_list_item {
-    display: inline;
+.shopping-cart-button-list-item {
+    display: inline-block;
+    margin: 5px;
+    float: right;
+}
+
+.shopping_cart_button_list {
+    text-align: right;
 }
 
 #social_media_display {

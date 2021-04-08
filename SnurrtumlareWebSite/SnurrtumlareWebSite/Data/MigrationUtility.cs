@@ -15,15 +15,19 @@ namespace SnurrtumlareWebSite.Data
         {
             using var scope = host.Services.CreateScope();
             using var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-            try
+            if (host == null)
             {
-                context.Database.Migrate();
+                try
+                {
+                    context.Database.Migrate();
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e);
+                    throw;
+                }
             }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e);
-                throw;
-            }
+            
 
             return host;
         }

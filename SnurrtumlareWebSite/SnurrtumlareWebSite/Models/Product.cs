@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,5 +15,12 @@ namespace SnurrtumlareWebSite.Models
         public string ProductDescription { get; set; }
         public int AmountInStock { get; set; }
         public decimal ProductPrice { get; set; }
+        [NotMapped]
+        public int Quantity { get; set; }
+
+        public Product()
+        {
+            Quantity = 1;
+        }
     }
 }

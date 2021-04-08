@@ -1,0 +1,91 @@
+﻿@model Cart
+
+@{
+    ViewData["Title"] = "Kundvagn";
+}
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <table table style="width:100%"  class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Produkt ID</th>
+                            <th>Namn</th>
+                            <th>Beskrivning</th>
+                            <th>á Pris</th>
+                            <th>Antal</th>
+                            <th>Summa</th>
+                            <th>Alternativ</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            @foreach (var item in Model.ProductsInCart)
+                            {
+                            <tr>
+                                <form asp-controller="Cart" method="post">
+                                    <th>@item.ProductId</th>
+                                    <th>@item.ProductName</th>
+                                    <th>@item.ProductDescription</th>
+                                    <th>@item.ProductPrice</th>
+                                    <th>
+                                        <input type="number" min="0" style="width: 50px" name="Quantity" value="@item.Quantity" />
+                                        <input type="hidden" name="ProductId" value="@item.ProductId" />
+                                    </th>
+                                    <th>@(item.ProductPrice * item.Quantity)</th>
+                                    <th>
+                                        <div class="form-check-inline">
+                                            <button type="submit" class="shopping-cart-checkout-button" formaction="UpdateQuantity" value="@item.ProductId, @item.Quantity">Uppdatera</button>
+                                            <button type="submit" class="shopping-cart-danger" formaction="DeleteItemFromCart" value="@item.ProductId">Ta bort</button>
+                                        </div>
+                                    </th>
+                                </form>
+                            </tr>
+                            
+                            }
+                        }
+                        else
+                        {
+                            <tr>Inga produkter i kundvagnen</tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th hidden></th>
+                            <th hidden></th>
+                            <th hidden></th>
+                            <th hidden></th>
+                            <th hidden></th>
+                            <th hidden></th>
+                            <th colspan="7" style="text-align: right">
+                                @foreach (var item in Model.ProductsInCart)
+                                {
+                                    Model.CartTotalCost += item.ProductPrice * item.Quantity;
+                                }
+                                <h3>Totalt: @Model.CartTotalCost</h3>
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+                <ul>
+                    <li class="shopping-cart-button-list-item">
+                        <form asp-controller="Cart" method="post">
+                            <input type="submit" class="shopping-cart-danger" formaction="ResetCart" onclick="return confirm('Vill du verkligen ta bort kundvagnen?')" value="Ta bort kundvagn" />
+                        </form>
+                    </li>
+                    <li class="shopping-cart-button-list-item">
+                        <input type="submit" class="shopping-cart-checkout-button" value="Till Kassan" />
+                    </li>
+                    <li class="shopping-cart-button-list-item">
+                        <a href="~/Home/Products"><input type="submit" class="shopping-cart-checkout-button" value="Fortsätt handla" /></a> <!--TODO: Maby we should change this link to a more correct routing strategy?-->
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</body>

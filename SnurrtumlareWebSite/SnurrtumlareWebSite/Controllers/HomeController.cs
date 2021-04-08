@@ -18,11 +18,10 @@ namespace SnurrtumlareWebSite.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ProductsService productsService = new();
-        private readonly CartService cartService = new();
 
         public HomeController(ILogger<HomeController> logger)
         {
-            _logger = logger;
+            _logger = logger; 
         }
 
         public IActionResult Index()
@@ -35,19 +34,6 @@ namespace SnurrtumlareWebSite.Controllers
             return View(productsService.Get(searchString));
         }
 
-        public IActionResult AddItemToCart(Product product)
-        {
-            //cartService.AddItemToCart(HttpContext.Session.GetString(JsonConvert.SerializeObject(product)))
-
-            return RedirectToAction(nameof(Products));
-        }
-        public IActionResult DeleteProducts()
-        {
-            // productsService.Delete();  (Fixar denna vid ett senare tillfälle!)
-
-            return RedirectToAction(nameof(Products));
-        }
-
         public IActionResult About()
         {
             return View();
@@ -55,15 +41,6 @@ namespace SnurrtumlareWebSite.Controllers
 
         public IActionResult Career()
         {
-            return View();
-        }
-
-        public IActionResult ShoppingCart()
-        {
-            List<Product> cart = new List<Product>();
-
-            
-
             return View();
         }
 
