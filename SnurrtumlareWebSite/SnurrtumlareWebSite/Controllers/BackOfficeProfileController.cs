@@ -10,19 +10,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SnurrtumlareWebSite.Data;
 using SnurrtumlareWebSite.Models;
+using SnurrtumlareWebSite.Services;
 
 namespace SnurrtumlareWebSite.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class BackOfficeProfileController : Controller
     {
-        private readonly SnurrtumlareDbContext _context;
-        private readonly UserManager<IdentityUser> _userManager;
 
-        public BackOfficeProfileController(SnurrtumlareDbContext context, UserManager<IdentityUser> userManager)
+        private readonly BackOfficeProfileService _backOfficeProfileService;
+
+        public BackOfficeProfileController(BackOfficeProfileService backOfficeProfileService)
         {
-            _context = context;
-            _userManager = userManager;
+            _backOfficeProfileService = backOfficeProfileService;
+
         }
 
         // GET: BackOfficeProfile
@@ -30,8 +31,12 @@ namespace SnurrtumlareWebSite.Controllers
         {
             var userEmail = User.FindFirstValue(ClaimTypes.Email);
 
-            return View(await _context.Users.Where(u => u.Email == userEmail).ToListAsync());
+            List<User> result = await _backOfficeProfileService.GetBackOfficeUserProfile(userEmail);
+
+            return View(result);
         }
+
+        
 
         // GET: BackOfficeProfile/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -41,8 +46,8 @@ namespace SnurrtumlareWebSite.Controllers
                 return NotFound();
             }
 
-            var user = await _context.Users
-                .FirstOrDefaultAsync(m => m.UserId == id);
+            User user = await _backOfficeProfileService.GetBackOfficeUserDetails(id);
+
             if (user == null)
             {
                 return NotFound();
@@ -51,27 +56,6 @@ namespace SnurrtumlareWebSite.Controllers
             return View(user);
         }
 
-        //// GET: BackOfficeProfile/Create
-        //public IActionResult Create()
-        //{
-        //    return View();
-        //}
-
-        //// POST: BackOfficeProfile/Create
-        //// To protect from overposting attacks, enable the specific properties you want to bind to.
-        //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("UserId,FirstName,LastName,Address,ZipCode,City,Email,Phone")] User user)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _context.Add(user);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(user);
-        //}
 
         // GET: BackOfficeProfile/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -81,13 +65,16 @@ namespace SnurrtumlareWebSite.Controllers
                 return NotFound();
             }
 
-            var user = await _context.Users.FindAsync(id);
+            User user = await _backOfficeProfileService.FindBackOfficeUserById(id);
+
             if (user == null)
             {
                 return NotFound();
             }
             return View(user);
         }
+
+        
 
         // POST: BackOfficeProfile/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -105,12 +92,11 @@ namespace SnurrtumlareWebSite.Controllers
             {
                 try
                 {
-                    _context.Update(user);
-                    await _context.SaveChangesAsync();
+                    await _backOfficeProfileService.UpdateBackOfficeUserProfile(user);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UserExists(user.UserId))
+                    if (!_backOfficeProfileService.UserExists(user.UserId))
                     {
                         return NotFound();
                     }
@@ -121,41 +107,9 @@ namespace SnurrtumlareWebSite.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
             return View(user);
         }
 
-        //// GET: BackOfficeProfile/Delete/5
-        //public async Task<IActionResult> Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var user = await _context.Users
-        //        .FirstOrDefaultAsync(m => m.UserId == id);
-        //    if (user == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(user);
-        //}
-
-        //// POST: BackOfficeProfile/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(int id)
-        //{
-        //    var user = await _context.Users.FindAsync(id);
-        //    _context.Users.Remove(user);
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        //}
-
-        private bool UserExists(int id)
-        {
-            return _context.Users.Any(e => e.UserId == id);
-        }
     }
 }

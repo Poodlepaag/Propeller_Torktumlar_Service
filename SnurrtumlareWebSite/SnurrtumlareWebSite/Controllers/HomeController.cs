@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using SnurrtumlareWebSite.Data;
 using SnurrtumlareWebSite.Models;
+using SnurrtumlareWebSite.ViewModels;
 using SnurrtumlareWebSite.Services;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,9 @@ namespace SnurrtumlareWebSite.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly ProductsService productsService = new();
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ProductsService productsService)
         {
-            _logger = logger; 
+            _logger = logger;
         }
 
         public IActionResult Index()
@@ -31,7 +32,7 @@ namespace SnurrtumlareWebSite.Controllers
 
         public IActionResult Products(string searchString)
         {
-            return View(productsService.Get(searchString));
+            return View(_productsService.Get(searchString));
         }
 
         public IActionResult About()

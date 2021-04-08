@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SnurrtumlareWebSite.Data;
 using SnurrtumlareWebSite.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,16 +9,51 @@ namespace SnurrtumlareWebSite.Services
 {
     public class UsersService
     {
-        SnurrtumlareDbContext DbContext = new SnurrtumlareDbContext();
+        private readonly SnurrtumlareDbContext _context;
 
-        public IEnumerable<User> GetUsers()
+        public UsersService(SnurrtumlareDbContext context)
         {
-            return DbContext.Users.ToList();
+            _context = context;
         }
 
-        public IEnumerable<User> GetCustomer(int id)
+        public async Task<List<User>> GetAllUsers()
         {
-            return DbContext.Users.Where(u => u.UserId == id).ToList();
+            return await _context.Users.ToListAsync();
         }
+
+        public async Task<User> GetUserDetailsById(int? id)
+        {
+            return await _context.Users.FirstOrDefaultAsync(m => m.UserId == id);
+        }
+
+        public async Task AddNewUser(User user)
+        {
+            _context.Add(user);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<User> FindUserToEditById(int? id)
+        {
+            return await _context.Users.FindAsync(id);
+        }
+
+        public async Task UpdateUserDetails(User user)
+        {
+            _context.Update(user);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteUser(int id)
+        {
+            var user = await _context.Users.FindAsync(id);
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+        }
+
+        public bool UserExists(int id)
+        {
+            return _context.Users.Any(e => e.UserId == id);
+        }
+
     }
 }
