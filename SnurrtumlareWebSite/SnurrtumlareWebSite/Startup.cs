@@ -49,6 +49,7 @@ namespace SnurrtumlareWebSite
             services.AddControllersWithViews();
 
             services.AddScoped(typeof(ProductsService));
+            services.AddScoped(typeof(UsersService));
             services.AddScoped(typeof(BackOfficeProfileService));
             services.AddScoped(typeof(User));
 
