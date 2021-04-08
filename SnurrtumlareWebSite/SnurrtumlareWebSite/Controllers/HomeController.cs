@@ -18,10 +18,11 @@ namespace SnurrtumlareWebSite.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly ProductsService productsService = new();
+        private readonly ProductsService _productsService;
 
         public HomeController(ILogger<HomeController> logger, ProductsService productsService)
         {
+            _productsService = productsService;
             _logger = logger;
         }
 
