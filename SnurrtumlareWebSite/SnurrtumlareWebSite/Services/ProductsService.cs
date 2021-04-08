@@ -9,16 +9,21 @@ namespace SnurrtumlareWebSite.Services
 {
     public class ProductsService
     {
-        private readonly SnurrtumlareDbContext DbContext = new();
+        private readonly SnurrtumlareDbContext _context;
+
+        public ProductsService(SnurrtumlareDbContext context)
+        {
+            _context = context;
+        }
 
         public List<Product> Get(string searchString)
         {
             if (string.IsNullOrEmpty(searchString))
             {
-                return DbContext.Products.ToList();
+                return _context.Products.ToList();
             }
 
-            var result = DbContext.Products.Where(p =>
+            var result = _context.Products.Where(p =>
                     p.ProductName.ToLower().Contains(searchString.ToLower()) ||
                     p.ProductDescription.ToLower().Contains(searchString.ToLower()) ||
                     p.Category.ToLower().Contains(searchString.ToLower()));
@@ -28,7 +33,7 @@ namespace SnurrtumlareWebSite.Services
 
         public List<Product> GetProductsByCategory(string category)
         {
-            return DbContext.Products.Where(p => p.Category == category).ToList();
+            return _context.Products.Where(p => p.Category == category).ToList();
         }
 
         //public void Add(int productId, string productName, string imageLink, string category, string productDescription, int amountInStock, decimal productPrice)
