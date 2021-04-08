@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SnurrtumlareWebSite.Data;
 using SnurrtumlareWebSite.Models;
 using SnurrtumlareWebSite.Services;
+using System.Security.Claims;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,36 +13,38 @@ namespace SnurrtumlareWebSite.Controllers
 {
     public class CartController : Controller
     {
-        private Cart cart { get; set; }
-        private User user { get; set; }
-        private Order order { get; set; }
+        //private Cart cart { get; set; }
+        //private User user { get; set; }
+        //private Order order { get; set; }
         private CartsService cartsService { get; set; }
+        private OrderViewModel owm { get; set; }
 
         public CartController()
         {
             cartsService = new CartsService();
+            owm = new OrderViewModel();
         }
 
         [HttpGet]
         public IActionResult Cart()
         {
-            cart = HttpContext.Session.GetObjectFronJson<Cart>("cart");
+            owm.Cart = HttpContext.Session.GetObjectFronJson<Cart>("cart");
 
-            cart = cartsService.GetCart(cart);
+            owm.Cart = cartsService.GetCart(owm.Cart);
 
-            HttpContext.Session.SetObjectAsJson("cart", cart);
+            HttpContext.Session.SetObjectAsJson("cart", owm.Cart);
             
-            return View(cart);
+            return View(owm);
         }
 
         [HttpPost]
         public IActionResult AddItemToCart(int productId)
         {
-            cart = HttpContext.Session.GetObjectFronJson<Cart>("cart");
+            owm.Cart = HttpContext.Session.GetObjectFronJson<Cart>("cart");
 
-            cart = cartsService.AddItemToCart(cart, productId);
+            owm.Cart = cartsService.AddItemToCart(owm.Cart, productId);
 
-            HttpContext.Session.SetObjectAsJson("cart", cart);
+            HttpContext.Session.SetObjectAsJson("cart", owm.Cart);
 
             return RedirectToAction(nameof(Cart));
         }
@@ -49,11 +52,11 @@ namespace SnurrtumlareWebSite.Controllers
         [HttpPost]
         public IActionResult UpdateQuantity(int productId, int quantity)
         {
-            cart = HttpContext.Session.GetObjectFronJson<Cart>("cart");
+            owm.Cart = HttpContext.Session.GetObjectFronJson<Cart>("cart");
 
-            cart = cartsService.UpdateQuantity(cart, productId, quantity);
+            owm.Cart = cartsService.UpdateQuantity(owm.Cart, productId, quantity);
 
-            HttpContext.Session.SetObjectAsJson("cart", cart);
+            HttpContext.Session.SetObjectAsJson("cart", owm.Cart);
 
             return RedirectToAction(nameof(Cart));
         }
@@ -61,11 +64,11 @@ namespace SnurrtumlareWebSite.Controllers
         [HttpPost]
         public IActionResult DeleteItemFromCart(int productId)
         {
-            cart = HttpContext.Session.GetObjectFronJson<Cart>("cart");
+            owm.Cart = HttpContext.Session.GetObjectFronJson<Cart>("cart");
 
-            cart = cartsService.DeleteItemFromCart(cart, productId);
+            owm.Cart = cartsService.DeleteItemFromCart(owm.Cart, productId);
 
-            HttpContext.Session.SetObjectAsJson("cart", cart);
+            HttpContext.Session.SetObjectAsJson("cart", owm.Cart);
 
             return RedirectToAction(nameof(Cart));
         }
@@ -73,35 +76,33 @@ namespace SnurrtumlareWebSite.Controllers
         [HttpPost]
         public IActionResult ResetCart()
         {
-            cart = HttpContext.Session.GetObjectFronJson<Cart>("cart");
+            owm.Cart = HttpContext.Session.GetObjectFronJson<Cart>("cart");
 
-            cart = cartsService.ClearCart(cart);
+            owm.Cart = cartsService.ClearCart(owm.Cart);
 
-            HttpContext.Session.SetObjectAsJson("cart", cart);
+            HttpContext.Session.SetObjectAsJson("cart", owm.Cart);
 
             return RedirectToAction(nameof(Cart));
         }
 
-        [HttpPost]
-        public IActionResult Payments()
+        [Authorize]
+        public IActionResult OrderConfirmation()
         {
-            order = HttpContext.Session.GetObjectFronJson<Order>("payment");
-            cart = HttpContext.Session.GetObjectFronJson<Cart>("cart");
+            owm.Cart = HttpContext.Session.GetObjectFronJson<Cart>("cart");
 
-            if (order == null)
-            {
-                order = new Order();
-            }
+            var EmailToFind = User.FindFirstValue(ClaimTypes.Email);
 
-            order.User = user;
-            foreach (var item in cart.ProductsInCart)
-            {
-                OrderRow orderRow = new OrderRow();
-                orderRow.Product = item;
-                order.OrderRows.Add(orderRow);
-            }
+            owm.User = cartsService.DbContext.Users.First(u => u.Email == EmailToFind);
+            
+            return View(owm);
+        }
 
-            return View(order);
+        [Authorize]
+        public IActionResult FinalizeOrder()
+        {
+            owm = cartsService.CreateOrder(owm);
+
+            return View("~/Home/Index");
         }
     }
 }

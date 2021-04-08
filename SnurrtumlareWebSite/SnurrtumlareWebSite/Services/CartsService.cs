@@ -101,6 +101,13 @@ namespace SnurrtumlareWebSite.Services
 
             return cart;
         }
+
+        public OrderViewModel CreateOrder(OrderViewModel orderViewModel)
+        {
+            orderViewModel.Order = new Order();
+
+            return orderViewModel;
+        }
     }
 
     

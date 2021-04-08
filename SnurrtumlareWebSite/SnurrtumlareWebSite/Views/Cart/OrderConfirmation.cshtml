@@ -1,26 +1,26 @@
-﻿@model Cart
+﻿@model OrderViewModel
 @{
 }
 <body>
     <div class="col-12 egen" style="text-align: center">
         <h1 style="margin-bottom: 50px">Ordersammanställning</h1>
-        <div class="col-6" style="display: inline-block; float: left">
+        <div class="col-md-6" style="display: inline-block; float: left">
             <h5>KUNDINFORMATION</h5>
             <table style="width:100%; text-align: left" class="table table-bordered">
                 <thead>
-                    <tr><th>Namn</th><th>@*@Model.User.FirstName @Model.User.LastName*@</th></tr>
-                    <tr><th>Email</th><th>@*Model.User.Email*@</th></tr>
-                    <tr><th>Telefon</th><th>@*Model.User.Phone*@</th></tr>
+                    <tr><th>Namn</th><td>@Model.User.FirstName @Model.User.LastName</td></tr>
+                    <tr><th>Email</th><td>@Model.User.Email</td></tr>
+                    <tr><th>Telefon</th><td>@Model.User.Phone</td></tr>
                 </thead>
             </table>
         </div>
-        <div class="col-6" style="display: inline-block; float: left">
+        <div class="col-md-6" style="display: inline-block; float: left">
             <h5>LEVERANSINFORMATION</h5>
             <table style="width:100%; text-align: left; margin-bottom: 50px" class="table table-bordered">
                 <thead>
-                    <tr><th>Adress</th><th>@*Model.User.Adress*@</th></tr>
-                    <tr><th>Stad</th><th>@*Model.User.City*@</th></tr>
-                    <tr><th>Postnummer</th><th>@*Model.User.ZipCode*@</th></tr>
+                    <tr><th>Adress</th><td>@Model.User.Address</td></tr>
+                    <tr><th>Stad</th><td>@Model.User.City</td></tr>
+                    <tr><th>Postnummer</th><td>@Model.User.ZipCode</td></tr>
                 </thead>
             </table>
         </div>
@@ -35,7 +35,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model.ProductsInCart)
+                    @foreach (var item in Model.Cart.ProductsInCart)
                     {
                         <tr>
                             <th><img style="width: 30px; margin-right: 30px" src="@item.ImageLink" /> @item.ProductName</th>
@@ -46,10 +46,10 @@
                 </tbody>
             </table>
             <div style="width: 100%; text-align: center;">
-                <h4>Totalt att betala: @Model.CartTotalCost</h4>
+                <h4>Totalt att betala: @Model.Cart.CartTotalCost</h4>
                 <form asp-controller="Cart" method="post">
-                    <input type="submit" class="order-confirmation-button-style" value="Tillbaka" />
-                    <input type="submit" class="order-confirmation-button-style" value="Bekräfta köp" />
+                    <input type="submit" class="order-confirmation-button-style" formaction="Cart" formmethod="get" value="Tillbaka" />
+                    <input type="submit" class="order-confirmation-button-style" formaction="FinalizeOrder" onclick="//Modal here?" value="Bekräfta köp" />
                 </form>
             </div>
         </div>
