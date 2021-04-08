@@ -14,5 +14,10 @@ namespace SnurrtumlareWebSite.Models
 
         public virtual List<OrderRow> OrderRows { get; set; }
         public virtual User User { get; set; }
+
+        public Order()
+        {
+            OrderRows = new List<OrderRow>();
+        }
     }
 }
