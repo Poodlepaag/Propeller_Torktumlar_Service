@@ -10,13 +10,36 @@ namespace SnurrtumlareWebSite.Services
 {
     public class OrdersService
     {
-        private readonly SnurrtumlareDbContext dbContext = new();
+        private readonly SnurrtumlareDbContext _context;
 
-        public IEnumerable<Order> Get()
+        public OrdersService(SnurrtumlareDbContext context)
         {
-            var listOfOrders = dbContext.Orders.Include(u => u.User).Include(o => o.OrderRows).ThenInclude(p => p.Product);
-
-            return listOfOrders; 
+            _context = context;
         }
+
+
+        public async Task<List<Order>> GetAllOrders()
+        {
+            return await _context.Orders.Include(o => o.User).ToListAsync();
+        }
+
+        public async Task<Order> GetOrderDetailsById(int? id)
+        {
+            return await _context.Orders
+                            .Include(o => o.User)
+                            .FirstOrDefaultAsync(m => m.OrderId == id);
+        }
+
+        public async Task UpdateOrderDetails(Order order)
+        {
+            _context.Update(order);
+            await _context.SaveChangesAsync();
+        }
+
+        public bool OrderExists(int id)
+        {
+            return _context.Orders.Any(e => e.OrderId == id);
+        }
+
     }
 }

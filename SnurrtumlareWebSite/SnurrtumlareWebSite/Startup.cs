@@ -50,6 +50,7 @@ namespace SnurrtumlareWebSite
 
             services.AddScoped(typeof(ProductsService));
             services.AddScoped(typeof(UsersService));
+            services.AddScoped(typeof(OrdersService));
             services.AddScoped(typeof(BackOfficeProfileService));
             services.AddScoped(typeof(User));
 
