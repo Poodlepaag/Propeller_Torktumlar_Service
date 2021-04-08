@@ -24,6 +24,13 @@ namespace SnurrtumlareWebSite.Services
                 cart = new Cart();
             }
 
+            cart.CartTotalCost = 0;
+
+            foreach (var item in cart.ProductsInCart)
+            {
+                cart.CartTotalCost += item.ProductPrice * item.Quantity;
+            }
+
             return cart;
         }
 

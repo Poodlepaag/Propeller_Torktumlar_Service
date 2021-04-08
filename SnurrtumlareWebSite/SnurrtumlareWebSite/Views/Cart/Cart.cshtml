@@ -1,4 +1,4 @@
-﻿@model Cart
+﻿@model OrderViewModel
 
 @{
     ViewData["Title"] = "Kundvagn";
@@ -7,7 +7,7 @@
 <body>
     <div class="container-fluid">
         <h1>Din kundvagn</h1>
-        @if (Model != null && Model.ContainsItems == true)
+        @if (Model != null && Model.Cart.ContainsItems == true)
         {
             <div class="row">
                 <div class="col-md-12">
@@ -26,9 +26,9 @@
                         </thead>
 
                         <tbody>
-                            @if (Model != null && Model.ContainsItems == true)
+                            @if (Model != null && Model.Cart.ContainsItems == true)
                             {
-                                @foreach (var item in Model.ProductsInCart)
+                                @foreach (var item in Model.Cart.ProductsInCart)
                                 {
                                     <tr>
                                         <form asp-controller="Cart" method="post">
@@ -66,11 +66,7 @@
                                 <th hidden></th>
                                 <th hidden></th>
                                 <th colspan="7" style="text-align: right">
-                                    @foreach (var item in Model.ProductsInCart)
-                                    {
-                                        Model.CartTotalCost += item.ProductPrice * item.Quantity;
-                                    }
-                                    <h3>Totalt: @Model.CartTotalCost</h3>
+                                    <h3>Totalt: @Model.Cart.CartTotalCost</h3>
                                 </th>
                             </tr>
                         </tfoot>
@@ -82,8 +78,8 @@
                             </form>
                         </li>
                         <li class="shopping-cart-button-list-item">
-                            <form asp-controller="Cart" method="post">
-                                <input type="submit" class="shopping-cart-checkout-button" formaction="Payments" value="Till Kassan" />
+                            <form asp-controller="Cart" asp-action="OrderConfirmation">
+                                <input type="submit" class="shopping-cart-checkout-button" formaction="OrderConfirmation" value="Till Kassan" />
                             </form>
 
                         </li>

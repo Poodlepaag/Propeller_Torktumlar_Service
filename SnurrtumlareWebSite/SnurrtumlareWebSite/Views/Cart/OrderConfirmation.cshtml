@@ -1,0 +1,57 @@
+﻿@model Cart
+@{
+}
+<body>
+    <div class="col-12 egen" style="text-align: center">
+        <h1 style="margin-bottom: 50px">Ordersammanställning</h1>
+        <div class="col-6" style="display: inline-block; float: left">
+            <h5>KUNDINFORMATION</h5>
+            <table style="width:100%; text-align: left" class="table table-bordered">
+                <thead>
+                    <tr><th>Namn</th><th>@*@Model.User.FirstName @Model.User.LastName*@</th></tr>
+                    <tr><th>Email</th><th>@*Model.User.Email*@</th></tr>
+                    <tr><th>Telefon</th><th>@*Model.User.Phone*@</th></tr>
+                </thead>
+            </table>
+        </div>
+        <div class="col-6" style="display: inline-block; float: left">
+            <h5>LEVERANSINFORMATION</h5>
+            <table style="width:100%; text-align: left; margin-bottom: 50px" class="table table-bordered">
+                <thead>
+                    <tr><th>Adress</th><th>@*Model.User.Adress*@</th></tr>
+                    <tr><th>Stad</th><th>@*Model.User.City*@</th></tr>
+                    <tr><th>Postnummer</th><th>@*Model.User.ZipCode*@</th></tr>
+                </thead>
+            </table>
+        </div>
+        <div class="col-12">
+            <h5>DINA PRODUKTER</h5>
+            <table style="width:100%; text-align: left" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th colspan="1">Produkt</th>
+                        <th>á pris</th>
+                        <th>Antal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ProductsInCart)
+                    {
+                        <tr>
+                            <th><img style="width: 30px; margin-right: 30px" src="@item.ImageLink" /> @item.ProductName</th>
+                            <th>@item.ProductPrice</th>
+                            <th>@item.Quantity</th>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div style="width: 100%; text-align: center;">
+                <h4>Totalt att betala: @Model.CartTotalCost</h4>
+                <form asp-controller="Cart" method="post">
+                    <input type="submit" class="order-confirmation-button-style" value="Tillbaka" />
+                    <input type="submit" class="order-confirmation-button-style" value="Bekräfta köp" />
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
