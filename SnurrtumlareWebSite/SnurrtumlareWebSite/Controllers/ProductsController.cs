@@ -12,12 +12,10 @@ namespace SnurrtumlareWebSite.Controllers
     [Authorize(Roles = "Admin")]
     public class ProductsController : Controller
     {
-        private readonly SnurrtumlareDbContext _context;
         private readonly ProductsService _productsService;
 
-        public ProductsController(SnurrtumlareDbContext context, ProductsService productsService)
+        public ProductsController(ProductsService productsService)
         {
-            _context = context;
             _productsService = productsService;
         }
 
