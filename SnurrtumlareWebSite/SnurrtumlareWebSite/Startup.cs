@@ -51,6 +51,7 @@ namespace SnurrtumlareWebSite
 
             services.AddSession();
 
+            services.AddSignalR();
             services.AddScoped(typeof(ProductsService));
             services.AddScoped(typeof(UsersService));
             services.AddScoped(typeof(OrdersService));
@@ -93,6 +94,7 @@ namespace SnurrtumlareWebSite
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+                endpoints.MapHub<NotificationHub>("/notificationHub");
             });
         }
 

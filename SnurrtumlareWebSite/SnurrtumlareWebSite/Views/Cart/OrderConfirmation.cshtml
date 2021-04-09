@@ -1,9 +1,12 @@
 ﻿@model OrderViewModel
 @{
 }
-<head>
+
+@section Scripts{
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-</head>
+    <script src="~/js/ordermessage/sendmessage.js"></script>
+
+}
 <body>
     <div class="col-12 egen" style="text-align: center">
         <h1>Ordersammanställning</h1>
@@ -187,3 +190,29 @@
         $('#edit-profile-button').click(function() {
             $('#update-profile-modal').modal('toggle'); });
 </script>
+    @*MODAL*@
+    <div id="thank-you-modal" class="modal fade bd-example-modal-lg" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="testModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="text-align: center">
+                <h2>TACK FÖR DITT KÖP!</h2>
+                <div width="100%" style="text-align: center; margin-bottom: 40px">
+                    <img src="~/assets/icons/check-mark.png" width="150" />
+                </div>
+                <p>
+                    Nu gör vi vårt yttersta för att dina produkter skall nå dig så snabbt det bara går<br />
+                    och inom kort får du en bekräftelse av din order skickat till din mail.<br />
+                    I det mailet får du även en spårningslänk så att du kan se var dina varor är någonstans
+                </p>
+                <p>
+                    När du stänger denna ruta så skickas du tillbaka till startsidan så att du kan fortsätta<br />
+                    titta runt på vår roliga sida som vi är väldigt stolta över!
+                </p>
+                <div width="100%" style="text-align: center">
+                    <form>
+                        <button class="btn btn-info" value="Avsluta" onclick="javascript: window.location='/Home/Index'" data-dismiss="modal">Avsluta</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

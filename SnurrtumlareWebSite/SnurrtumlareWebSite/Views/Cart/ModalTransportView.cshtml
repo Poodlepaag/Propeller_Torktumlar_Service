@@ -3,9 +3,15 @@
 *@
 @{
 }
-<head>
-    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-</head>
+
+@section Scripts{
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/ordermessage/sendmessage.js"></script>
+    <script src="~/js/ordermessage/receivemessage.js"></script>
+}
+
 <div id="thank-you-modal" class="modal fade bd-example-modal-lg" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="testModal" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content" style="text-align: center">
@@ -23,14 +29,14 @@
                 titta runt på vår roliga sida som vi är väldigt stolta över!
             </p>
             <div width="100%" style="text-align: center">
-                <form asp-controller="Home" asp-action="Index" method="post">
-                    <input type="submit" class="order-confirmation-button-style" value="Avsluta" />
+                <form>
+                    <button class="btn btn-info" value="Avsluta" onclick="javascript: window.location='/Home/Index'" data-dismiss="modal">Avsluta</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<script type="text/javascript">
-        $(document).ready(function() {
-            $('#thank-you-modal').modal('show'); });
-</script>
+
+
+
+
