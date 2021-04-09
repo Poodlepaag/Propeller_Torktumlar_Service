@@ -108,7 +108,12 @@ namespace SnurrtumlareWebSite.Controllers
 
             HttpContext.Session.Clear();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(ModalTransportView));
+        }
+
+        public IActionResult ModalTransportView()
+        {
+            return View();
         }
     }
 }

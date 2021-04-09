@@ -15,7 +15,6 @@ namespace SnurrtumlareWebSite.Models
         public string ProductName { get; set; }
         public string Category { get; set; }
         public string ProductDescription { get; set; }
-        public int AmountInStock { get; set; }
         public decimal ProductPrice { get; set; }
         [NotMapped]
         public int Quantity { get; set; }
