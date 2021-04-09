@@ -2,7 +2,7 @@
 
 namespace SnurrtumlareWebSite.Migrations.SnurrtumlareDb
 {
-    public partial class InitialSnurrtumlareDbContext : Migration
+    public partial class InitialTestAzureSnurrtumlareDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,7 +16,6 @@ namespace SnurrtumlareWebSite.Migrations.SnurrtumlareDb
                     ProductName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Category = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProductDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AmountInStock = table.Column<int>(type: "int", nullable: false),
                     ProductPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
@@ -93,14 +92,14 @@ namespace SnurrtumlareWebSite.Migrations.SnurrtumlareDb
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "ProductId", "AmountInStock", "Category", "ImageLink", "ProductDescription", "ProductName", "ProductPrice" },
+                columns: new[] { "ProductId", "Category", "ImageLink", "ProductDescription", "ProductName", "ProductPrice" },
                 values: new object[,]
                 {
-                    { 1, 25, "Keps", "/assets/pictures/Kepsar/Prop1.png", "Kepsarnas keps", "Propellerkeps Deluxe", 189m },
-                    { 2, 10, "Keps", "/assets/pictures/Kepsar/Prop10.png", "Keps med guldskärm", "Propellerkeps Premium", 179m },
-                    { 3, 5, "Torktumlare", "/assets/pictures/Torktumlare/Tork1.png", "Instegsmodell bland torktumlare", "Torktumlare X3", 4990m },
-                    { 4, 2, "Torktumlare", "/assets/pictures/Torktumlare/Tork10.png", "Premium Torktumlare med det lilla extra", "Torktumlare XT55", 7990m },
-                    { 5, 5, "Keps", "/assets/pictures/Kepsar/Prop11.png", "Propellerkepsen för den som testar gränser", "Propellerkeps Crazy", 149m }
+                    { 1, "Keps", "/assets/pictures/Kepsar/Prop1.png", "Kepsarnas keps", "Propellerkeps Deluxe", 189m },
+                    { 2, "Keps", "/assets/pictures/Kepsar/Prop10.png", "Keps med guldskärm", "Propellerkeps Premium", 179m },
+                    { 3, "Torktumlare", "/assets/pictures/Torktumlare/Tork1.png", "Instegsmodell bland torktumlare", "Torktumlare X3", 4990m },
+                    { 4, "Torktumlare", "/assets/pictures/Torktumlare/Tork10.png", "Premium Torktumlare med det lilla extra", "Torktumlare XT55", 7990m },
+                    { 5, "Keps", "/assets/pictures/Kepsar/Prop11.png", "Propellerkepsen för den som testar gränser", "Propellerkeps Crazy", 149m }
                 });
 
             migrationBuilder.InsertData(

@@ -2,17 +2,15 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SnurrtumlareWebSite.Data;
 
 namespace SnurrtumlareWebSite.Migrations.SnurrtumlareDb
 {
     [DbContext(typeof(SnurrtumlareDbContext))]
-    [Migration("20210407161645_InitialSnurrtumlareDbContext")]
-    partial class InitialSnurrtumlareDbContext
+    partial class SnurrtumlareDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -121,9 +119,6 @@ namespace SnurrtumlareWebSite.Migrations.SnurrtumlareDb
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AmountInStock")
-                        .HasColumnType("int");
-
                     b.Property<string>("Category")
                         .HasColumnType("nvarchar(max)");
 
@@ -147,7 +142,6 @@ namespace SnurrtumlareWebSite.Migrations.SnurrtumlareDb
                         new
                         {
                             ProductId = 1,
-                            AmountInStock = 25,
                             Category = "Keps",
                             ImageLink = "/assets/pictures/Kepsar/Prop1.png",
                             ProductDescription = "Kepsarnas keps",
@@ -157,7 +151,6 @@ namespace SnurrtumlareWebSite.Migrations.SnurrtumlareDb
                         new
                         {
                             ProductId = 2,
-                            AmountInStock = 10,
                             Category = "Keps",
                             ImageLink = "/assets/pictures/Kepsar/Prop10.png",
                             ProductDescription = "Keps med guldskärm",
@@ -167,7 +160,6 @@ namespace SnurrtumlareWebSite.Migrations.SnurrtumlareDb
                         new
                         {
                             ProductId = 3,
-                            AmountInStock = 5,
                             Category = "Torktumlare",
                             ImageLink = "/assets/pictures/Torktumlare/Tork1.png",
                             ProductDescription = "Instegsmodell bland torktumlare",
@@ -177,7 +169,6 @@ namespace SnurrtumlareWebSite.Migrations.SnurrtumlareDb
                         new
                         {
                             ProductId = 4,
-                            AmountInStock = 2,
                             Category = "Torktumlare",
                             ImageLink = "/assets/pictures/Torktumlare/Tork10.png",
                             ProductDescription = "Premium Torktumlare med det lilla extra",
@@ -187,7 +178,6 @@ namespace SnurrtumlareWebSite.Migrations.SnurrtumlareDb
                         new
                         {
                             ProductId = 5,
-                            AmountInStock = 5,
                             Category = "Keps",
                             ImageLink = "/assets/pictures/Kepsar/Prop11.png",
                             ProductDescription = "Propellerkepsen för den som testar gränser",

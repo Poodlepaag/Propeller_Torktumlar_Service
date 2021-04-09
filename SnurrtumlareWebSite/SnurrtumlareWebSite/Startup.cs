@@ -34,11 +34,11 @@ namespace SnurrtumlareWebSite
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("IdentityDB")));
 
             services.AddDbContext<SnurrtumlareDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("SnurrtumlareDB")));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 

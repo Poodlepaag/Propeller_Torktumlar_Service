@@ -25,7 +25,7 @@ namespace SnurrtumlareWebSite.Data
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SnurrtumlareDB;");
+            //optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SnurrtumlareDB;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
