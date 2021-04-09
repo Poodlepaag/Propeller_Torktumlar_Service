@@ -63,15 +63,12 @@ namespace SnurrtumlareWebSite.Services
                 if (item.ProductId == productId)
                 {
                     item.Quantity = quantity;
-
                     if (item.Quantity <= 0)
                     {
                         DeleteItemFromCart(cart, productId);
-
                         if (cart.ProductsInCart.Count == 0)
                         {
                             cart.ContainsItems = false;
-
                             return cart;
                         }
                     }
@@ -149,6 +146,22 @@ namespace SnurrtumlareWebSite.Services
             }
 
             return owm;
+        }
+
+        public User UpdateProfile(User user, string firstName, string lastName, string phone, string address, string city, string zipcode)
+        {
+            user = DbContext.Users.Single(u => u.Email == user.Email);
+            user.FirstName = firstName;
+            user.LastName = lastName;
+            user.Phone = phone;
+            user.Address = address;
+            user.City = city;
+            user.ZipCode = zipcode;
+
+            DbContext.Update(user);
+            DbContext.SaveChanges();
+
+            return user;
         }
     }
 
