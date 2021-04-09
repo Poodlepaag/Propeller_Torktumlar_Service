@@ -2,16 +2,6 @@
 
 var connection = new signalR.HubConnectionBuilder().withUrl("/notificationHub").build();
 
-//Disable send button until connection is established
-
-connection.on("ReceiveMessage", function () {
-    var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    var encodedMsg = "hello, i made it";
-    var ul = document.createElement("ul");
-    ul.textContent = encodedMsg;
-    document.getElementById("notificationToast").val(encodedMsg);
-});
-
 connection.start().then(function () {
     document.getElementById("confirmOrderButton").disabled = false;
 }).catch(function (err) {
@@ -19,3 +9,20 @@ connection.start().then(function () {
 });
 
 
+connection.on("ReceiveNotification", function (orderId, firstName, lastName, message) {
+    toastr.info(orderId + message + firstName + " " + lastName);
+});
+
+document.getElementById("confirmOrderButton").addEventListener("click", function (event) {
+    var orderId = document.getElementById("orderId").value;
+    var firstName = document.getElementById("firstName").value;
+    var lastName = document.getElementById("lastName").value;
+    var message = " has been created by ";
+
+    connection.invoke("SendMessage", orderId, firstName, lastName, message).catch(function (err) {
+        return console.error(err.toString());
+    });
+
+    event.preventDefault();
+
+});

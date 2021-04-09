@@ -2,37 +2,80 @@
     ViewData["Title"] = "Home Page";
 }
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="~/js/signalr/dist/browser/signalr.js"></script>
-<script src="~/js/notifications.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" />
 
-<body>
-    <div class="container">
-        <h3>Toast Example</h3>
+@section Scripts{
 
-        <input type="button" class="btn btn-primary" id="confirmOrderButton">Bekräfta beställning</input>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/notifications.js"></script>
 
-        <div class="toast">
-            <div class="toast-header">
-                An order has been created!
-            </div>
-            <div class="toast-body">
-                <ul id="notificationToast"></ul>
+    <script type="text/javascript">
+
+        var connection = new signalR.HubConnectionBuilder().withUrl("/notificationHub").build();
+
+        connection.start().then(function () {
+            document.getElementById("sendButton").disabled = false;
+        }).catch(function (err) {
+            return console.error(err.toString());
+        });
+
+
+        connection.on("ReceiveMessage", function (user, message) {
+            toastr.info(message, notificationTitle);
+        });
+
+        document.getElementById("sendButton").addEventListener("click", function (event) {
+            var user = document.getElementById("notificationTitle").value;
+            var message = document.getElementById("message").value;
+
+            connection.invoke("SendMessage", user, message).catch(function (err) {
+                return console.error(err.toString());
+            });
+
+            event.preventDefault();
+        });
+
+    </script>
+
+}
+
+<form>
+    <div class="form-group">
+        <b id="notificationTitle">An order has been created: </b>
+        @*<label for="username">Toast title</label>
+            <input type="text" class="form-control" id="toastTitle" aria-describedby="usernameHelp" value="An order has been created:">*@
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" id="message" value="Order XXX was created by FirstName LastName">
+    </div>
+    <button type="submit" id="sendButton" class="btn btn-primary">Send</button>
+</form>
+
+@*<body>
+        <div class="container">
+            <h3>Toast Example</h3>
+
+            <input type="button" class="btn btn-primary" id="confirmOrderButton">Bekräfta beställning</input>
+
+            <div class="toast">
+                <div class="toast-header">
+                    An order has been created!
+                </div>
+                <div class="toast-body">
+                    <ul id="notificationToast"></ul>
+                </div>
             </div>
         </div>
-    </div>
-</body>
+    </body>*@
 
 @*<script>
-    $(document).ready(function () {
-        $("#confirmOrderButton").click(function () {
-            $('.toast').toast('show');
+        $(document).ready(function () {
+            $("#confirmOrderButton").click(function () {
+                $('.toast').toast('show');
+            });
         });
-    });
-</script>*@
+    </script>*@
 
 
 
