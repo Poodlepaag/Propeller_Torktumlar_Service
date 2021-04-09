@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SnurrtumlareWebSite.Data;
 using SnurrtumlareWebSite.Models;
+using SnurrtumlareWebSite.Services;
+using SnurrtumlareWebSite.ViewModels;
 
 namespace SnurrtumlareWebSite.Controllers
 {
@@ -15,17 +17,18 @@ namespace SnurrtumlareWebSite.Controllers
     public class OrdersController : Controller
     {
         private readonly SnurrtumlareDbContext _context;
+        private readonly OrdersService _ordersService;
 
-        public OrdersController(SnurrtumlareDbContext context)
+        public OrdersController(SnurrtumlareDbContext context, OrdersService ordersService)
         {
             _context = context;
+            _ordersService = ordersService;
         }
 
         // GET: Orders
         public async Task<IActionResult> Index()
         {
-            var snurrtumlareDbContext = _context.Orders.Include(o => o.User);
-            return View(await snurrtumlareDbContext.ToListAsync());
+            return View(await _ordersService.GetAllOrders());
         }
 
         // GET: Orders/Details/5
@@ -36,9 +39,8 @@ namespace SnurrtumlareWebSite.Controllers
                 return NotFound();
             }
 
-            var order = await _context.Orders
-                .Include(o => o.User)
-                .FirstOrDefaultAsync(m => m.OrderId == id);
+            Order order = await _ordersService.GetOrderDetailsById(id);
+
             if (order == null)
             {
                 return NotFound();
@@ -46,6 +48,8 @@ namespace SnurrtumlareWebSite.Controllers
 
             return View(order);
         }
+
+        
 
         // GET: Orders/Create
         public IActionResult Create()
@@ -58,7 +62,7 @@ namespace SnurrtumlareWebSite.Controllers
         // GET: Orders/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            OrderViewModel orderViewModel = new OrderViewModel();
+            OrderViewModel orderViewModel = new();
             {
                 orderViewModel.Order = await _context.Orders
                 .Include(o => o.User)
@@ -66,17 +70,22 @@ namespace SnurrtumlareWebSite.Controllers
                 .FirstOrDefaultAsync(m => m.OrderId == id);
             }
 
-            if (id == null)
-            {
-                return NotFound();
-            }
+            #region OLD
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
 
-            var order = await _context.Orders.FindAsync(id);
-            if (order == null)
-            {
-                return NotFound();
-            }
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", order.UserId);
+            //var order = await _context.Orders.FindAsync(id);
+
+            //if (order == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", order.UserId);
+            #endregion
+
             return View(orderViewModel);
         }
 
@@ -96,12 +105,11 @@ namespace SnurrtumlareWebSite.Controllers
             {
                 try
                 {
-                    _context.Update(order);
-                    await _context.SaveChangesAsync();
+                    await _ordersService.UpdateOrderDetails(order);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!OrderExists(order.OrderId))
+                    if (!_ordersService.OrderExists(order.OrderId))
                     {
                         return NotFound();
                     }
@@ -115,11 +123,6 @@ namespace SnurrtumlareWebSite.Controllers
             ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", order.UserId);
             return View(order);
         }
-
         
-        private bool OrderExists(int id)
-        {
-            return _context.Orders.Any(e => e.OrderId == id);
-        }
     }
 }

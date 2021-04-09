@@ -10,5 +10,6 @@ namespace SnurrtumlareWebSite.Models
         public Order Order { get; set; }
         public User User { get; set; }
         public List<OrderRow> OrderRows { get; set; }
+        public Cart Cart { get; set; }
     }
 }

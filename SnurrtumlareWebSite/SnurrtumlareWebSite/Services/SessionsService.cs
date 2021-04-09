@@ -17,7 +17,7 @@ namespace SnurrtumlareWebSite.Services
         public static T GetObjectFronJson<T>(this ISession session, string key)
         {
             var value = session.GetString(key);
-            return value == null ? default(T) : JsonConvert.DeserializeObject<T>(value);
+            return value == null ? default : JsonConvert.DeserializeObject<T>(value);
         }
     }
 }

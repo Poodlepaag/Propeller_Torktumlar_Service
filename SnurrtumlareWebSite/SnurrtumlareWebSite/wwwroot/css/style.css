@@ -310,6 +310,14 @@ nav {
     border-radius: 8%;
 }
 
+.order-confirmation-button-style {
+    background-color: #f5b553;
+    width: 120px;
+    height: 5%;
+    margin: 2%;
+    border-radius: 8%;
+}
+
 .shopping-cart-danger {
     background-color: #e53939;
     min-width: 120px;

@@ -8,24 +8,27 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SnurrtumlareWebSite.Data;
 using SnurrtumlareWebSite.Models;
+using SnurrtumlareWebSite.Services;
 
 namespace SnurrtumlareWebSite.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class UsersController : Controller
     {
-        private readonly SnurrtumlareDbContext _context;
+        private readonly UsersService _usersService;
 
-        public UsersController(SnurrtumlareDbContext context)
+        public UsersController(UsersService usersService)
         {
-            _context = context;
+            _usersService = usersService;
         }
 
         // GET: Users
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Users.ToListAsync());
+            return View(await _usersService.GetAllUsers());
         }
+
+        
 
         // GET: Users/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -35,8 +38,8 @@ namespace SnurrtumlareWebSite.Controllers
                 return NotFound();
             }
 
-            var user = await _context.Users
-                .FirstOrDefaultAsync(m => m.UserId == id);
+            User user = await _usersService.GetUserDetailsById(id);
+
             if (user == null)
             {
                 return NotFound();
@@ -44,6 +47,8 @@ namespace SnurrtumlareWebSite.Controllers
 
             return View(user);
         }
+
+        
 
         // GET: Users/Create
         public IActionResult Create()
@@ -60,12 +65,14 @@ namespace SnurrtumlareWebSite.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(user);
-                await _context.SaveChangesAsync();
+                await _usersService.AddNewUser(user);
+
                 return RedirectToAction(nameof(Index));
             }
             return View(user);
         }
+
+        
 
         // GET: Users/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -75,13 +82,16 @@ namespace SnurrtumlareWebSite.Controllers
                 return NotFound();
             }
 
-            var user = await _context.Users.FindAsync(id);
+            User user = await _usersService.FindUserToEditById(id);
+
             if (user == null)
             {
                 return NotFound();
             }
             return View(user);
         }
+
+        
 
         // POST: Users/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -99,12 +109,11 @@ namespace SnurrtumlareWebSite.Controllers
             {
                 try
                 {
-                    _context.Update(user);
-                    await _context.SaveChangesAsync();
+                    await _usersService.UpdateUserDetails(user);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UserExists(user.UserId))
+                    if (!_usersService.UserExists(user.UserId))
                     {
                         return NotFound();
                     }
@@ -118,6 +127,8 @@ namespace SnurrtumlareWebSite.Controllers
             return View(user);
         }
 
+        
+
         // GET: Users/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -126,8 +137,8 @@ namespace SnurrtumlareWebSite.Controllers
                 return NotFound();
             }
 
-            var user = await _context.Users
-                .FirstOrDefaultAsync(m => m.UserId == id);
+            User user = await _usersService.GetUserDetailsById(id);
+
             if (user == null)
             {
                 return NotFound();
@@ -141,15 +152,10 @@ namespace SnurrtumlareWebSite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var user = await _context.Users.FindAsync(id);
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
+            await _usersService.DeleteUser(id);
+
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UserExists(int id)
-        {
-            return _context.Users.Any(e => e.UserId == id);
-        }
     }
 }
