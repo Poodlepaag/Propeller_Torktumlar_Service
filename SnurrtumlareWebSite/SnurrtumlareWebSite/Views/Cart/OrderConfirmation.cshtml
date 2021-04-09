@@ -1,6 +1,42 @@
 ﻿@model OrderViewModel
 @{
 }
+
+@*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" />
+
+@section Scripts{
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/notifications.js"></script>
+
+    <script type="text/javascript">
+        var connection = new signalR.HubConnectionBuilder().withUrl("/notificationHub").build();
+
+        connection.start().then(function () {
+            document.getElementById("finalizeOrderButton").disabled = false;
+        }).catch(function (err) {
+            return console.error(err.toString());
+        });
+
+
+        connection.on("ReceiveMessage", function (user, message) {
+            toastr.info(message + user);
+        });
+
+        document.getElementById("finalizeOrderButton").addEventListener("click", function (event) {
+            var user = "Miki";
+            var message = "An order has been created by ";
+
+            connection.invoke("SendMessage", user, message).catch(function (err) {
+                return console.error(err.toString());
+            });
+
+            event.preventDefault();
+
+        });
+    </script>
+}*@
 <body>
     <div class="col-12 egen" style="text-align: center">
         <h1 style="margin-bottom: 50px">Ordersammanställning</h1>
@@ -49,7 +85,7 @@
                 <h4>Totalt att betala: @Model.Cart.CartTotalCost</h4>
                 <form asp-controller="Cart" method="post">
                     <input type="submit" class="order-confirmation-button-style" formaction="Cart" formmethod="get" value="Tillbaka" />
-                    <input type="submit" class="order-confirmation-button-style" formaction="FinalizeOrder" value="Bekräfta köp" />
+                    <input type="submit" class="order-confirmation-button-style" formaction="FinalizeOrder" value="Bekräfta köp"  />
                 </form>
             </div>
         </div>

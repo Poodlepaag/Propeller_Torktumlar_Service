@@ -15,11 +15,11 @@ namespace SnurrtumlareWebSite
         }
 
         //should eventually notify BO users when an order is created
-        public async Task SendOrderNotification(int orderId, string firstName, string lastName, string message)
+        public async Task SendOrderNotification(string name, string message)
         {
             //change to the commented code once groups are working
             //await Clients.Group("BackOffice").SendAsync("ReceiveNotification", orderId, firstName, lastName, message);
-            await Clients.All.SendAsync("ReceiveNotification", orderId, firstName, lastName, message);
+            await Clients.All.SendAsync("ReceiveNotification", name, message);
         }
     }
 }
