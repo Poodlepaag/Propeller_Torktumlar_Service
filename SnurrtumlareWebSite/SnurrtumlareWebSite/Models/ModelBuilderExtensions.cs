@@ -38,11 +38,11 @@ namespace SnurrtumlareWebSite.Models
                 );
 
             modelBuilder.Entity<Product>().HasData(
-                new Product() { ProductId = 1, ProductName = "Propellerkeps Deluxe", ImageLink = "/assets/pictures/Kepsar/Prop1.png", Category = "Keps", ProductDescription = "Kepsarnas keps", AmountInStock = 25, ProductPrice = 189 },
-                new Product() { ProductId = 2, ProductName = "Propellerkeps Premium", ImageLink = "/assets/pictures/Kepsar/Prop10.png", Category = "Keps", ProductDescription = "Keps med guldskärm", AmountInStock = 10, ProductPrice = 179 },
-                new Product() { ProductId = 3, ProductName = "Torktumlare X3", ImageLink = "/assets/pictures/Torktumlare/Tork1.png", Category = "Torktumlare", ProductDescription = "Instegsmodell bland torktumlare", AmountInStock = 5, ProductPrice = 4990 },
-                new Product() { ProductId = 4, ProductName = "Torktumlare XT55", ImageLink = "/assets/pictures/Torktumlare/Tork10.png", Category = "Torktumlare", ProductDescription = "Premium Torktumlare med det lilla extra", AmountInStock = 2, ProductPrice = 7990 },
-                new Product() { ProductId = 5, ProductName = "Propellerkeps Crazy", ImageLink = "/assets/pictures/Kepsar/Prop11.png", Category = "Keps", ProductDescription = "Propellerkepsen för den som testar gränser", AmountInStock = 5, ProductPrice = 149 }
+                new Product() { ProductId = 1, ProductName = "Propellerkeps Deluxe", ImageLink = "/assets/pictures/Kepsar/Prop1.png", Category = "Keps", ProductDescription = "Kepsarnas keps", ProductPrice = 189 },
+                new Product() { ProductId = 2, ProductName = "Propellerkeps Premium", ImageLink = "/assets/pictures/Kepsar/Prop10.png", Category = "Keps", ProductDescription = "Keps med guldskärm", ProductPrice = 179 },
+                new Product() { ProductId = 3, ProductName = "Torktumlare X3", ImageLink = "/assets/pictures/Torktumlare/Tork1.png", Category = "Torktumlare", ProductDescription = "Instegsmodell bland torktumlare", ProductPrice = 4990 },
+                new Product() { ProductId = 4, ProductName = "Torktumlare XT55", ImageLink = "/assets/pictures/Torktumlare/Tork10.png", Category = "Torktumlare", ProductDescription = "Premium Torktumlare med det lilla extra", ProductPrice = 7990 },
+                new Product() { ProductId = 5, ProductName = "Propellerkeps Crazy", ImageLink = "/assets/pictures/Kepsar/Prop11.png", Category = "Keps", ProductDescription = "Propellerkepsen för den som testar gränser", ProductPrice = 149 }
                 );
 
         }
