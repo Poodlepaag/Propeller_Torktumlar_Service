@@ -10,11 +10,12 @@ namespace SnurrtumlareWebSite.Services
 {
     public class CartsService
     {
-        public SnurrtumlareDbContext DbContext { get; set; }
+        private readonly SnurrtumlareDbContext DbContext;
 
-        public CartsService()
+
+        public CartsService(SnurrtumlareDbContext dbContext)
         {
-            DbContext = new SnurrtumlareDbContext();
+            DbContext = dbContext;
         }
 
         public Cart GetCart(Cart cart)
@@ -126,6 +127,11 @@ namespace SnurrtumlareWebSite.Services
             DbContext.SaveChanges();
 
             return owm;
+        }
+
+        public User GetUserProfileByEmail(string userEmail)
+        {
+            return DbContext.Users.First(u => u.Email == userEmail);
         }
     }
 

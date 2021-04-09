@@ -13,16 +13,14 @@ namespace SnurrtumlareWebSite.Controllers
 {
     public class CartController : Controller
     {
-        //private Cart cart { get; set; }
-        //private User user { get; set; }
-        //private Order order { get; set; }
-        private CartsService CartsService { get; set; }
-        private OrderViewModel Model { get; set; }
+        private readonly CartsService cartsService;
+        private OrderViewModel Model;
 
-        public CartController()
+
+        public CartController(CartsService cartsService, OrderViewModel orderViewModel)
         {
-            CartsService = new CartsService();
-            Model = new OrderViewModel();
+            this.cartsService = cartsService;
+            Model = orderViewModel;
         }
 
         [HttpGet]
@@ -30,7 +28,7 @@ namespace SnurrtumlareWebSite.Controllers
         {
             Model.Cart = HttpContext.Session.GetObjectFronJson<Cart>("cart");
 
-            Model.Cart = CartsService.GetCart(Model.Cart);
+            Model.Cart = cartsService.GetCart(Model.Cart);
 
             HttpContext.Session.SetObjectAsJson("cart", Model.Cart);
             
@@ -42,7 +40,7 @@ namespace SnurrtumlareWebSite.Controllers
         {
             Model.Cart = HttpContext.Session.GetObjectFronJson<Cart>("cart");
 
-            Model.Cart = CartsService.AddItemToCart(Model.Cart, productId);
+            Model.Cart = cartsService.AddItemToCart(Model.Cart, productId);
 
             HttpContext.Session.SetObjectAsJson("cart", Model.Cart);
 
@@ -54,7 +52,7 @@ namespace SnurrtumlareWebSite.Controllers
         {
             Model.Cart = HttpContext.Session.GetObjectFronJson<Cart>("cart");
 
-            Model.Cart = CartsService.UpdateQuantity(Model.Cart, productId, quantity);
+            Model.Cart = cartsService.UpdateQuantity(Model.Cart, productId, quantity);
 
             HttpContext.Session.SetObjectAsJson("cart", Model.Cart);
 
@@ -66,7 +64,7 @@ namespace SnurrtumlareWebSite.Controllers
         {
             Model.Cart = HttpContext.Session.GetObjectFronJson<Cart>("cart");
 
-            Model.Cart = CartsService.DeleteItemFromCart(Model.Cart, productId);
+            Model.Cart = cartsService.DeleteItemFromCart(Model.Cart, productId);
 
             HttpContext.Session.SetObjectAsJson("cart", Model.Cart);
 
@@ -78,7 +76,7 @@ namespace SnurrtumlareWebSite.Controllers
         {
             Model.Cart = HttpContext.Session.GetObjectFronJson<Cart>("cart");
 
-            Model.Cart = CartsService.ClearCart(Model.Cart);
+            Model.Cart = cartsService.ClearCart(Model.Cart);
 
             HttpContext.Session.SetObjectAsJson("cart", Model.Cart);
 
@@ -92,7 +90,7 @@ namespace SnurrtumlareWebSite.Controllers
 
             var EmailToFind = User.FindFirstValue(ClaimTypes.Email);
 
-            Model.User = CartsService.DbContext.Users.First(u => u.Email == EmailToFind);
+            Model.User = cartsService.GetUserProfileByEmail(EmailToFind);
 
             HttpContext.Session.SetObjectAsJson("order", Model);
             
@@ -104,7 +102,7 @@ namespace SnurrtumlareWebSite.Controllers
         {
             Model = HttpContext.Session.GetObjectFronJson<OrderViewModel>("order");
 
-            Model = CartsService.CreateOrder(Model);
+            Model = cartsService.CreateOrder(Model);
 
             HttpContext.Session.Clear();
 
