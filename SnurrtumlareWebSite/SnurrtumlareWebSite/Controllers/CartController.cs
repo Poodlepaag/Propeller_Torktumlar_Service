@@ -13,9 +13,6 @@ namespace SnurrtumlareWebSite.Controllers
 {
     public class CartController : Controller
     {
-        //private Cart cart { get; set; }
-        //private User user { get; set; }
-        //private Order order { get; set; }
         private CartsService CartsService { get; set; }
         private OrderViewModel Model { get; set; }
 
@@ -91,6 +88,8 @@ namespace SnurrtumlareWebSite.Controllers
             Model.Cart = HttpContext.Session.GetObjectFronJson<Cart>("cart");
 
             var EmailToFind = User.FindFirstValue(ClaimTypes.Email);
+
+            CartsService.CheckAndMigrateUser(Model, EmailToFind);
 
             Model.User = CartsService.DbContext.Users.First(u => u.Email == EmailToFind);
 

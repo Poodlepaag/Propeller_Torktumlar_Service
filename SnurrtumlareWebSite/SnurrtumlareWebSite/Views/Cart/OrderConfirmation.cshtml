@@ -49,7 +49,14 @@
                 <h4>Totalt att betala: @Model.Cart.CartTotalCost</h4>
                 <form asp-controller="Cart" method="post">
                     <input type="submit" class="order-confirmation-button-style" formaction="Cart" formmethod="get" value="Tillbaka" />
-                    <input type="submit" class="order-confirmation-button-style" formaction="FinalizeOrder" value="Bekräfta köp" />
+                    @if (Model.User.City == null || Model.User.FirstName == null || Model.User.LastName == null || Model.User.Phone == null || Model.User.ZipCode == null || Model.User.Address == null)
+                    {
+                        <input type="submit" class="order-confirmation-button-style" formaction="FinalizeOrder" value="Bekräfta köp" disabled />
+                    }
+                    else
+                    {
+                        <input type="submit" class="order-confirmation-button-style" formaction="FinalizeOrder" value="Bekräfta köp" />
+                    }
                 </form>
             </div>
         </div>

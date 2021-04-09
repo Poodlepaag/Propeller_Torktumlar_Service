@@ -34,7 +34,7 @@ namespace SnurrtumlareWebSite.Services
             return cart;
         }
 
-        public Cart AddItemToCart(Cart cart, int productId)
+        public  Cart AddItemToCart(Cart cart, int productId)
         {
             if (cart == null)
             {
@@ -124,6 +124,29 @@ namespace SnurrtumlareWebSite.Services
 
             DbContext.Orders.Add(owm.Order);
             DbContext.SaveChanges();
+
+            return owm;
+        }
+
+        public OrderViewModel CheckAndMigrateUser(OrderViewModel owm, string emailToFind)
+        {
+            owm.User = DbContext.Users.SingleOrDefault(u => u.Email == emailToFind);
+
+            if (owm.User == null)
+            {
+                owm.User = new User();
+
+                owm.User.Email = emailToFind;
+
+                DbContext.Users.Add(owm.User);
+                DbContext.SaveChanges();
+            }
+            else if (owm.User.Email == null)
+            {
+                owm.User.Email = emailToFind;
+
+                DbContext.SaveChanges();
+            }
 
             return owm;
         }
