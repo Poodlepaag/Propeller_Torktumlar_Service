@@ -8,19 +8,13 @@ connection.start().then(function () {
     return console.error(err.toString());
 });
 
-
-connection.on("ReceiveNotification", function (name, message) {
-    toastr.info(message + name);
-});
-
 document.getElementById("finalizeOrderButton").addEventListener("click", function (event) {
-    var name = document.getElementById("name").value;
-    var message = "An order has been created by ";
+    var user = "System";
+    var message = "An order has been created!";
 
-    connection.invoke("SendMessage", name, message).catch(function (err) {
+    connection.invoke("SendMessage", user, message).catch(function (err) {
         return console.error(err.toString());
     });
 
     event.preventDefault();
-
 });

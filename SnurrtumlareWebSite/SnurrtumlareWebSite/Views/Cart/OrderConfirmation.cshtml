@@ -2,41 +2,11 @@
 @{
 }
 
-@*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" />
-
 @section Scripts{
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="~/js/ordermessage/sendmessage.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>
-    <script src="~/js/signalr/dist/browser/signalr.js"></script>
-    <script src="~/js/notifications.js"></script>
-
-    <script type="text/javascript">
-        var connection = new signalR.HubConnectionBuilder().withUrl("/notificationHub").build();
-
-        connection.start().then(function () {
-            document.getElementById("finalizeOrderButton").disabled = false;
-        }).catch(function (err) {
-            return console.error(err.toString());
-        });
-
-
-        connection.on("ReceiveMessage", function (user, message) {
-            toastr.info(message + user);
-        });
-
-        document.getElementById("finalizeOrderButton").addEventListener("click", function (event) {
-            var user = "Miki";
-            var message = "An order has been created by ";
-
-            connection.invoke("SendMessage", user, message).catch(function (err) {
-                return console.error(err.toString());
-            });
-
-            event.preventDefault();
-
-        });
-    </script>
-}*@
+}
 <body>
     <div class="col-12 egen" style="text-align: center">
         <h1 style="margin-bottom: 50px">Ordersammanställning</h1>
@@ -85,8 +55,34 @@
                 <h4>Totalt att betala: @Model.Cart.CartTotalCost</h4>
                 <form asp-controller="Cart" method="post">
                     <input type="submit" class="order-confirmation-button-style" formaction="Cart" formmethod="get" value="Tillbaka" />
-                    <input type="submit" class="order-confirmation-button-style" formaction="FinalizeOrder" value="Bekräfta köp"  />
+                    <input type="submit" class="order-confirmation-button-style" formaction="FinalizeOrder" id="finalizeOrderButton" data-toggle="modal" data-target="#thank-you-modal" value="Bekräfta köp" />
                 </form>
+            </div>
+        </div>
+    </div>
+
+    @*MODAL*@
+    <div id="thank-you-modal" class="modal fade bd-example-modal-lg" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="testModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="text-align: center">
+                <h2>TACK FÖR DITT KÖP!</h2>
+                <div width="100%" style="text-align: center; margin-bottom: 40px">
+                    <img src="~/assets/icons/check-mark.png" width="150" />
+                </div>
+                <p>
+                    Nu gör vi vårt yttersta för att dina produkter skall nå dig så snabbt det bara går<br />
+                    och inom kort får du en bekräftelse av din order skickat till din mail.<br />
+                    I det mailet får du även en spårningslänk så att du kan se var dina varor är någonstans
+                </p>
+                <p>
+                    När du stänger denna ruta så skickas du tillbaka till startsidan så att du kan fortsätta<br />
+                    titta runt på vår roliga sida som vi är väldigt stolta över!
+                </p>
+                <div width="100%" style="text-align: center">
+                    <form>
+                        <button class="btn btn-info" value="Avsluta" onclick="javascript: window.location='/Home/Index'" data-dismiss="modal">Avsluta</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
