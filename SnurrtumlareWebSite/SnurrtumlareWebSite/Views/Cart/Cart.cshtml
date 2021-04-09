@@ -33,15 +33,15 @@
                                     <tr>
                                         <form asp-controller="Cart" method="post">
                                             <th style="width: 35px"><img src="@item.ImageLink" style="width: 30px" alt="prdBild" /></th>
-                                            <th>@item.ProductId</th>
-                                            <th>@item.ProductName</th>
-                                            <th>@item.ProductDescription</th>
-                                            <th>@item.ProductPrice</th>
+                                            <th class="lit">@item.ProductId</th>
+                                            <th class="lit">@item.ProductName</th>
+                                            <th class="lit">@item.ProductDescription</th>
+                                            <th class="lit">@item.ProductPrice</th>
                                             <th>
                                                 <input type="number" min="0" style="width: 50px" name="Quantity" value="@item.Quantity" />
                                                 <input type="hidden" name="ProductId" value="@item.ProductId" />
                                             </th>
-                                            <th>@(item.ProductPrice * item.Quantity)</th>
+                                            <th class="lit">@(item.ProductPrice * item.Quantity)</th>
                                             <th>
                                                 <div class="form-check-inline">
                                                     <button type="submit" class="shopping-cart-checkout-button" formaction="UpdateQuantity" value="@item.ProductId, @item.Quantity">Uppdatera</button>

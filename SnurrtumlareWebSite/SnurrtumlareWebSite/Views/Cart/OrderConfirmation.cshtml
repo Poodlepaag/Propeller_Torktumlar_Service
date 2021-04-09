@@ -107,14 +107,69 @@
                                             </td>
                                         }
                                     </tr>
-
                                     <tr><th>Email</th><td>@Model.User.Email</td></tr>
-                                    <tr><th>Telefon</th><td><input type="text" placeholder="Telefon" value="@Model.User.Phone" /></td></tr>
-                                    <tr><th>Adress</th><td><input type="text" placeholder="Adress" value="@Model.User.Address" /></td></tr>
-                                    <tr><th>Stad</th><td><input type="text" placeholder="Stad" value="@Model.User.City" /></td></tr>
-                                    <tr><th>Postnummer</th><td><input type="text" placeholder="Postnummer" value="@Model.User.ZipCode" /></td></tr>
-                                </thead>
-                            </table>
+                                    <tr>
+                                        <th>Telefon</th>
+                                        @if (Model.User.Phone == null)
+                                        {
+                                            <td>
+                                                <input type="text" placeholder="Telefon" name="Phone" value="" />
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <input type="text" name="Phone" value="@Model.User.Phone" />
+                                            </td>
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <th>Adress</th>
+                                        @if (Model.User.Address == null)
+                                        {
+                                            <td>
+                                                <input type="text" placeholder="Adress" name="Address" value="" />
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <input type="text" name="Address" value="@Model.User.Address" />
+                                            </td>
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <th>Stad</th>
+                                        @if (Model.User.City == null)
+                                        {
+                                            <td>
+                                                <input type="text" placeholder="Stad" name="City" value="" />
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <input type="text" name="City" value="@Model.User.City" />
+                                            </td>
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <th>Postnummer</th>
+                                        @if (Model.User.ZipCode == null)
+                                        {
+                                            <td>
+                                                <input type="text" placeholder="Postnummer" name="ZipCode" value="" />
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <input type="text" name="Zipcode" value="@Model.User.ZipCode" />
+                                            </td>
+                                        }
+                                    </tr>
+                                    </thead>
+                                </table>
 
                             <div width="100%" style="text-align: center">
                                 <input type="button" class="order-confirmation-button-style" value="Avbryt" data-dismiss="modal" />
