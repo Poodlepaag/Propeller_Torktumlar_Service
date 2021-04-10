@@ -1,7 +1,18 @@
-﻿@model IEnumerable<SnurrtumlareWebSite.Models.User>
+﻿@*@model IEnumerable<SnurrtumlareWebSite.Models.User>*@
+
+@*@model PagedList.PagedList<SnurrtumlareWebSite.Models.User>
+*@
+@using X.PagedList.Mvc.Core.Fluent
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common
+@using X.PagedList;
+
+<link href="/css/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewData["Title"] = "Index";
+
+    var pagedList = (IPagedList)ViewBag.OnePageOfUsers;
 }
 
 <h1>Users - Start page</h1>
@@ -11,18 +22,48 @@
 
     <a id="Input_Style" type="button" class="btn btn-info btn-md" asp-controller="BackOffice" asp-action="Index">Back To Index</a>
 </p>
+
+
+@using (Html.BeginForm("Index", "Users", FormMethod.Get))
+{
+    <form class="search-bar-form" asp-controller="Home" asp-action="Products" method="get">
+        <input id="search_bar" type="text" name="SearchString" placeholder="Search user by firstname or lastname" ViewBag.CurrentFilter/>
+    </form>
+    <br/>
+    @*<p>
+        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new{@class="search-bar-form", @id="search_bar", @type="text"})
+        <input id="search_bar" type="submit" value="Search" />
+    </p>*@
+}
+
+
+
 <table style="width:100%" class="table table-bordered table-striped table-hover">
     <thead>
         <tr>
+
             <th>
+                @Html.ActionLink("User Id", "Index", new { sortOrder = ViewBag.UserIdSortParm, currentFilter=ViewBag.CurrentFilter })
+            </th>
+
+            @*<th>
                 User Id
-            </th>
+                </th>*@
+
             <th>
+                @Html.ActionLink("First Name", "Index", new { sortOrder = ViewBag.FirstNameSortParm, currentFilter=ViewBag.CurrentFilter })
+            </th>
+
+            @*<th>
                 First name
-            </th>
+                </th>*@
+
             <th>
-                Last name
+                @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.LastNameSortParm, currentFilter=ViewBag.CurrentFilter })
             </th>
+            @*<th>
+                Last name
+                </th>*@
             <th>
                 E-mail
             </th>
@@ -31,22 +72,26 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in ViewBag.OnePageOfUsers)
         {
             if (item.FirstName != "*****")
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.UserId)
+                        @item.UserId
+                        @*@Html.DisplayFor(modelItem => item.UserId)*@
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.FirstName)
+                        @item.FirstName
+                        @*@Html.DisplayFor(modelItem => item.FirstName)*@
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.LastName)
+                        @item.LastName
+                        @*@Html.DisplayFor(modelItem => item.LastName)*@
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Email)
+                        @item.Email
+                        @*@Html.DisplayFor(modelItem => item.Email)*@
                     </td>
 
                     <td>
@@ -62,3 +107,12 @@
         }
     </tbody>
 </table>
+
+<br />
+
+@Html.PagedListPager( (IPagedList)ViewBag.OnePageOfUsers, page => Url.Action("Index", new { page }) )
+
+
+@*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))*@

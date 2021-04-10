@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using SnurrtumlareWebSite.Data;
 using SnurrtumlareWebSite.Models;
 using SnurrtumlareWebSite.Services;
+using X.PagedList;
 
 namespace SnurrtumlareWebSite.Controllers
 {
@@ -23,9 +24,58 @@ namespace SnurrtumlareWebSite.Controllers
         }
 
         // GET: Users
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter, int? page)
         {
-            return View(await _usersService.GetAllUsers());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.UserIdSortParm = String.IsNullOrEmpty(sortOrder) ? "userId_desc" : "";
+            ViewBag.FirstNameSortParm = String.IsNullOrEmpty(sortOrder) ? "firstName_desc" : "";
+            ViewBag.LastNameSortParm = String.IsNullOrEmpty(sortOrder) ? "lastName_desc" : "";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var users = await _usersService.GetAllUsers();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                users = users.Where(s => s.LastName.ToLower().Contains(searchString.ToLower())
+                                       || s.FirstName.ToLower().Contains(searchString.ToLower())).ToList();
+            }
+
+            switch (sortOrder)
+            {
+                case "userId_desc":
+                    users = users.OrderByDescending(s => s.UserId).ToList();
+                    break;
+
+                case "firstName_desc":
+                    users = users.OrderByDescending(s => s.FirstName).ToList();
+                    break;
+
+                case "lastName_desc":
+                    users = users.OrderByDescending(s => s.LastName).ToList();
+                    break;
+
+                default:  // Name ascending 
+                    users = users.OrderBy(s => s.UserId).ToList();
+                    break;
+            }
+
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+
+            ViewBag.OnePageOfUsers = users.ToPagedList(pageNumber, pageSize);
+
+            return View();
+            //return View(await _usersService.GetAllUsers());
         }
 
         
