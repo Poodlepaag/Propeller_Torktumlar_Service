@@ -10,7 +10,7 @@ namespace SnurrtumlareWebSite.Services
 {
     public class CartsService
     {
-        public readonly SnurrtumlareDbContext DbContext;
+        private readonly SnurrtumlareDbContext DbContext;
 
 
         public CartsService(SnurrtumlareDbContext dbContext)
@@ -164,7 +164,13 @@ namespace SnurrtumlareWebSite.Services
 
             return user;
         }
+
+        public User GetUserProfileByEmail(string userEmail)
+        {
+            return  DbContext.Users.First(u => u.Email == userEmail);
+        }
     }
+
 
 
 }

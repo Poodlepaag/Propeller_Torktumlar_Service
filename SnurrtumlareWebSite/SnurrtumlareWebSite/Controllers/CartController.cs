@@ -13,8 +13,8 @@ namespace SnurrtumlareWebSite.Controllers
 {
     public class CartController : Controller
     {
-        private CartsService cartsService { get; set; }
-        private OrderViewModel Model { get; set; }
+        private readonly CartsService cartsService;
+        private OrderViewModel Model;
 
 
         public CartController(CartsService cartsService, OrderViewModel orderViewModel)
@@ -92,7 +92,7 @@ namespace SnurrtumlareWebSite.Controllers
 
             cartsService.CheckAndMigrateUser(Model, EmailToFind);
 
-            Model.User = cartsService.DbContext.Users.First(u => u.Email == EmailToFind);
+            Model.User = cartsService.GetUserProfileByEmail(EmailToFind);
 
             HttpContext.Session.SetObjectAsJson("order", Model);
 
