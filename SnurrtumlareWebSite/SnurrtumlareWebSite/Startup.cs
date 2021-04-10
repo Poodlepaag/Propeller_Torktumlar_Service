@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,10 +8,6 @@ using Microsoft.Extensions.Hosting;
 using SnurrtumlareWebSite.Data;
 using SnurrtumlareWebSite.Models;
 using SnurrtumlareWebSite.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SnurrtumlareWebSite
 {
@@ -32,13 +26,28 @@ namespace SnurrtumlareWebSite
 
         public void ConfigureServices(IServiceCollection services)
         {
+            //Använd denna för Mikis AzureDb 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("IdentityDB")));
 
+            //Använd denna för Mikis AzureDb 
             services.AddDbContext<SnurrtumlareDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("SnurrtumlareDB")));
+
+
+
+            ////Använd denna för Roberts AzureDb 
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //    options.UseSqlServer(
+            //        Configuration.GetConnectionString("RobertIdentityDB")));
+
+            ////Använd denna för Roberts AzureDb 
+            //services.AddDbContext<SnurrtumlareDbContext>(options =>
+            //    options.UseSqlServer(
+            //        Configuration.GetConnectionString("RobertSnurrtumlareDB")));
+
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
