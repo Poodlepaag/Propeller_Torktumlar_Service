@@ -4,8 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using SnurrtumlareWebSite.Data;
 using SnurrtumlareWebSite.Models;
 using SnurrtumlareWebSite.Services;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
+
 
 namespace SnurrtumlareWebSite.Controllers
 {
@@ -20,11 +24,75 @@ namespace SnurrtumlareWebSite.Controllers
         }
 
         // GET: Products
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter, int? page)
         {
-            List<Product> result = await _productsService.GetAllProducts();
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.ProductIdSortParm = String.IsNullOrEmpty(sortOrder) ? "productId_desc" : "";
+            ViewBag.ProductNameSortParm = String.IsNullOrEmpty(sortOrder) ? "productName_desc" : "";
+            ViewBag.ProductDescriptionSortParm = String.IsNullOrEmpty(sortOrder) ? "productDescription_desc" : "";
+            ViewBag.AmountInStockSortParm = String.IsNullOrEmpty(sortOrder) ? "amountInStock_desc" : "";
+            ViewBag.ProductPriceSortParm = String.IsNullOrEmpty(sortOrder) ? "productPrice_desc" : "";
 
-            return View(result);
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var products = await _productsService.GetAllProducts();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products = products.Where(s => s.ProductName.ToLower().Contains(searchString.ToLower())
+                                       || s.ProductName.ToLower().Contains(searchString.ToLower())).ToList();
+            }
+
+
+            switch (sortOrder)
+            {
+                case "productId_desc":
+                    products = products.OrderByDescending(s => s.ProductId).ToList();
+                    break;
+
+                case "productName_desc":
+                    products = products.OrderByDescending(s => s.ProductName).ToList();
+                    break;
+
+                case "productDescription_desc":
+                    products = products.OrderByDescending(s => s.ProductDescription).ToList();
+                    break;
+
+                case "productPrice_desc":
+                    products = products.OrderByDescending(s => s.ProductPrice).ToList();
+                    break;
+
+                case "amountInStock_desc":
+                    products = products.OrderByDescending(s => s.Quantity).ToList();
+                    break;
+
+                default:  // Name ascending 
+                    products = products.OrderBy(s => s.ProductId).ToList();
+                    break;
+            }
+
+
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+
+            ViewBag.OnePageOfProducts = products.ToPagedList(pageNumber, pageSize);
+
+
+            return View();
+
+
+            //List<Product> result = await _productsService.GetAllProducts();
+
+            //return View(result);
         }
 
 

@@ -78,13 +78,10 @@ namespace SnurrtumlareWebSite.Controllers
 
             ViewBag.OnePageOfOrders = orders.ToPagedList(pageNumber, pageSize);
 
-
-
-
-
             return View();
             //return View(await _ordersService.GetAllOrders());
         }
+
 
         // GET: Orders/Details/5
         public async Task<IActionResult> Details(int? id)

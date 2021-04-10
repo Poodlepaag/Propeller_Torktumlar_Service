@@ -1,4 +1,11 @@
-﻿@model IEnumerable<SnurrtumlareWebSite.Models.Product>
+﻿@*@model IEnumerable<SnurrtumlareWebSite.Models.Product>*@
+
+@using X.PagedList.Mvc.Core.Fluent
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common
+@using X.PagedList;
+
+<link href="/css/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewData["Title"] = "Index";
@@ -16,60 +23,73 @@
 
                 <a id="Input_Style" type="button" class="btn btn-info btn-md" asp-controller="BackOffice" asp-action="Index">Back To Index</a>
             </p>
+
+            @using (Html.BeginForm("Index", "Products", FormMethod.Get))
+            {
+                <form class="search-bar-form">
+                    <input id="search_bar" type="text" name="SearchString" placeholder="Search Product by Name or Description " ViewBag.CurrentFilter />
+                </form>
+                <br />
+            }
+
             <table style="width:100%" class="table table-bordered table-striped table-hover">
                 <thead>
                     <tr>
                         <th>
-                            Id
+                            @Html.ActionLink("Product Id", "Index", new { sortOrder = ViewBag.ProductIdSortParm, currentFilter=ViewBag.CurrentFilter })
+                            @*Id*@
                             @*@Html.DisplayNameFor(model => model.ProductName)*@
                         </th>
 
-                        @*<th>
-                            @Html.DisplayNameFor(model => model.ImageLink)
-                            </th>*@
+
                         <th>
-                            Product Name
+                            @Html.ActionLink("Product Name", "Index", new { sortOrder = ViewBag.ProductNameSortParm, currentFilter=ViewBag.CurrentFilter })
+                            @*Product Name*@
                             @*@Html.DisplayNameFor(model => model.ProductName)*@
                         </th>
-                        @*<th>
-                            @Html.DisplayNameFor(model => model.Category)
-                            </th>*@
+
                         <th>
-                            Description
+                            @Html.ActionLink("Product Description", "Index", new { sortOrder = ViewBag.ProductDescriptionSortParm, currentFilter=ViewBag.CurrentFilter })
+
+                            @*Description*@
                             @*@Html.DisplayNameFor(model => model.ProductDescription)*@
                         </th>
+
                         <th>
-                            Amount in Stock
-                            @*@Html.DisplayNameFor(model => model.AmountInStock)*@
-                        </th>
-                        <th>
-                            Price
+                            @Html.ActionLink("Product Price", "Index", new { sortOrder = ViewBag.ProductPriceSortParm, currentFilter=ViewBag.CurrentFilter })
+                            @*Price*@
                             @*@Html.DisplayNameFor(model => model.ProductPrice)*@
                         </th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
+                    @foreach (var item in ViewBag.OnePageOfProducts)
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.ProductId)
+                                @item.ProductId
+                                @*@Html.DisplayFor(modelItem => item.ProductId)*@
                             </td>
+
+                            <td>
+                                @item.ProductName
+                                @*@Html.DisplayFor(modelItem => item.ProductName)*@
+                            </td>
+
+                            <td>
+                                @item.ProductDescription
+                                @*@Html.DisplayFor(modelItem => item.ProductDescription)*@
+                            </td>
+
+
                             @*<td>
-                                @Html.DisplayFor(modelItem => item.ImageLink)
+                                @item.Quantity
                                 </td>*@
+
                             <td>
-                                @Html.DisplayFor(modelItem => item.ProductName)
-                            </td>
-                            @*<td>
-                                @Html.DisplayFor(modelItem => item.Category)
-                                </td>*@
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ProductDescription)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ProductPrice)
+                                @item.ProductPrice
+                                @*@Html.DisplayFor(modelItem => item.ProductPrice)*@
                             </td>
 
 
@@ -84,6 +104,10 @@
                     }
                 </tbody>
             </table>
+
+            <br />
+
+            @Html.PagedListPager( (IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page }) )
 
 
         </div>
