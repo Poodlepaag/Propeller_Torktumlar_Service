@@ -1,12 +1,16 @@
 ﻿@model OrderViewModel
-@{
+
+@section Scripts{
+    <script src="https://code.jquery.com/jquery-latest.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>
+    <script src="~/js/ordermessage/sendmessage.js"></script>
 }
+
 <body>
     <div class="col-12 egen" style="text-align: center">
-        <h1 style="margin-bottom: 50px">Ordersammanställning</h1>
+        <h1>Ordersammanställning</h1>
         <div class="col-md-6" style="display: inline-block; float: left">
             <h5>KUNDINFORMATION</h5>
-            <table style="width:100%; text-align: left" class="table table-bordered">
+            <table style="width:100%; text-align: left; margin-bottom: 20px" class="table table-bordered">
                 <thead>
                     <tr><th>Namn</th><td>@Model.User.FirstName @Model.User.LastName</td></tr>
                     <tr><th>Email</th><td>@Model.User.Email</td></tr>
@@ -16,7 +20,7 @@
         </div>
         <div class="col-md-6" style="display: inline-block; float: left">
             <h5>LEVERANSINFORMATION</h5>
-            <table style="width:100%; text-align: left; margin-bottom: 50px" class="table table-bordered">
+            <table style="width:100%; text-align: left; margin-bottom: 20px" class="table table-bordered">
                 <thead>
                     <tr><th>Adress</th><td>@Model.User.Address</td></tr>
                     <tr><th>Stad</th><td>@Model.User.City</td></tr>
@@ -24,6 +28,11 @@
                 </thead>
             </table>
         </div>
+
+        <div style="width: 100%; text-align: center; margin-bottom: 20px">
+            <input type="button" class="order-confirmation-button-style" data-toggle="modal" data-target="#update-profile-modal" value="Redigera profil" />
+        </div>
+
         <div class="col-12">
             <h5>DINA PRODUKTER</h5>
             <table style="width:100%; text-align: left" class="table table-bordered table-striped">
@@ -47,11 +56,135 @@
             </table>
             <div style="width: 100%; text-align: center;">
                 <h4>Totalt att betala: @Model.Cart.CartTotalCost</h4>
-                <form asp-controller="Cart" method="post">
+                <form asp-controller="Cart" id="finalizeOrderForm" method="post">
                     <input type="submit" class="order-confirmation-button-style" formaction="Cart" formmethod="get" value="Tillbaka" />
-                    <input type="submit" class="order-confirmation-button-style" formaction="FinalizeOrder" value="Bekräfta köp" />
+                    @if (Model.User.City == null || Model.User.FirstName == null || Model.User.LastName == null || Model.User.Phone == null || Model.User.ZipCode == null || Model.User.Address == null)
+                    {
+                        <input type="submit" class="order-confirmation-button-style" formaction="FinalizeOrder" value="Bekräfta köp" disabled />
+                    }
+                    else
+                    {
+                        <input type="submit" class="order-confirmation-button-style" formaction="FinalizeOrder" value="Bekräfta köp" />
+                    }
                 </form>
             </div>
         </div>
     </div>
+
+    <!--UPDATE PROFILE DATA MODAL-->
+    <div id="update-profile-modal" class="modal fade bd-example-modal-lg" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="testModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="text-align: center">
+                <div class="col-12 egen" style="text-align: center">
+                    <h1>Redrigera profil</h1>
+                    <div class="col-md-12" style="display: inline-block; float: left">
+                        <form asp-controller="Cart" asp-action="OrderConfirmation" method="post">
+                            <table style="width:100%; text-align: left; margin-bottom: 20px">
+                                <thead>
+                                    <tr>
+                                        <th>Namn</th>
+                                        @if (Model.User.FirstName == null)
+                                        {
+                                            <td>
+                                                <input type="text" placeholder="Förnamn" name="FirstName" value="" />
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <input type="text" name="FirstName" value="@Model.User.FirstName" />
+                                            </td>
+                                        }
+                                        @if (Model.User.LastName == null)
+                                        {
+                                            <td>
+                                                <input type="text" placeholder="Efternamn" name="LastName" value="" />
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <input type="text" name="LastName" value="@Model.User.LastName" />
+                                            </td>
+                                        }
+                                    </tr>
+                                    <tr><th>Email</th><td>@Model.User.Email</td></tr>
+                                    <tr>
+                                        <th>Telefon</th>
+                                        @if (Model.User.Phone == null)
+                                        {
+                                            <td>
+                                                <input type="text" placeholder="Telefon" name="Phone" value="" />
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <input type="text" name="Phone" value="@Model.User.Phone" />
+                                            </td>
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <th>Adress</th>
+                                        @if (Model.User.Address == null)
+                                        {
+                                            <td>
+                                                <input type="text" placeholder="Adress" name="Address" value="" />
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <input type="text" name="Address" value="@Model.User.Address" />
+                                            </td>
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <th>Stad</th>
+                                        @if (Model.User.City == null)
+                                        {
+                                            <td>
+                                                <input type="text" placeholder="Stad" name="City" value="" />
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <input type="text" name="City" value="@Model.User.City" />
+                                            </td>
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <th>Postnummer</th>
+                                        @if (Model.User.ZipCode == null)
+                                        {
+                                            <td>
+                                                <input type="text" placeholder="Postnummer" name="ZipCode" value="" />
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <input type="text" name="Zipcode" value="@Model.User.ZipCode" />
+                                            </td>
+                                        }
+                                    </tr>
+                                    </thead>
+                                </table>
+
+                            <div width="100%" style="text-align: center">
+                                <input type="button" class="order-confirmation-button-style" value="Avbryt" data-dismiss="modal" />
+                                <button type="submit" class="order-confirmation-button-style" formaction="UpdateProfile" value="@Model.User.FirstName, @Model.User.LastName, @Model.User.Phone, @Model.User.Address, @Model.User.City, @Model.User.ZipCode">Spara</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
 </body>
+<script type="text/javascript">
+        $('#edit-profile-button').click(function() {
+            $('#update-profile-modal').modal('toggle'); });
+</script>

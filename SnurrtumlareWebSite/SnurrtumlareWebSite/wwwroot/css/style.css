@@ -20,6 +20,15 @@ header {
     font-size: 12px;
 }
 
+.lit {
+    font-weight:400;
+}
+
+#footer_link_list {
+    padding: 0px;
+    list-style-type: none;
+}
+
 #footer_link_list_item {
     display: inline;
 }

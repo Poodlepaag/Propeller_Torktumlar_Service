@@ -35,7 +35,7 @@ namespace SnurrtumlareWebSite.Services
             return cart;
         }
 
-        public Cart AddItemToCart(Cart cart, int productId)
+        public  Cart AddItemToCart(Cart cart, int productId)
         {
             if (cart == null)
             {
@@ -64,15 +64,12 @@ namespace SnurrtumlareWebSite.Services
                 if (item.ProductId == productId)
                 {
                     item.Quantity = quantity;
-
                     if (item.Quantity <= 0)
                     {
                         DeleteItemFromCart(cart, productId);
-
                         if (cart.ProductsInCart.Count == 0)
                         {
                             cart.ContainsItems = false;
-
                             return cart;
                         }
                     }
@@ -129,11 +126,45 @@ namespace SnurrtumlareWebSite.Services
             return owm;
         }
 
-        public User GetUserProfileByEmail(string userEmail)
+        public OrderViewModel CheckAndMigrateUser(OrderViewModel owm, string emailToFind)
         {
-            return DbContext.Users.First(u => u.Email == userEmail);
+            owm.User = DbContext.Users.SingleOrDefault(u => u.Email == emailToFind);
+
+            if (owm.User == null)
+            {
+                owm.User = new User();
+
+                owm.User.Email = emailToFind;
+
+                DbContext.Users.Add(owm.User);
+                DbContext.SaveChanges();
+            }
+            else if (owm.User.Email == null)
+            {
+                owm.User.Email = emailToFind;
+
+                DbContext.SaveChanges();
+            }
+
+            return owm;
+        }
+
+        public User UpdateProfile(User user, string firstName, string lastName, string phone, string address, string city, string zipcode)
+        {
+            user = DbContext.Users.Single(u => u.Email == user.Email);
+            user.FirstName = firstName;
+            user.LastName = lastName;
+            user.Phone = phone;
+            user.Address = address;
+            user.City = city;
+            user.ZipCode = zipcode;
+
+            DbContext.Update(user);
+            DbContext.SaveChanges();
+
+            return user;
         }
     }
 
-    
+
 }

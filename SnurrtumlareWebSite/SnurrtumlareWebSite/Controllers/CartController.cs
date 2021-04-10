@@ -13,8 +13,8 @@ namespace SnurrtumlareWebSite.Controllers
 {
     public class CartController : Controller
     {
-        private readonly CartsService cartsService;
-        private OrderViewModel Model;
+        private CartsService CartsService { get; set; }
+        private OrderViewModel Model { get; set; }
 
 
         public CartController(CartsService cartsService, OrderViewModel orderViewModel)
@@ -31,7 +31,7 @@ namespace SnurrtumlareWebSite.Controllers
             Model.Cart = cartsService.GetCart(Model.Cart);
 
             HttpContext.Session.SetObjectAsJson("cart", Model.Cart);
-            
+
             return View(Model);
         }
 
@@ -90,10 +90,12 @@ namespace SnurrtumlareWebSite.Controllers
 
             var EmailToFind = User.FindFirstValue(ClaimTypes.Email);
 
-            Model.User = cartsService.GetUserProfileByEmail(EmailToFind);
+            CartsService.CheckAndMigrateUser(Model, EmailToFind);
+
+            Model.User = CartsService.DbContext.Users.First(u => u.Email == EmailToFind);
 
             HttpContext.Session.SetObjectAsJson("order", Model);
-            
+
             return View(Model);
         }
 
@@ -112,6 +114,17 @@ namespace SnurrtumlareWebSite.Controllers
         public IActionResult ModalTransportView()
         {
             return View();
+        }
+
+        public IActionResult UpdateProfile(string firstName, string lastName, string phone, string address, string city, string zipcode)
+        {
+            Model = HttpContext.Session.GetObjectFronJson<OrderViewModel>("order");
+
+            Model.User = CartsService.UpdateProfile(Model.User, firstName, lastName, phone, address, city, zipcode);
+
+            HttpContext.Session.SetObjectAsJson("order", Model);
+
+            return RedirectToAction(nameof(OrderConfirmation));
         }
     }
 }
