@@ -183,120 +183,31 @@ namespace SnurrtumlareWebSite.Controllers
             var model = new List<UserRoleViewModel>();
 
 
-            var users = userManager.Users;
-            var userInRole = userManager.GetUsersInRoleAsync(role.Name).Result;
-            var d = roleManager.Roles.ToList();
-
-            //var userRoles = userManager.GetRolesAsync();
-            var x = applicationDbContext.UserRoles.ToList();
-            //_context.Products.Where(p => p.Category == category).ToList();
+            var AspNetUsers = userManager.Users.ToList();
+            //var usersInRole = userManager.GetUsersInRoleAsync(role.Name).Result.ToList();
+            var AspNetRoles = applicationDbContext.UserRoles.ToList();
 
 
-            foreach (var user in users)
+            foreach (var user in AspNetUsers)
             {
-                var c = x.Where(u => u.UserId == user.Id).ToString();
+                var userRoleViewModel = new UserRoleViewModel { UserId = user.Id, UserName = user.UserName };
 
-                if (user.Id == c)
+                var isInRole = (from Roles in AspNetRoles
+                                join User in AspNetUsers on Roles.UserId equals User.Id
+                                where Roles.UserId == user.Id && Roles.RoleId == roleId
+                                select User).Any();
+
+                if (!isInRole)
                 {
-
+                    userRoleViewModel.IsSelected = false;
                 }
-            }
-
-            foreach (var item in userInRole)
-            {
-                foreach (var user in users)
+                else
                 {
-                    var c = x.Where(u => u.UserId == user.Id);
-
-                    if (user.Id == item.Id)
-                    {
-                        var userRoleViewModel = new UserRoleViewModel { UserId = user.Id, UserName = user.UserName };
-
-                        if (user.Id != item.Id)
-                        {
-                            userRoleViewModel.IsSelected = false;
-                        }
-                        else
-                        {
-                            userRoleViewModel.IsSelected = true;
-                        }
-
-                        model.Add(userRoleViewModel);
-                        //DETTA FUNKAR NU SKA BARA ABDI LÄGGAS TILL TOM
-                        // KOLLA ÄVEN DEN ANDRA VARIANTEN OM MAN ANVÄNDER BREAK;
-                    }
-                    else
-                    {
-                        //var userRoleViewModel = new UserRoleViewModel { UserId = user.Id, UserName = user.UserName };
-
-                        //if (user.Id != item.Id)
-                        //{
-                        //    userRoleViewModel.IsSelected = true;
-                        //}
-                        //else
-                        //{
-                        //    break;
-                        //    //userRoleViewModel.IsSelected = false;
-                        //}
-
-                        //model.Add(userRoleViewModel);
-                    }
-
-                    //var userRoleViewModel = new UserRoleViewModel { UserId = user.Id, UserName = user.UserName };
-
-                    //if (user.Id != item.Id)
-                    //{
-                    //    userRoleViewModel.IsSelected = true;
-                    //}
-                    //else
-                    //{
-                    //    break;
-                    //    //userRoleViewModel.IsSelected = false;
-                    //}
-
-                    //model.Add(userRoleViewModel);
+                    userRoleViewModel.IsSelected = true;
                 }
 
-                //var userRoleViewModel = new UserRoleViewModel { UserId = user.Id, UserName = user.UserName };
+                model.Add(userRoleViewModel);
             }
-
-            //foreach (var user in users)
-            //{
-            //    //var data = userManager.GetUsersInRoleAsync(role.Name).Result;
-
-            //    //var userToFind = userManager.GetUsersInRoleAsync(role.Name).Result;
-            //    //var userToFind = userManager.Users.FirstOrDefault(u => u.Id == user.Id);
-            //    //var userToFind = userManager.Users.Include(u => u.Id).FirstOrDefault(u => u.Id == user.Id);
-            //    foreach (var item in userInRole)
-            //    {
-            //        if (user.Id != item.Id)
-            //        {
-            //            var userRoleViewModel = new UserRoleViewModel { UserId = user.Id, UserName = user.UserName };
-            //            //var toFind = await userManager.IsInRoleAsync(user, role.Name);
-
-            //            if (user.Id != item.Id)
-            //            {
-            //                userRoleViewModel.IsSelected = false;
-            //            }
-            //            else
-            //            {
-            //                userRoleViewModel.IsSelected = true;
-            //            }
-
-
-            //            model.Add(userRoleViewModel);
-            //        }
-            //    }
-            //    //if (await userManager.IsInRoleAsync(user, role.Name))
-            //    //    userRoleViewModel.IsSelected = true;
-            //    //else
-            //    //    userRoleViewModel.IsSelected = false;
-
-            //    //userRoleViewModel.IsSelected = (await userManager.IsInRoleAsync(user, role.Name)) ? true : false;
-
-
-            //    //model.Add(userRoleViewModel);
-            //}
 
             return View(model);
         }
