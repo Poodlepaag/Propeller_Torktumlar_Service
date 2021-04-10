@@ -64,7 +64,7 @@ namespace SnurrtumlareWebSite.Controllers
                     users = users.OrderByDescending(s => s.LastName).ToList();
                     break;
 
-                default:  // Name ascending 
+                default:  // Order ascending 
                     users = users.OrderBy(s => s.UserId).ToList();
                     break;
             }

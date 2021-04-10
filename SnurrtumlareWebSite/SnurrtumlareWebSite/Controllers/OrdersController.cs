@@ -10,6 +10,7 @@ using SnurrtumlareWebSite.Data;
 using SnurrtumlareWebSite.Models;
 using SnurrtumlareWebSite.Services;
 using SnurrtumlareWebSite.ViewModels;
+using X.PagedList;
 
 namespace SnurrtumlareWebSite.Controllers
 {
@@ -26,9 +27,63 @@ namespace SnurrtumlareWebSite.Controllers
         }
 
         // GET: Orders
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter, int? page)
         {
-            return View(await _ordersService.GetAllOrders());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.OrderIdSortParm = String.IsNullOrEmpty(sortOrder) ? "orderId_desc" : "";
+            ViewBag.OrderCostSortParm = String.IsNullOrEmpty(sortOrder) ? "orderCost_desc" : "";
+            ViewBag.DeliveryStatusSortParm = String.IsNullOrEmpty(sortOrder) ? "deliveryStatus_desc" : "";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var orders = await _ordersService.GetAllOrders();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                orders = orders.Where(s => s.OrderId.ToString().Contains(searchString)
+                                       || s.TotalOrderCost.ToString().Contains(searchString)).ToList();
+            }
+
+            switch (sortOrder)
+            {
+                case "orderId_desc":
+                    orders = orders.OrderByDescending(s => s.OrderId).ToList();
+                    break;
+
+                case "orderCost_desc":
+                    orders = orders.OrderByDescending(s => s.TotalOrderCost).ToList();
+                    break;
+
+                case "deliveryStatus_desc":
+                    orders = orders.OrderByDescending(s => s.IsDelivered).ToList();
+                    break;
+
+                default:  // Name ascending 
+                    orders = orders.OrderBy(s => s.OrderId).ToList();
+                    break;
+            }
+
+
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+
+            ViewBag.OnePageOfOrders = orders.ToPagedList(pageNumber, pageSize);
+
+
+
+
+
+            return View();
+            //return View(await _ordersService.GetAllOrders());
         }
 
         // GET: Orders/Details/5
