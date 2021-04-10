@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using SnurrtumlareWebSite.Data;
 using SnurrtumlareWebSite.ViewModels;
 using SnurrtumlareWebSite.Views.Administration;
 using System.Collections.Generic;
@@ -14,11 +15,13 @@ namespace SnurrtumlareWebSite.Controllers
     {
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly UserManager<IdentityUser> userManager;
+        private readonly ApplicationDbContext applicationDbContext;
 
-        public AdministrationController(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager)
+        public AdministrationController(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager, ApplicationDbContext applicationDbContext)
         {
             this.roleManager = roleManager;
             this.userManager = userManager;
+            this.applicationDbContext = applicationDbContext;
         }
 
         public IActionResult Index()
@@ -182,13 +185,29 @@ namespace SnurrtumlareWebSite.Controllers
 
             var users = userManager.Users;
             var userInRole = userManager.GetUsersInRoleAsync(role.Name).Result;
-            //var userRoles = userManager.GetRolesAsync();
+            var d = roleManager.Roles.ToList();
 
+            //var userRoles = userManager.GetRolesAsync();
+            var x = applicationDbContext.UserRoles.ToList();
+            //_context.Products.Where(p => p.Category == category).ToList();
+
+
+            foreach (var user in users)
+            {
+                var c = x.Where(u => u.UserId == user.Id).ToString();
+
+                if (user.Id == c)
+                {
+
+                }
+            }
 
             foreach (var item in userInRole)
             {
                 foreach (var user in users)
                 {
+                    var c = x.Where(u => u.UserId == user.Id);
+
                     if (user.Id == item.Id)
                     {
                         var userRoleViewModel = new UserRoleViewModel { UserId = user.Id, UserName = user.UserName };
