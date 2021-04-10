@@ -1,8 +1,19 @@
 {
   "dependencies": {
-    "mssql1": {
-      "type": "mssql.local",
-      "connectionId": "DefaultConnection"
+    "secrets1": {
+      "type": "secrets.user"
+    },
+    "mssql3": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/grupp4testserver/databases/SnurrtumlareDB",
+      "type": "mssql.azure",
+      "connectionId": "SnurrtumlareDB",
+      "secretStore": "LocalSecretsFile"
+    },
+    "mssql2": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/grupp4testserver/databases/IdentityDB",
+      "type": "mssql.azure",
+      "connectionId": "IdentityDB",
+      "secretStore": "LocalSecretsFile"
     }
   }
 }
