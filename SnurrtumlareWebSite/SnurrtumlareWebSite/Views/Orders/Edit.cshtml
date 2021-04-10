@@ -40,11 +40,25 @@
                     <label class="control-label">Total order cost</label>
                     <input class="form-control" type="text" asp-for="Order.TotalOrderCost" readonly />
                 </div>
-                <div class="form-group form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input-" asp-for="Order.IsDelivered" /> Mark order as delivered?
-                    </label>
-                </div>
+
+                @if (Model.Order.IsDelivered == false)
+                {
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input-" asp-for="Order.IsDelivered" /> Mark order as delivered?
+                        </label>
+                    </div>
+                }
+                else
+                {
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input-" asp-for="Order.IsDelivered" disabled /> Order is delivered
+                        </label>
+                    </div>
+                }
+
+
                 <div class="form-group">
                     <input type="submit" value="Save" class="btn btn-primary" id="Input_Style" />
                     <a type="button" class="btn btn-info btn-md" id="Input_Style" asp-action="Index">Back to List</a>
@@ -69,7 +83,7 @@
                     <tr>
                         @*<td>
                             @Html.DisplayFor(modelItem => orderRow.OrderRowId)
-                        </td>*@
+                            </td>*@
 
                         <td>
                             @Html.DisplayFor(modelItem => orderRow.Product.ProductId)
@@ -125,7 +139,7 @@ else
                 </div>
                 <div class="form-group form-check">
                     <label class="form-check-label">
-                        <input class="form-check-input-" asp-for="Order.IsDelivered"  disabled/> Order is delivered
+                        <input class="form-check-input-" asp-for="Order.IsDelivered" disabled /> Order is delivered
                     </label>
                 </div>
                 <div class="form-group">
