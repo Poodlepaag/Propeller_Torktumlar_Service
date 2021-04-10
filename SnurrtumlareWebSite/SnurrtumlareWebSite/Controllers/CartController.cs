@@ -13,7 +13,7 @@ namespace SnurrtumlareWebSite.Controllers
 {
     public class CartController : Controller
     {
-        private CartsService CartsService { get; set; }
+        private CartsService cartsService { get; set; }
         private OrderViewModel Model { get; set; }
 
 
@@ -90,9 +90,9 @@ namespace SnurrtumlareWebSite.Controllers
 
             var EmailToFind = User.FindFirstValue(ClaimTypes.Email);
 
-            CartsService.CheckAndMigrateUser(Model, EmailToFind);
+            cartsService.CheckAndMigrateUser(Model, EmailToFind);
 
-            Model.User = CartsService.DbContext.Users.First(u => u.Email == EmailToFind);
+            Model.User = cartsService.DbContext.Users.First(u => u.Email == EmailToFind);
 
             HttpContext.Session.SetObjectAsJson("order", Model);
 
@@ -120,7 +120,7 @@ namespace SnurrtumlareWebSite.Controllers
         {
             Model = HttpContext.Session.GetObjectFronJson<OrderViewModel>("order");
 
-            Model.User = CartsService.UpdateProfile(Model.User, firstName, lastName, phone, address, city, zipcode);
+            Model.User = cartsService.UpdateProfile(Model.User, firstName, lastName, phone, address, city, zipcode);
 
             HttpContext.Session.SetObjectAsJson("order", Model);
 

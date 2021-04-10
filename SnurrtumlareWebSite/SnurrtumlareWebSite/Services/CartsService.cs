@@ -10,7 +10,7 @@ namespace SnurrtumlareWebSite.Services
 {
     public class CartsService
     {
-        private readonly SnurrtumlareDbContext DbContext;
+        public readonly SnurrtumlareDbContext DbContext;
 
 
         public CartsService(SnurrtumlareDbContext dbContext)
