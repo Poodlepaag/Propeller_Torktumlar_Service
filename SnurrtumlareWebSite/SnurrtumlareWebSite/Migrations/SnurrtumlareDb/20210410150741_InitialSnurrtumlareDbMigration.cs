@@ -2,7 +2,7 @@
 
 namespace SnurrtumlareWebSite.Migrations.SnurrtumlareDb
 {
-    public partial class InitialTestAzureSnurrtumlareDB : Migration
+    public partial class InitialSnurrtumlareDbMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
