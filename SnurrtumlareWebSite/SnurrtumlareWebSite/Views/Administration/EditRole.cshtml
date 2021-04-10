@@ -51,12 +51,21 @@
         </div>
 
         <div class="card-footer">
-            <a asp-action="EditUsersInRole" 
-               asp-controller="Administration" 
+            <a asp-action="EditUsersInRole"
+               asp-controller="Administration"
                asp-route-roleId="@Model.Id"
                class="btn btn-primary btn-sm"
                style="width:auto">
-            Add or Remove Users</a>
+                Add or Remove Users
+            </a>
+
+            <a asp-action="ListRoles"
+               asp-controller="Administration"
+               class="btn btn-info btn-sm"
+               style="width:auto">
+                Return to List
+            </a>
         </div>
+
     </div>
 </form>
