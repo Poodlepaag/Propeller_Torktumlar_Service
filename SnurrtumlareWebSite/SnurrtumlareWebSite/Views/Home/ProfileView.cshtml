@@ -1,97 +1,206 @@
-﻿
-@model IEnumerable<SnurrtumlareWebSite.Models.User>
+﻿@model IEnumerable<SnurrtumlareWebSite.Models.User>
+
+@{
+    ViewData["Title"] = "ProfileView";
+}
+
+<style>
+    a:link {
+        color: black;
+        background-color: transparent;
+        text-decoration: none;
+    }
+
+    a:visited {
+        color: black;
+        background-color: transparent;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: dodgerblue;
+        background-color: transparent;
+        text-decoration: underline;
+    }
+
+    a:active {
+        color: dodgerblue;
+        background-color: transparent;
+        text-decoration: underline;
+    }
+</style>
 
 
-   
-        <div class="row">
-            <div class="col-md-12">
+<div>
+    <h1 class="pos2" style="font-size:300%;">Din profil</h1>
 
-                <div>
-                    <h1 class="pos2" style="font-size:300%;">Kund Profil</h1>
-                </div>
+    <center><img src="~/assets/icons/profilpicture.png" width="200" height="200" /></center>
 
 
 
+    @foreach (var user in from i in Model where i.Email == "send_me_your_prayers@abdi.com" select i)
+    {
+        <p class="pos3"> <center>Hej <b>@user.FirstName</b>, här på din profil kan du ändra dina uppgifter och se dina tidigare order.</center></p>
+    }
+
+    <p class="pos3">
+        <center>Dina uppgifter</center>
+    </p>
+
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
 
 
 
-                <form>
+            <table style="width:100%" class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Förnamn</th>
+                        <th>Efternamn</th>
+                        <th>Adress</th>
+                        <th>PostNr</th>
+                        <th>Stad</th>
+                        <th>Email</th>
+                        <th>TeleNr</th>
+                        <th>Redigera</th>
+                    </tr>
+                </thead>
+
+
+
+
+                <tbody>
+                    @foreach (var user in from i in Model where i.Email == "send_me_your_prayers@abdi.com" select i)
+
+
+
+                    {
+
+
+                        <tr>
+                            <td>@user.UserId</td>
+                            <td>@user.FirstName</td>
+                            <td>@user.LastName</td>
+                            <td>@user.Address</td>
+                            <td>@user.ZipCode</td>
+                            <td>@user.City</td>
+                            <td>@user.Email</td>
+                            <td>@user.Phone</td>
+
+                            <td>
+                                <div class="form-check-inline">
+
+
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter1">
+                                        Ändra uppgifter
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<p><a href="https://localhost:44392/Home/OrderView"><center>Se dina order</center></a></p>
+
+
+<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"><b>Din profil</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="container-fluid">
                     <div class="row">
-                        <div class="col-6">
-                            <h2 class="text-info">Kund Profiler</h2>
-                        </div>
-                        <div class="col-6 text-right">
+                        <div class="col-sm-12">
+                            <div class="row">
 
-
-                        </div>
-                    </div>
-
-                    <div class="border bg-white">
-                        <br />
-                        <div>
-                            <table class="table table-striped border">
-                                <tr class="table-DisplayName">
-
-                                    <th>
-                                        <p>User Id</p>
-                                    </th>
-                                    <th>
-                                        <p>First Name</p>
-                                    </th>
-                                    <th>
-                                        <p>Last Name</p>
-                                    </th>
-                                    <th>
-                                        <p>Address</p>
-                                    </th>
-                                    <th>
-                                        <p>ZipCode</p>
-                                    </th>
-                                    <th>
-                                        <p>City</p>
-                                    </th>
-                                    <th>
-                                        <p>Email</p>
-                                    </th>
-                                    <th>
-                                        <p>Phone</p>
-                                    </th>
-                                </tr>
+                                <div class="col-6 col-sm-12">
 
 
 
-                                @foreach (var customer in Model)
-                                {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(m => customer.UserId)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(m => customer.FirstName)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(m => customer.LastName)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(m => customer.Address)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(m => customer.ZipCode)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(m => customer.City)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(m => customer.Email)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(m => customer.Phone)
-                                        </td>
 
-                                    </tr>
 
-                                }
-                            </table>
+                                    @foreach (var user in from i in Model where i.Email == "send_me_your_prayers@abdi.com" select i)
+                                    {
+
+
+                                        <p>
+                                            <b>Kundnummer:</b> @user.UserId <br>
+
+                                        </p>
+
+
+                                        <p>
+                                            <b>Förnamn:</b> @user.FirstName <br>
+
+                                        </p>
+
+
+                                        <p>
+                                            <b>Efternamn:</b> @user.LastName <br>
+
+                                        </p>
+
+                                        <p>
+                                            <b>Email:</b> @user.Email <br>
+
+                                        </p>
+
+                                        <p>
+                                            <b>Adress:</b><br>
+                                            <input type="text" value="@user.Address" />
+                                        </p>
+
+                                        <p>
+                                            <b>Postnummer:</b><br>
+                                            <input type="text" value="@user.ZipCode" />
+                                        </p>
+
+                                        <p>
+                                            <b>Stad:</b><br>
+                                            <input type="text" value="@user.City" />
+                                        </p>
+
+
+                                        <p>
+                                            <b>Telefonnummer:</b><br>
+                                            <input type="text" value="@user.Phone" />
+                                        </p>
+
+
+                                    }
+
+                                </div>
+
+
+
+                            </div>
                         </div>
                     </div>
-                </form>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Ändra uppgifter</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Avbryt</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<br>
+<br>

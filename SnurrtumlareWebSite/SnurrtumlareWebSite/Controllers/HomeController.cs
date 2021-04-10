@@ -19,6 +19,9 @@ namespace SnurrtumlareWebSite.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ProductsService _productsService;
+     
+
+
 
         public HomeController(ILogger<HomeController> logger, ProductsService productsService)
         {
@@ -56,6 +59,13 @@ namespace SnurrtumlareWebSite.Controllers
             SnurrtumlareDbContext snurris = new SnurrtumlareDbContext();
             var listOfUser = snurris.Users.ToList();
             return View(listOfUser);
+        }
+
+        public IActionResult OrderView()
+        {
+            SnurrtumlareDbContext snurris = new SnurrtumlareDbContext();
+            var listOfOrder = snurris.Orders.ToList();
+            return View(listOfOrder);
         }
 
         public IActionResult DeliveryTerms()
