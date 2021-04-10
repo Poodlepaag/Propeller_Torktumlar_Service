@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace SnurrtumlareWebSite.Controllers
 {
@@ -19,10 +20,17 @@ namespace SnurrtumlareWebSite.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ProductsService _productsService;
+        private readonly UsersService _usersService;
+        private readonly OrdersService _ordersService;
 
-        public HomeController(ILogger<HomeController> logger, ProductsService productsService)
+        public HomeController(ILogger<HomeController> logger, 
+                              ProductsService productsService, 
+                              UsersService usersService,
+                              OrdersService ordersService)
         {
             _productsService = productsService;
+            _ordersService = ordersService;
+            _usersService = usersService;
             _logger = logger;
         }
 
@@ -51,12 +59,34 @@ namespace SnurrtumlareWebSite.Controllers
             return View();
         }
 
-        public IActionResult ProfileView()
+        [Authorize]
+        public async Task<IActionResult> ProfileView()
         {
-            SnurrtumlareDbContext snurris = new SnurrtumlareDbContext();
-            var listOfUser = snurris.Users.ToList();
-            return View(listOfUser);
+            var userEmail = User.FindFirstValue(ClaimTypes.Email);
+
+            ViewBag.userEmail = userEmail;
+
+            //var userEmail = "send_me_your_prayers@abdi.com";
+            List<User> users = await _usersService.GetUserProfiles(userEmail);
+
+            //var users = usersService.GetUserByEmail(userEmail);
+
+            return View(users);
         }
+
+        [Authorize]
+        public IActionResult OrderView()
+        {
+            var userEmail = User.FindFirstValue(ClaimTypes.Email);
+
+            ViewBag.userEmail = userEmail;
+
+            var orders = _ordersService.GetAllOrdersByUserEmail(userEmail);
+
+            return View(orders);
+        }
+
+
 
         public IActionResult DeliveryTerms()
         {

@@ -23,6 +23,16 @@ namespace SnurrtumlareWebSite.Services
             return await _context.Orders.Include(o => o.User).ToListAsync();
         }
 
+        public List<Order> GetAllOrdersByUserEmail(string userEmail)
+        {
+            var orders = (from o in _context.Orders
+                            join u in _context.Users on o.UserId equals u.UserId
+                            where o.UserId == u.UserId && u.Email == userEmail
+                            select o).ToList();
+
+            return orders;
+        }
+
         public async Task<Order> GetOrderDetailsById(int? id)
         {
             return await _context.Orders

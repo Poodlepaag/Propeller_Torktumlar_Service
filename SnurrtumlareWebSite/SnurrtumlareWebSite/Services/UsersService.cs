@@ -50,9 +50,19 @@ namespace SnurrtumlareWebSite.Services
             await _context.SaveChangesAsync();
         }
 
+        public User GetUserByEmail(string userEmail)
+        {
+            return _context.Users.First(u => u.Email == userEmail);
+        }
+
         public bool UserExists(int id)
         {
             return _context.Users.Any(e => e.UserId == id);
+        }
+
+        public async Task<List<User>> GetUserProfiles(string userEmail)
+        {
+            return await _context.Users.Where(u => u.Email == userEmail).ToListAsync();
         }
 
     }
