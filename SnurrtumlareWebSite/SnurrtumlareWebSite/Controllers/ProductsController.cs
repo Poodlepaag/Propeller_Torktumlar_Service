@@ -49,7 +49,7 @@ namespace SnurrtumlareWebSite.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 products = products.Where(s => s.ProductName.ToLower().Contains(searchString.ToLower())
-                                       || s.ProductName.ToLower().Contains(searchString.ToLower())).ToList();
+                                       || s.ProductDescription.ToLower().Contains(searchString.ToLower())).ToList();
             }
 
 
