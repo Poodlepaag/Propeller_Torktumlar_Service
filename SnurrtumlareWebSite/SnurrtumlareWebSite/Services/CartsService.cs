@@ -58,20 +58,31 @@ namespace SnurrtumlareWebSite.Services
 
         public Cart UpdateQuantity(Cart cart, int productId, int quantity)
         {
+            var deleteItem = false;
+
             foreach (var item in cart.ProductsInCart)
             {
                 if (item.ProductId == productId)
                 {
                     item.Quantity = quantity;
+
                     if (item.Quantity <= 0)
                     {
-                        DeleteItemFromCart(cart, productId);
-                        if (cart.ProductsInCart.Count == 0)
-                        {
-                            cart.ContainsItems = false;
-                            return cart;
-                        }
+                        deleteItem = true;
                     }
+                }
+            }
+
+            if (deleteItem == true)
+            {
+                cart = DeleteItemFromCart(cart, productId);
+
+                deleteItem = false;
+
+                if (cart.ProductsInCart.Count == 0)
+                {
+                    cart.ContainsItems = false;
+                    return cart;
                 }
             }
 
