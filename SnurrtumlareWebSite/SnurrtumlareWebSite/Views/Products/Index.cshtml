@@ -19,9 +19,9 @@
     <div class="row">
         <div class="col-md-12">
             <p>
-                <a id="Input_Style" type="button" class="btn btn-primary btn-md" asp-action="Create">Create New Product</a>
+                <a id="Input_Style" class="btn btn-primary btn-md" asp-action="Create">Create New Product</a>
 
-                <a id="Input_Style" type="button" class="btn btn-info btn-md" asp-controller="BackOffice" asp-action="Index">Back To Index</a>
+                <a id="Input_Style" class="btn btn-info btn-md" asp-controller="BackOffice" asp-action="Index">Back To Index</a>
             </p>
 
             @using (Html.BeginForm("Index", "Products", FormMethod.Get))
@@ -95,9 +95,9 @@
 
                             <td>
                                 <div class="form-check-inline">
-                                    <a id="Input_Style" type="button" class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.ProductId">Edit</a>
-                                    <a id="Input_Style" type="button" class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.ProductId">Details</a>
-                                    <a id="Input_Style" type="button" class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+                                    <a id="Input_Style" class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.ProductId">Edit</a>
+                                    <a id="Input_Style" class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.ProductId">Details</a>
+                                    <a id="Input_Style" class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
                                 </div>
                             </td>
                         </tr>
