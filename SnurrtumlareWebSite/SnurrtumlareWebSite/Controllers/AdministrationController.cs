@@ -7,6 +7,7 @@ using SnurrtumlareWebSite.Views.Administration;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace SnurrtumlareWebSite.Controllers
 {
@@ -63,10 +64,23 @@ namespace SnurrtumlareWebSite.Controllers
         }
 
         [HttpGet]
-        public IActionResult ListRoles()
+        public IActionResult ListRoles(int? page)
         {
+
             var roles = roleManager.Roles;
-            return View(roles);
+
+
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+
+            ViewBag.OnePageOfRoles = roles.ToPagedList(pageNumber, pageSize);
+
+            return View();
+
+
+
+            //var roles = roleManager.Roles;
+            //return View(roles);
         }
 
 
@@ -257,10 +271,20 @@ namespace SnurrtumlareWebSite.Controllers
         }
 
         [HttpGet]
-        public IActionResult ListUsers()
+        public IActionResult ListUsers(int? page)
         {
+
             var users = userManager.Users;
-            return View(users);
+
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+
+            ViewBag.OnePageOfUsers = users.ToPagedList(pageNumber, pageSize);
+
+            return View();
+
+            //var users = userManager.Users;
+            //return View(users);
         }
 
     }

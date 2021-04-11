@@ -1,19 +1,29 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@model IEnumerable<IdentityRole>
+@*@model IEnumerable<IdentityRole>*@
+
+@using X.PagedList.Mvc.Core.Fluent
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common
+@using X.PagedList;
+
+<link href="/css/PagedList.css" rel="stylesheet" type="text/css" />
+
 
  @{
     ViewBag.Title = "Roles in Db";
+
+    var roles = ViewBag.OnePageOfRoles;
 }
 
 <h1>All Roles</h1>
 
-@if (Model.Any())
+@if (roles.Count > 0)
 {
     <a class="btn btn-primary mb-3" style="width:auto" asp-action="CreateRole" asp-controller="administration">Add new role</a>
 
     <a class="btn btn-info mb-3" style="width:auto" asp-action="Index" asp-controller="administration">Back To Index</a>
 
-    foreach (var role in Model)
+    foreach (var role in roles)
     {
         <div class="card mb-3">
             <div class="card-header">
@@ -72,6 +82,4 @@ else
     </div>
 }
 
-@*@section Scripts {
-<script src="~/js/DeleteScript.js"></script>
-}*@
+@Html.PagedListPager( (IPagedList)ViewBag.OnePageOfRoles, page => Url.Action("ListRoles", new { page }) )

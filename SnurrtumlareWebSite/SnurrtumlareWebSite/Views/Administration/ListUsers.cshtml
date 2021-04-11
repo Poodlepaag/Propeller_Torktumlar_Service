@@ -1,13 +1,26 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@model IEnumerable<IdentityUser>
+@*@model IEnumerable<IdentityUser>*@
+
+@using X.PagedList.Mvc.Core.Fluent
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common
+@using X.PagedList;
+
+<link href="/css/PagedList.css" rel="stylesheet" type="text/css" />
+
+
+
+
 
 @{
     ViewBag.Title = "All Users";
+
+    var users = ViewBag.OnePageOfUsers;
 }
 
 <h1>All Users</h1>
 
-@if (Model.Any())
+@if (users.Count > 0)
 {
     <a asp-area="Identity" asp-page="/Account/Register"
         class="btn btn-primary mb-3" style="width:auto">
@@ -25,7 +38,7 @@
         class="btn btn-primary mb-3" style="width:auto">
         Add new user
         </a>*@
-    foreach (var user in Model)
+    foreach (var user in ViewBag.OnePageOfUsers)
     {
         <div class="card mb-3">
             <div class="card-header">
@@ -58,3 +71,9 @@ else
         </div>
     </div>
 }
+
+
+<br />
+
+@Html.PagedListPager( (IPagedList)ViewBag.OnePageOfUsers, page => Url.Action("ListUsers", new { page }) )
+
