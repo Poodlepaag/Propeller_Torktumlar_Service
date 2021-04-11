@@ -23,8 +23,8 @@ namespace SnurrtumlareWebSite.Controllers
         private readonly UsersService _usersService;
         private readonly OrdersService _ordersService;
 
-        public HomeController(ILogger<HomeController> logger, 
-                              ProductsService productsService, 
+        public HomeController(ILogger<HomeController> logger,
+                              ProductsService productsService,
                               UsersService usersService,
                               OrdersService ordersService)
         {
