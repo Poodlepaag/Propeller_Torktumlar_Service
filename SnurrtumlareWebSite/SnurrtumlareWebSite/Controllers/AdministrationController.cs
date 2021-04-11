@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SnurrtumlareWebSite.Data;
 using SnurrtumlareWebSite.ViewModels;
 using SnurrtumlareWebSite.Views.Administration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -64,10 +65,15 @@ namespace SnurrtumlareWebSite.Controllers
         }
 
         [HttpGet]
-        public IActionResult ListRoles(int? page)
+        public IActionResult ListRoles(string searchString, int? page)
         {
 
-            var roles = roleManager.Roles;
+            var roles = roleManager.Roles.ToList();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                roles = roles.Where(s => s.Name.ToLower().Contains(searchString.ToLower())).ToList();
+            }
 
 
             int pageSize = 5;
@@ -271,10 +277,15 @@ namespace SnurrtumlareWebSite.Controllers
         }
 
         [HttpGet]
-        public IActionResult ListUsers(int? page)
+        public IActionResult ListUsers(string searchString, int? page)
         {
 
-            var users = userManager.Users;
+            var users = userManager.Users.ToList();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                users = users.Where(s => s.NormalizedEmail.Contains(searchString.ToUpper())).ToList();
+            }
 
             int pageSize = 5;
             int pageNumber = (page ?? 1);
