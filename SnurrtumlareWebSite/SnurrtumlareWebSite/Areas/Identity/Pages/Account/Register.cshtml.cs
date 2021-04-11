@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using SnurrtumlareWebSite.Models;
+using SnurrtumlareWebSite.Services;
 
 namespace SnurrtumlareWebSite.Areas.Identity.Pages.Account
 {
@@ -23,17 +25,20 @@ namespace SnurrtumlareWebSite.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly UsersService usersService;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            UsersService usersService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            this.usersService = usersService;
         }
 
         [BindProperty]
@@ -75,7 +80,14 @@ namespace SnurrtumlareWebSite.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
+
+                var snurrtumlareUser = new User { Email = Input.Email };
+                await usersService.AddNewUser(snurrtumlareUser);
+
+
+
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
