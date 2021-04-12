@@ -75,7 +75,6 @@ namespace SnurrtumlareWebSite.Controllers
             ViewBag.OnePageOfUsers = users.ToPagedList(pageNumber, pageSize);
 
             return View();
-            //return View(await _usersService.GetAllUsers());
         }
 
         

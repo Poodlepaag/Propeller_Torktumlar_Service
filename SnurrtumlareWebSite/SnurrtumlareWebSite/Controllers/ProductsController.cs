@@ -90,9 +90,6 @@ namespace SnurrtumlareWebSite.Controllers
             return View();
 
 
-            //List<Product> result = await _productsService.GetAllProducts();
-
-            //return View(result);
         }
 
 

@@ -66,10 +66,8 @@ namespace SnurrtumlareWebSite.Controllers
 
             ViewBag.userEmail = userEmail;
 
-            //var userEmail = "send_me_your_prayers@abdi.com";
             List<User> users = await _usersService.GetUserProfiles(userEmail);
 
-            //var users = usersService.GetUserByEmail(userEmail);
 
             return View(users);
         }

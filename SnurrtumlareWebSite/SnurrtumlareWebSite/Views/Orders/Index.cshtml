@@ -56,15 +56,15 @@
             <tr>
                 <td>
                     @item.OrderId
-                    @*@Html.DisplayFor(modelItem => item.OrderId)*@
+                    
                 </td>
                 <td>
                     @item.User.Email
-                    @*@Html.DisplayFor(modelItem => item.User.Email)*@
+                    
                 </td>
                 <td>
                     @item.TotalOrderCost
-                    @*@Html.DisplayFor(modelItem => item.TotalOrderCost)*@
+                    
                 </td>
                 <td>
                     @if(item.IsDelivered)
@@ -75,8 +75,7 @@
                     {
                         <a>Pending Delivery</a>
                     }
-                    @*@item.IsDelivered*@
-                    @*@Html.DisplayFor(modelItem => item.IsDelivered)*@
+                    
                 </td>
                 <td>
                     <div class="form-check-inline">

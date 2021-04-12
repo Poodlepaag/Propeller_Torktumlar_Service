@@ -5,36 +5,12 @@
 
 }
 
-@*<style>
-    a:link {
-        color: white;
-        background-color: transparent;
-        text-decoration: none;
-    }
 
-    a:visited {
-        color: white;
-        background-color: transparent;
-        text-decoration: none;
-    }
-
-    a:hover {
-        color: dodgerblue;
-        background-color: transparent;
-        text-decoration: underline;
-    }
-
-    a:active {
-        color: dodgerblue;
-        background-color: transparent;
-        text-decoration: underline;
-    }
-</style>*@
 
 <div>
     <h1 class="pos2" style="font-size:300%;">Din profil</h1>
 
-    @*<center><img src="~/assets/icons/profilpicture.png" width="200" height="200" /></center>*@
+    
     <center><img src="~/assets/pictures/People/Miki.jpg" width="250" height="200" /></center>
 
 
@@ -67,7 +43,7 @@
                         <th>Stad</th>
                         <th>Email</th>
                         <th>TeleNr</th>
-                        @*<th>Redigera</th>*@
+                        
                     </tr>
                 </thead>
 
@@ -135,7 +111,7 @@
 
 
                                         <p>
-                                            @*<b>Kundnummer:</b> @user.UserId <br>*@
+                                            
 
                                             <b>Kundnummer:</b><br>
                                             <input value="@user.UserId" class="form-control" readonly/>
@@ -143,7 +119,7 @@
                                         </p>
 
                                         <p>
-                                            @*<b>Email:</b> @user.Email <br>*@
+                                            
 
                                             <b>Email:</b><br>
                                             <input value="@user.Email" class="form-control" readonly/>
@@ -152,7 +128,7 @@
 
 
                                         <p>
-                                            @*<b>Förnamn:</b> @user.FirstName <br>*@
+                                            
 
                                             <b>Förnamn:</b><br>
                                             <input type="text" class="form-control" value="@user.FirstName" />
@@ -161,17 +137,14 @@
 
 
                                         <p>
-                                            @*<b>Efternamn:</b> @user.LastName <br>*@
+                                            
 
                                             <b>Efternamn:</b><br>
                                             <input type="text" class="form-control" value="@user.LastName" />
 
                                         </p>
 
-                                        @*<p>
-                                            <b>Email:</b> @user.Email <br>
-
-                                        </p>*@
+                                        
 
                                         <p>
                                             <b>Adress:</b><br>

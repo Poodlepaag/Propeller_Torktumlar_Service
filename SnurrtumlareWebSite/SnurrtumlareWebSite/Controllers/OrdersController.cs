@@ -79,7 +79,6 @@ namespace SnurrtumlareWebSite.Controllers
             ViewBag.OnePageOfOrders = orders.ToPagedList(pageNumber, pageSize);
 
             return View();
-            //return View(await _ordersService.GetAllOrders());
         }
 
 
