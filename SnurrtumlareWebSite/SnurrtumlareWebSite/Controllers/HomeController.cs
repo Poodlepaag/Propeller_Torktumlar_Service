@@ -22,18 +22,15 @@ namespace SnurrtumlareWebSite.Controllers
         private readonly ProductsService _productsService;
         private readonly UsersService _usersService;
         private readonly OrdersService _ordersService;
-        private readonly OrderViewModel _orderViewModel;
 
         public HomeController(ILogger<HomeController> logger,
                               ProductsService productsService,
                               UsersService usersService,
-                              OrdersService ordersService,
-                              OrderViewModel orderViewModel)
+                              OrdersService ordersService)
         {
             _productsService = productsService;
             _ordersService = ordersService;
             _usersService = usersService;
-            _orderViewModel = orderViewModel;
             _logger = logger;
         }
 
@@ -63,20 +60,18 @@ namespace SnurrtumlareWebSite.Controllers
         }
 
         [Authorize]
-        public IActionResult ProfileView()
+        public async Task<IActionResult> ProfileView()
         {
             var userEmail = User.FindFirstValue(ClaimTypes.Email);
-            _orderViewModel.User = new User();
-            _orderViewModel.User = _usersService.GetUserProfile(userEmail);
 
-            return View(_orderViewModel);
-        }
+            ViewBag.userEmail = userEmail;
 
-        public IActionResult UpdateProfile(User user, string firstName, string lastName, string phone, string address, string city, string zipcode)
-        {
-            _orderViewModel.User = _usersService.UpdateProfile(user, firstName, lastName, phone, address, city, zipcode);
+            //var userEmail = "send_me_your_prayers@abdi.com";
+            List<User> users = await _usersService.GetUserProfiles(userEmail);
 
-            return RedirectToAction(nameof(ProfileView));
+            //var users = usersService.GetUserByEmail(userEmail);
+
+            return View(users);
         }
 
         [Authorize]

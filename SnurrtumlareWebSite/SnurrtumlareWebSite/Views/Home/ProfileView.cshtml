@@ -1,18 +1,48 @@
-﻿@model OrderViewModel
+﻿@model IEnumerable<SnurrtumlareWebSite.Models.User>
 
 @{
     ViewData["Title"] = "ProfileView";
+
 }
+
+@*<style>
+    a:link {
+        color: white;
+        background-color: transparent;
+        text-decoration: none;
+    }
+
+    a:visited {
+        color: white;
+        background-color: transparent;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: dodgerblue;
+        background-color: transparent;
+        text-decoration: underline;
+    }
+
+    a:active {
+        color: dodgerblue;
+        background-color: transparent;
+        text-decoration: underline;
+    }
+</style>*@
 
 <div>
     <h1 class="pos2" style="font-size:300%;">Din profil</h1>
 
-    <center><img src="~/assets/icons/profilpicture.png" alt="Profilgubbe" width="200" height="200" /></center>
+    @*<center><img src="~/assets/icons/profilpicture.png" width="200" height="200" /></center>*@
+    <center><img src="~/assets/pictures/People/Miki.jpg" width="250" height="200" /></center>
 
 
 
-    
-    <p class="pos3"> <center>Hej <b>@Model.User.FirstName</b>, här på din profil kan du ändra dina uppgifter och se dina tidigare order.</center></p>
+    @foreach (var user in from i in Model where i.Email == @ViewBag.userEmail select i)
+    {
+        <p class="pos3"> <center>Hej <b>@user.FirstName</b>, här på din profil kan du ändra dina uppgifter och se dina tidigare order.</center></p>
+    }
 
     <p class="pos3">
         <center>Dina uppgifter</center>
@@ -23,106 +53,167 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            <form asp-controller="Home" asp-action="UpdateProfile" method="post">
-                <table style="width:100%; text-align: left; margin-bottom: 20px">
-                    <thead>
+
+
+
+            <table style="width:100%" class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Förnamn</th>
+                        <th>Efternamn</th>
+                        <th>Adress</th>
+                        <th>PostNr</th>
+                        <th>Stad</th>
+                        <th>Email</th>
+                        <th>TeleNr</th>
+                        @*<th>Redigera</th>*@
+                    </tr>
+                </thead>
+
+
+
+
+                <tbody>
+                    @foreach (var user in from i in Model where i.Email == @ViewBag.userEmail select i)
+                    {
+
+
                         <tr>
-                            <th>Namn</th>
-                            @if (Model.User.FirstName == null)
-                            {
-                                <td>
-                                    <input type="text" placeholder="Förnamn" name="FirstName" value="" />
-                                </td>
-                            }
-                            else
-                            {
-                                <td>
-                                    <input type="text" name="FirstName" value="@Model.User.FirstName" />
-                                </td>
-                            }
-                            @if (Model.User.LastName == null)
-                            {
-                                <td>
-                                    <input type="text" placeholder="Efternamn" name="LastName" value="" />
-                                </td>
-                            }
-                            else
-                            {
-                                <td>
-                                    <input type="text" name="LastName" value="@Model.User.LastName" />
-                                </td>
-                            }
+                            <td>@user.UserId</td>
+                            <td>@user.FirstName</td>
+                            <td>@user.LastName</td>
+                            <td>@user.Address</td>
+                            <td>@user.ZipCode</td>
+                            <td>@user.City</td>
+                            <td>@user.Email</td>
+                            <td>@user.Phone</td>
+
+                            <td>
+                                <div class="form-check-inline">
+
+
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter1">
+                                        Ändra uppgifter
+                                    </button>
+                                </div>
+                            </td>
                         </tr>
-                        <tr><th>Email</th><td>@Model.User.Email</td></tr>
-                        <tr>
-                            <th>Telefon</th>
-                            @if (Model.User.Phone == null)
-                            {
-                                <td>
-                                    <input type="text" placeholder="Telefon" name="Phone" value="" />
-                                </td>
-                            }
-                            else
-                            {
-                                <td>
-                                    <input type="text" name="Phone" value="@Model.User.Phone" />
-                                </td>
-                            }
-                        </tr>
-                        <tr>
-                            <th>Adress</th>
-                            @if (Model.User.Address == null)
-                            {
-                                <td>
-                                    <input type="text" placeholder="Adress" name="Address" value="" />
-                                </td>
-                            }
-                            else
-                            {
-                                <td>
-                                    <input type="text" name="Address" value="@Model.User.Address" />
-                                </td>
-                            }
-                        </tr>
-                        <tr>
-                            <th>Stad</th>
-                            @if (Model.User.City == null)
-                            {
-                                <td>
-                                    <input type="text" placeholder="Stad" name="City" value="" />
-                                </td>
-                            }
-                            else
-                            {
-                                <td>
-                                    <input type="text" name="City" value="@Model.User.City" />
-                                </td>
-                            }
-                        </tr>
-                        <tr>
-                            <th>Postnummer</th>
-                            @if (Model.User.ZipCode == null)
-                            {
-                                <td>
-                                    <input type="text" placeholder="Postnummer" name="ZipCode" value="" />
-                                </td>
-                            }
-                            else
-                            {
-                                <td>
-                                    <input type="text" name="Zipcode" value="@Model.User.ZipCode" />
-                                </td>
-                            }
-                        </tr>
-                    </thead>
-                </table>
-                <div width="100%" style="text-align: center">
-                    <button type="submit" class="order-confirmation-button-style" value="@Model.User, @Model.User.FirstName, @Model.User.LastName, @Model.User.Phone, @Model.User.Address, @Model.User.City, @Model.User.ZipCode">Spara</button>
-                </div>
-            </form>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
 @*<p><a asp-action="OrderView"><center>Se dina order</center></a></p>   /*Behöver av kommenteras om den ska skicka till OrderView*/*@
+
+
+<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"><b>Din profil</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+
+                                <div class="col-6 col-sm-12">
+
+
+
+
+
+                                    @foreach (var user in from i in Model where i.Email == @ViewBag.userEmail select i)
+                                    {
+
+
+                                        <p>
+                                            @*<b>Kundnummer:</b> @user.UserId <br>*@
+
+                                            <b>Kundnummer:</b><br>
+                                            <input value="@user.UserId" class="form-control" readonly/>
+
+                                        </p>
+
+                                        <p>
+                                            @*<b>Email:</b> @user.Email <br>*@
+
+                                            <b>Email:</b><br>
+                                            <input value="@user.Email" class="form-control" readonly/>
+
+                                        </p>
+
+
+                                        <p>
+                                            @*<b>Förnamn:</b> @user.FirstName <br>*@
+
+                                            <b>Förnamn:</b><br>
+                                            <input type="text" class="form-control" value="@user.FirstName" />
+
+                                        </p>
+
+
+                                        <p>
+                                            @*<b>Efternamn:</b> @user.LastName <br>*@
+
+                                            <b>Efternamn:</b><br>
+                                            <input type="text" class="form-control" value="@user.LastName" />
+
+                                        </p>
+
+                                        @*<p>
+                                            <b>Email:</b> @user.Email <br>
+
+                                        </p>*@
+
+                                        <p>
+                                            <b>Adress:</b><br>
+                                            <input type="text" class="form-control" value="@user.Address" />
+                                        </p>
+
+                                        <p>
+                                            <b>Postnummer:</b><br>
+                                            <input type="text" class="form-control" value="@user.ZipCode" />
+                                        </p>
+
+                                        <p>
+                                            <b>Stad:</b><br>
+                                            <input type="text" class="form-control" value="@user.City" />
+                                        </p>
+
+
+                                        <p>
+                                            <b>Telefonnummer:</b><br>
+                                            <input type="text" class="form-control" value="@user.Phone" />
+                                        </p>
+                                    }
+
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Spara</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Avbryt</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <br>
 <br>
