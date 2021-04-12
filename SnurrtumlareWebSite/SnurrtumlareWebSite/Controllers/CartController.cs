@@ -118,9 +118,11 @@ namespace SnurrtumlareWebSite.Controllers
 
         public IActionResult UpdateProfile(string firstName, string lastName, string phone, string address, string city, string zipcode)
         {
+            var userEmail = User.FindFirstValue(ClaimTypes.Email);
+
             Model = HttpContext.Session.GetObjectFronJson<OrderViewModel>("order");
 
-            Model.User = cartsService.UpdateProfile(Model.User, firstName, lastName, phone, address, city, zipcode);
+            Model.User = cartsService.UpdateProfile(userEmail, firstName, lastName, phone, address, city, zipcode);
 
             HttpContext.Session.SetObjectAsJson("order", Model);
 

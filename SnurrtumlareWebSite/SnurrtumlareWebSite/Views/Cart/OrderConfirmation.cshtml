@@ -30,7 +30,7 @@
         </div>
 
         <div style="width: 100%; text-align: center; margin-bottom: 20px">
-            <a href="/Home/ProfileView/"><input type="button" class="order-confirmation-button-style" data-toggle="modal" data-target="#update-profile-modal" value="Redigera profil" /></a>
+            <input type="button" class="order-confirmation-button-style" data-toggle="modal" data-target="#update-profile-modal" value="Redigera profil" />
         </div>
 
         <div class="col-12">
@@ -82,7 +82,7 @@
                             <table style="width:100%; text-align: left; margin-bottom: 20px">
                                 <thead>
                                     <tr>
-                                        <th>Namn</th>
+                                        <th>Förnamn</th>
                                         @if (Model.User.FirstName == null)
                                         {
                                             <td>
@@ -95,6 +95,10 @@
                                                 <input type="text" name="FirstName" value="@Model.User.FirstName" />
                                             </td>
                                         }
+                                        
+                                    </tr>
+                                    <tr>
+                                        <th>Efternamn</th>
                                         @if (Model.User.LastName == null)
                                         {
                                             <td>
@@ -108,7 +112,8 @@
                                             </td>
                                         }
                                     </tr>
-                                    <tr><th>Email</th><td>@Model.User.Email</td></tr>
+                                    </tr>
+                                    <tr><th>Email</th><td><input width="200" type="text" name="Email" value="@Model.User.Email" disabled/></td></tr>
                                     <tr>
                                         <th>Telefon</th>
                                         @if (Model.User.Phone == null)
@@ -169,8 +174,8 @@
                                             </td>
                                         }
                                     </tr>
-                                    </thead>
-                                </table>
+                                </thead>
+                            </table>
 
                             <div width="100%" style="text-align: center">
                                 <input type="button" class="order-confirmation-button-style" value="Avbryt" data-dismiss="modal" />

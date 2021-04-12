@@ -65,5 +65,15 @@ namespace SnurrtumlareWebSite.Services
             return await _context.Users.Where(u => u.Email == userEmail).ToListAsync();
         }
 
+        public User GetUserProfile(string userEmail)
+        {
+            return _context.Users.Single(u => u.Email == userEmail);
+        }
+
+        public bool UserExistsByEmail(string userEmail)
+        {
+            return _context.Users.Any(e => e.Email == userEmail);
+        }
+
     }
 }

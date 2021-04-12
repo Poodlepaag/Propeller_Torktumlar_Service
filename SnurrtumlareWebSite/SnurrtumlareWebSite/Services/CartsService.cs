@@ -4,6 +4,7 @@ using SnurrtumlareWebSite.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace SnurrtumlareWebSite.Services
@@ -160,9 +161,11 @@ namespace SnurrtumlareWebSite.Services
             return owm;
         }
 
-        public User UpdateProfile(User user, string firstName, string lastName, string phone, string address, string city, string zipcode)
+        public User UpdateProfile(string userMail, string firstName, string lastName, string phone, string address, string city, string zipcode)
         {
-            user = DbContext.Users.Single(u => u.Email == user.Email);
+            User user = new();
+
+            user = DbContext.Users.Single(u => u.Email == userMail);
             user.FirstName = firstName;
             user.LastName = lastName;
             user.Phone = phone;

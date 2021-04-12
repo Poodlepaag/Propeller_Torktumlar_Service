@@ -83,13 +83,13 @@ namespace SnurrtumlareWebSite.Areas.Identity.Pages.Account
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
-                var snurrtumlareUser = new User { Email = Input.Email };
-                await usersService.AddNewUser(snurrtumlareUser);
-
-
-
                 if (result.Succeeded)
                 {
+                    if (!usersService.UserExistsByEmail(Input.Email))
+                    {
+                        var snurrtumlareUser = new User { Email = Input.Email };
+                        await usersService.AddNewUser(snurrtumlareUser);
+                    }
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
