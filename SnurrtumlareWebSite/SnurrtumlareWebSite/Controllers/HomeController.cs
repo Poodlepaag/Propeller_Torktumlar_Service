@@ -66,6 +66,7 @@ namespace SnurrtumlareWebSite.Controllers
         public IActionResult ProfileView()
         {
             var userEmail = User.FindFirstValue(ClaimTypes.Email);
+            _orderViewModel.User = new User();
             _orderViewModel.User = _usersService.GetUserProfile(userEmail);
 
             return View(_orderViewModel);
@@ -73,11 +74,7 @@ namespace SnurrtumlareWebSite.Controllers
 
         public IActionResult UpdateProfile(User user, string firstName, string lastName, string phone, string address, string city, string zipcode)
         {
-            var loggedInUserMail = User.FindFirstValue(ClaimTypes.Email);
-
-            user = _usersService.CheckAndMigrateUser(loggedInUserMail);
-
-            user = _usersService.UpdateProfile(user, firstName, lastName, phone, address, city, zipcode);
+            _orderViewModel.User = _usersService.UpdateProfile(user, firstName, lastName, phone, address, city, zipcode);
 
             return RedirectToAction(nameof(ProfileView));
         }

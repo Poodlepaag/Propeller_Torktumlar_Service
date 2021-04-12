@@ -65,11 +65,9 @@ namespace SnurrtumlareWebSite.Services
             return await _context.Users.Where(u => u.Email == userEmail).ToListAsync();
         }
 
-        public User GetUserProfile(string userEmail)
+        public User GetUserProfile(string mailToLookFor)
         {
-            CheckAndMigrateUser(userEmail);
-
-            return _context.Users.Single(u => u.Email == userEmail);
+            return _context.Users.Single(u => u.Email == mailToLookFor);
         }
 
         public User UpdateProfile(User user, string firstName, string lastName, string phone, string address, string city, string zipcode)
@@ -84,29 +82,6 @@ namespace SnurrtumlareWebSite.Services
 
             _context.Update(user);
             _context.SaveChanges();
-
-            return user;
-        }
-
-        public User CheckAndMigrateUser(string loggedInUserMail)
-        {
-            var user = _context.Users.SingleOrDefault(u => u.Email == loggedInUserMail);
-
-            if (user == null)
-            {
-                user = new User();
-
-                user.Email = loggedInUserMail;
-
-                _context.Users.Add(user);
-                _context.SaveChanges();
-            }
-            else if (loggedInUserMail == null)
-            {
-                user.Email = loggedInUserMail;
-
-                _context.SaveChanges();
-            }
 
             return user;
         }
