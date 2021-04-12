@@ -47,7 +47,7 @@ namespace SnurrtumlareWebSite.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 users = users.Where(s => !string.IsNullOrEmpty(s.LastName) && s.LastName.ToLower().Contains(searchString.ToLower())
-                       || !string.IsNullOrEmpty(s.FirstName) && s.FirstName.ToLower().Contains(searchString.ToLower())).ToList();
+                                      || !string.IsNullOrEmpty(s.FirstName) && s.FirstName.ToLower().Contains(searchString.ToLower())).ToList();
             }
 
             switch (sortOrder)

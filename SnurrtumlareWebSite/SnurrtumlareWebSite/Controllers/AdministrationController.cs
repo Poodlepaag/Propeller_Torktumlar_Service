@@ -198,7 +198,6 @@ namespace SnurrtumlareWebSite.Controllers
 
 
             var AspNetUsers = userManager.Users.ToList();
-            //var usersInRole = userManager.GetUsersInRoleAsync(role.Name).Result.ToList();
             var AspNetRoles = applicationDbContext.UserRoles.ToList();
 
 
