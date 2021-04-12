@@ -48,15 +48,13 @@
                 <span asp-validation-for="Phone" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input id="Input_Style" type="submit" value="Create" class="btn btn-primary"/>
+                <input id="Input_Style" type="submit" value="Create" class="btn btn-primary" />
+                <a id="Input_Style" type="button" class="btn btn-info btn-md" asp-action="Index">Back to List</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-        <a id="Input_Style" type="button" class="btn btn-info btn-md" asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
