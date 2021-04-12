@@ -50,7 +50,7 @@ namespace SnurrtumlareWebSite.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 orders = orders.Where(s => s.OrderId.ToString().Contains(searchString)
-                                       || s.TotalOrderCost.ToString().Contains(searchString)).ToList();
+                                        || s.TotalOrderCost.ToString().Contains(searchString)).ToList();
             }
 
             switch (sortOrder)
@@ -79,7 +79,6 @@ namespace SnurrtumlareWebSite.Controllers
             ViewBag.OnePageOfOrders = orders.ToPagedList(pageNumber, pageSize);
 
             return View();
-            //return View(await _ordersService.GetAllOrders());
         }
 
 

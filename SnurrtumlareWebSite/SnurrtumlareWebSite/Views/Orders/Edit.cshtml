@@ -72,7 +72,7 @@
 
             <table style="width:100%" class="table table-bordered table-striped table-hover">
                 <tr>
-                    @*<th>Order row ID</th>*@
+                    
                     <th>Product ID</th>
                     <th>Product Name</th>
                     <th>Quantity</th>
@@ -81,10 +81,6 @@
                 @foreach (var orderRow in Model.Order.OrderRows)
                 {
                     <tr>
-                        @*<td>
-                            @Html.DisplayFor(modelItem => orderRow.OrderRowId)
-                            </td>*@
-
                         <td>
                             @Html.DisplayFor(modelItem => orderRow.Product.ProductId)
                         </td>

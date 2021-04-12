@@ -2,9 +2,6 @@
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="background-color: #e3f2fd;">
         <div class="container">
 
-            @{/*TODO: Code cleanup i _HeaderAdministration behövs om allt är OK. Rad: 7, 17-19, 51-65*/ }
-
-            @*<a class="navbar-brand" asp-area="" asp-controller="Administration" asp-action="Index">Identity Administration</a>*@
             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Web Shop</a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -14,9 +11,6 @@
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
 
-                    @*<li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="BackOffice" asp-action="Index">Back to BackOffice</a>
-                        </li>*@
 
                     <ul class="nav justify-content-start">
                         <li class="nav-item dropdown">
@@ -26,10 +20,10 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" asp-controller="BackOffice" asp-action="Index">Index</a>
-                                <a class="dropdown-item" asp-controller="BackOffice" asp-action="Users">Users</a>
-                                <a class="dropdown-item" asp-controller="BackOffice" asp-action="Orders">Orders</a>
-                                <a class="dropdown-item" asp-controller="BackOffice" asp-action="Products">Products</a>
-                                <a class="dropdown-item" asp-controller="BackOffice" asp-action="Profile">Profile</a>
+                                <a class="dropdown-item" asp-controller="Users" asp-action="Index">Users</a>
+                                <a class="dropdown-item" asp-controller="Orders" asp-action="Index">Orders</a>
+                                <a class="dropdown-item" asp-controller="Products" asp-action="Index">Products</a>
+                                <a class="dropdown-item" asp-controller="BackOfficeProfile" asp-action="Index">Profile</a>
                             </div>
                         </li>
 
@@ -48,21 +42,6 @@
                     </ul>
 
 
-                    @*<li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="BackOffice" asp-action="Index">Back to BackOffice</a>
-                        </li>
-
-                        <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Administration" asp-action="ListRoles">List Roles</a>
-                        </li>
-
-                        <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Administration" asp-action="CreateRole">Create Role</a>
-                        </li>
-
-                        <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Administration" asp-action="ListUsers">List Users</a>
-                        </li>*@
 
                 </ul>
 

@@ -83,10 +83,6 @@ namespace SnurrtumlareWebSite.Controllers
 
             return View();
 
-
-
-            //var roles = roleManager.Roles;
-            //return View(roles);
         }
 
 
@@ -108,7 +104,6 @@ namespace SnurrtumlareWebSite.Controllers
                 RoleName = role.Name
             };
 
-            //var users = userManager.Users;
             var data = userManager.GetUsersInRoleAsync(role.Name).Result;
 
             foreach (var item in data)
@@ -116,7 +111,6 @@ namespace SnurrtumlareWebSite.Controllers
                 var user = userManager.Users.FirstOrDefault(u => u.Id == item.Id);
 
                 if (item.Id == user.Id)
-                //if (await userManager.IsInRoleAsync(user, role.Name))
                 {
                     model.Users.Add(item.UserName);
                 }
@@ -204,7 +198,6 @@ namespace SnurrtumlareWebSite.Controllers
 
 
             var AspNetUsers = userManager.Users.ToList();
-            //var usersInRole = userManager.GetUsersInRoleAsync(role.Name).Result.ToList();
             var AspNetRoles = applicationDbContext.UserRoles.ToList();
 
 
@@ -294,8 +287,6 @@ namespace SnurrtumlareWebSite.Controllers
 
             return View();
 
-            //var users = userManager.Users;
-            //return View(users);
         }
 
     }
