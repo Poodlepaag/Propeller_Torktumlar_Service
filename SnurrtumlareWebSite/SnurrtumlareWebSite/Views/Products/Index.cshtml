@@ -38,23 +38,27 @@
                         <th>
                             @Html.ActionLink("Product Id", "Index", new { sortOrder = ViewBag.ProductIdSortParm, currentFilter=ViewBag.CurrentFilter })
                             @*Id*@
+                            @*@Html.DisplayNameFor(model => model.ProductName)*@
                         </th>
 
 
                         <th>
                             @Html.ActionLink("Product Name", "Index", new { sortOrder = ViewBag.ProductNameSortParm, currentFilter=ViewBag.CurrentFilter })
                             @*Product Name*@
+                            @*@Html.DisplayNameFor(model => model.ProductName)*@
                         </th>
 
                         <th>
                             @Html.ActionLink("Product Description", "Index", new { sortOrder = ViewBag.ProductDescriptionSortParm, currentFilter=ViewBag.CurrentFilter })
 
                             @*Description*@
+                            @*@Html.DisplayNameFor(model => model.ProductDescription)*@
                         </th>
 
                         <th>
                             @Html.ActionLink("Product Price", "Index", new { sortOrder = ViewBag.ProductPriceSortParm, currentFilter=ViewBag.CurrentFilter })
                             @*Price*@
+                            @*@Html.DisplayNameFor(model => model.ProductPrice)*@
                         </th>
                         <th></th>
                     </tr>
@@ -65,20 +69,27 @@
                         <tr>
                             <td>
                                 @item.ProductId
+                                @*@Html.DisplayFor(modelItem => item.ProductId)*@
                             </td>
 
                             <td>
                                 @item.ProductName
+                                @*@Html.DisplayFor(modelItem => item.ProductName)*@
                             </td>
 
                             <td>
                                 @item.ProductDescription
+                                @*@Html.DisplayFor(modelItem => item.ProductDescription)*@
                             </td>
 
 
+                            @*<td>
+                                @item.Quantity
+                                </td>*@
 
                             <td>
                                 @item.ProductPrice
+                                @*@Html.DisplayFor(modelItem => item.ProductPrice)*@
                             </td>
 
 

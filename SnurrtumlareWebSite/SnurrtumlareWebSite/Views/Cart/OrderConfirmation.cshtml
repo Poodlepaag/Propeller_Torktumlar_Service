@@ -1,9 +1,5 @@
 ﻿@model OrderViewModel
 
-@{
-    ViewData["Title"] = "OrderConfirmation";
-}
-
 @section Scripts{
     <script src="https://code.jquery.com/jquery-latest.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>
     <script src="~/js/ordermessage/sendmessage.js"></script>
@@ -173,8 +169,8 @@
                                             </td>
                                         }
                                     </tr>
-                                </thead>
-                            </table>
+                                    </thead>
+                                </table>
 
                             <div width="100%" style="text-align: center">
                                 <input type="button" class="order-confirmation-button-style" value="Avbryt" data-dismiss="modal" />
@@ -183,13 +179,12 @@
                         </form>
                     </div>
                 </div>
-
+                
             </div>
         </div>
     </div>
 </body>
 <script type="text/javascript">
-    $('#edit-profile-button').click(function () {
-        $('#update-profile-modal').modal('toggle');
-    });
+        $('#edit-profile-button').click(function() {
+            $('#update-profile-modal').modal('toggle'); });
 </script>

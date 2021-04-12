@@ -30,6 +30,8 @@ namespace SnurrtumlareWebSite.Data
             string ADMIN_Id = Guid.NewGuid().ToString();
             string ADMIN_ConcurrencyStamp = Guid.NewGuid().ToString();
 
+            //string USER_Id1 = Guid.NewGuid().ToString();
+            //string USER_ConcurrencyStamp1 = Guid.NewGuid().ToString();
 
             string USER_Id2 = Guid.NewGuid().ToString();
             string USER_ConcurrencyStamp2 = Guid.NewGuid().ToString();

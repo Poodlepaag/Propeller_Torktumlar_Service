@@ -24,9 +24,10 @@ namespace SnurrtumlareWebSite.Services
                 return _context.Products.ToList();
             }
 
-            var result = _context.Products.Where(p => p.ProductName.ToLower().Contains(searchString.ToLower()) ||
-                                                      p.ProductDescription.ToLower().Contains(searchString.ToLower()) ||
-                                                      p.Category.ToLower().Contains(searchString.ToLower()));
+            var result = _context.Products.Where(p =>
+                    p.ProductName.ToLower().Contains(searchString.ToLower()) ||
+                    p.ProductDescription.ToLower().Contains(searchString.ToLower()) ||
+                    p.Category.ToLower().Contains(searchString.ToLower()));
 
             return result.ToList();
         }

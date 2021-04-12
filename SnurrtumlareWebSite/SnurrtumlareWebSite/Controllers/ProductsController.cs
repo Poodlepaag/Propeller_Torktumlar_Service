@@ -48,8 +48,8 @@ namespace SnurrtumlareWebSite.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                products = products.Where(s => !string.IsNullOrEmpty(s.ProductName) && s.ProductName.ToLower().Contains(searchString.ToLower())
-                                            || !string.IsNullOrEmpty(s.ProductDescription) && s.ProductDescription.ToLower().Contains(searchString.ToLower())).ToList();
+                products = products.Where(s => s.ProductName.ToLower().Contains(searchString.ToLower())
+                                       || s.ProductDescription.ToLower().Contains(searchString.ToLower())).ToList();
             }
 
 
@@ -90,6 +90,9 @@ namespace SnurrtumlareWebSite.Controllers
             return View();
 
 
+            //List<Product> result = await _productsService.GetAllProducts();
+
+            //return View(result);
         }
 
 
