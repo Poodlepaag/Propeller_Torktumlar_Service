@@ -65,5 +65,50 @@ namespace SnurrtumlareWebSite.Services
             return await _context.Users.Where(u => u.Email == userEmail).ToListAsync();
         }
 
+        public User GetUserProfile(string userEmail)
+        {
+            CheckAndMigrateUser(userEmail);
+
+            return _context.Users.Single(u => u.Email == userEmail);
+        }
+
+        public User UpdateProfile(User user, string firstName, string lastName, string phone, string address, string city, string zipcode)
+        {
+            user = _context.Users.Single(u => u.Email == user.Email);
+            user.FirstName = firstName;
+            user.LastName = lastName;
+            user.Phone = phone;
+            user.Address = address;
+            user.City = city;
+            user.ZipCode = zipcode;
+
+            _context.Update(user);
+            _context.SaveChanges();
+
+            return user;
+        }
+
+        public User CheckAndMigrateUser(string loggedInUserMail)
+        {
+            var user = _context.Users.SingleOrDefault(u => u.Email == loggedInUserMail);
+
+            if (user == null)
+            {
+                user = new User();
+
+                user.Email = loggedInUserMail;
+
+                _context.Users.Add(user);
+                _context.SaveChanges();
+            }
+            else if (loggedInUserMail == null)
+            {
+                user.Email = loggedInUserMail;
+
+                _context.SaveChanges();
+            }
+
+            return user;
+        }
     }
 }

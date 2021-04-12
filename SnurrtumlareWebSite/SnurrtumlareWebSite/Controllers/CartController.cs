@@ -116,11 +116,11 @@ namespace SnurrtumlareWebSite.Controllers
             return View();
         }
 
-        public IActionResult UpdateProfile(string firstName, string lastName, string phone, string address, string city, string zipcode)
+        public IActionResult UpdateProfile(User user, string firstName, string lastName, string phone, string address, string city, string zipcode)
         {
             Model = HttpContext.Session.GetObjectFronJson<OrderViewModel>("order");
 
-            Model.User = cartsService.UpdateProfile(Model.User, firstName, lastName, phone, address, city, zipcode);
+            Model.User = cartsService.UpdateProfile(user, firstName, lastName, phone, address, city, zipcode);
 
             HttpContext.Session.SetObjectAsJson("order", Model);
 
