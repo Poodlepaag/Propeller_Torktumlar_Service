@@ -22,8 +22,6 @@ namespace SnurrtumlareWebSite
 
         // This method gets called by the runtime. Use this method to add services to the container.
 
-        // ConnectionString -> @"Data Source = (localdb)\MSSQLLocalDB;Initial Catalog = SnurrtumlareDB;";
-
         public void ConfigureServices(IServiceCollection services)
         {
             //Använd denna för Mikis AzureDb 
