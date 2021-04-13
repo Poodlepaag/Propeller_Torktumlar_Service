@@ -1,0 +1,115 @@
+﻿@*@model IEnumerable<SnurrtumlareWebSite.Models.Product>*@
+
+@using X.PagedList.Mvc.Core.Fluent
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common
+@using X.PagedList;
+
+<link href="/css/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Products - Start page</h1>
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <p>
+                <a id="Input_Style" class="btn btn-primary btn-md" asp-action="Create">Create New Product</a>
+
+                <a id="Input_Style" class="btn btn-info btn-md" asp-controller="BackOffice" asp-action="Index">Back To Index</a>
+            </p>
+
+            @using (Html.BeginForm("Index", "Products", FormMethod.Get))
+            {
+                <form class="search-bar-form">
+                    <input id="search_bar" type="text" name="SearchString" placeholder="  Search Product by Name or Description " ViewBag.CurrentFilter />
+                </form>
+                <br />
+            }
+
+            <table style="width:100%" class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.ActionLink("Product Id", "Index", new { sortOrder = ViewBag.ProductIdSortParm, currentFilter=ViewBag.CurrentFilter })
+                            @*Id*@
+                            @*@Html.DisplayNameFor(model => model.ProductName)*@
+                        </th>
+
+
+                        <th>
+                            @Html.ActionLink("Product Name", "Index", new { sortOrder = ViewBag.ProductNameSortParm, currentFilter=ViewBag.CurrentFilter })
+                            @*Product Name*@
+                            @*@Html.DisplayNameFor(model => model.ProductName)*@
+                        </th>
+
+                        <th>
+                            @Html.ActionLink("Product Description", "Index", new { sortOrder = ViewBag.ProductDescriptionSortParm, currentFilter=ViewBag.CurrentFilter })
+
+                            @*Description*@
+                            @*@Html.DisplayNameFor(model => model.ProductDescription)*@
+                        </th>
+
+                        <th>
+                            @Html.ActionLink("Product Price", "Index", new { sortOrder = ViewBag.ProductPriceSortParm, currentFilter=ViewBag.CurrentFilter })
+                            @*Price*@
+                            @*@Html.DisplayNameFor(model => model.ProductPrice)*@
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.OnePageOfProducts)
+                    {
+                        <tr>
+                            <td>
+                                @item.ProductId
+                                @*@Html.DisplayFor(modelItem => item.ProductId)*@
+                            </td>
+
+                            <td>
+                                @item.ProductName
+                                @*@Html.DisplayFor(modelItem => item.ProductName)*@
+                            </td>
+
+                            <td>
+                                @item.ProductDescription
+                                @*@Html.DisplayFor(modelItem => item.ProductDescription)*@
+                            </td>
+
+
+                            @*<td>
+                                @item.Quantity
+                                </td>*@
+
+                            <td>
+                                @item.ProductPrice
+                                @*@Html.DisplayFor(modelItem => item.ProductPrice)*@
+                            </td>
+
+
+                            <td>
+                                <div class="form-check-inline">
+                                    <a id="Input_Style" class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.ProductId">Edit</a>
+                                    <a id="Input_Style" class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.ProductId">Details</a>
+                                    <a id="Input_Style" class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <br />
+
+            @Html.PagedListPager( (IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page }) )
+
+
+        </div>
+    </div>
+</div>         

@@ -1,0 +1,47 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@section Scripts{
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/ordermessage/sendmessage.js"></script>
+    <script src="~/js/ordermessage/receivemessage.js"></script>
+}
+
+<head>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+
+<div id="thank-you-modal" class="modal fade bd-example-modal-lg" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="testModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="text-align: center">
+            <h2>TACK FÖR DITT KÖP!</h2>
+            <div width="100%" style="text-align: center; margin-bottom: 40px">
+                <img src="~/assets/icons/check-mark.png" width="150" />
+            </div>
+            <p>
+                Nu gör vi vårt yttersta för att dina produkter skall nå dig så snabbt det bara går<br />
+                och inom kort får du en bekräftelse av din order skickat till din mail.<br />
+                I det mailet får du även en spårningslänk så att du kan se var dina varor är någonstans
+            </p>
+            <p>
+                När du stänger denna ruta så skickas du tillbaka till startsidan så att du kan fortsätta<br />
+                titta runt på vår roliga sida som vi är väldigt stolta över!
+            </p>
+            <div width="100%" style="text-align: center">
+                <form asp-controller="Home" asp-action="Index" method="post">
+                    <input type="submit" class="order-confirmation-button-style" value="Avsluta" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#thank-you-modal').modal('show');
+    });
+</script>

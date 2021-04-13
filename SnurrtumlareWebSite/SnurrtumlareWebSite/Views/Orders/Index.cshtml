@@ -1,0 +1,93 @@
+﻿@*@model IEnumerable<SnurrtumlareWebSite.Models.Order>
+*@
+@using X.PagedList.Mvc.Core.Fluent
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common
+@using X.PagedList;
+
+<link href="/css/PagedList.css" rel="stylesheet" type="text/css" />
+
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Orders - Start page</h1>
+
+<p>
+    <a id="Input_Style" class="btn btn-info btn-md" asp-controller="BackOffice" asp-action="Index">Back To Index</a>
+</p>
+
+@using (Html.BeginForm("Index", "Orders", FormMethod.Get))
+{
+    <form class="search-bar-form">
+        <input id="search_bar" type="text" name="SearchString" placeholder="  Search OrderId or Total Order Cost " ViewBag.CurrentFilter/>
+    </form>
+    <br/>
+}
+
+
+<table style="width:100%" class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.ActionLink("Order Id", "Index", new { sortOrder = ViewBag.OrderIdSortParm, currentFilter=ViewBag.CurrentFilter })
+                @*Order ID*@
+            </th>
+            <th>
+                User e-mail
+            </th>
+            <th>
+                @Html.ActionLink("Total Order Cost", "Index", new { sortOrder = ViewBag.OrderCostSortParm, currentFilter=ViewBag.CurrentFilter })
+                @*Total order cost*@
+            </th>
+            <th>
+                @Html.ActionLink("Delivery status", "Index", new { sortOrder = ViewBag.DeliveryStatusSortParm, currentFilter=ViewBag.CurrentFilter })
+
+                @*Delivery status*@
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.OnePageOfOrders)
+        {
+            <tr>
+                <td>
+                    @item.OrderId
+                    @*@Html.DisplayFor(modelItem => item.OrderId)*@
+                </td>
+                <td>
+                    @item.User.Email
+                    @*@Html.DisplayFor(modelItem => item.User.Email)*@
+                </td>
+                <td>
+                    @item.TotalOrderCost
+                    @*@Html.DisplayFor(modelItem => item.TotalOrderCost)*@
+                </td>
+                <td>
+                    @if(item.IsDelivered)
+                    {
+                        <a>Delivered</a>
+                }
+                    else
+                    {
+                        <a>Pending Delivery</a>
+                    }
+                    @*@item.IsDelivered*@
+                    @*@Html.DisplayFor(modelItem => item.IsDelivered)*@
+                </td>
+                <td>
+                    <div class="form-check-inline">
+                        <a id="Input_Style" class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.OrderId">Edit/Details</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+
+@Html.PagedListPager( (IPagedList)ViewBag.OnePageOfOrders, page => Url.Action("Index", new { page }) )

@@ -1,0 +1,56 @@
+﻿@model SnurrtumlareWebSite.Models.Product
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Image Path
+            @*@Html.DisplayNameFor(model => model.ImageLink)*@
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ImageLink)
+        </dd>
+        <dt class = "col-sm-2">
+            Product Name
+            @*@Html.DisplayNameFor(model => model.ProductName)*@
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+        <dt class = "col-sm-2">
+            Description
+            @*@Html.DisplayNameFor(model => model.ProductDescription)*@
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ProductDescription)
+        </dd>
+        @*<dt class = "col-sm-2">
+            Amount in Stock
+            @Html.DisplayNameFor(model => model.AmountInStock)
+        </dt>*@
+        <dt class = "col-sm-2">
+            Price
+            @*@Html.DisplayNameFor(model => model.ProductPrice)*@
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ProductPrice) Sek
+        </dd>
+    </dl>
+</div>
+<div>
+    <a id="Input_Style" type="button" class="btn btn-primary btn-md" asp-action="Edit" asp-route-id="@Model.ProductId">Edit</a>
+    <a id="Input_Style" type="button" class="btn btn-info btn-md" asp-action="Index">Back to List</a>
+</div>

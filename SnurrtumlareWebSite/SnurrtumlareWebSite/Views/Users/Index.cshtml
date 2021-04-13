@@ -1,0 +1,100 @@
+﻿@*@model IEnumerable<SnurrtumlareWebSite.Models.User>*@
+
+@using X.PagedList.Mvc.Core.Fluent
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common
+@using X.PagedList;
+
+<link href="/css/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewData["Title"] = "Index";
+
+}
+
+<h1>Users - Start page</h1>
+
+<p>
+    <a id="Input_Style" class="btn btn-primary btn-md" asp-action="Create">Create new user</a>
+
+    <a id="Input_Style" class="btn btn-info btn-md" asp-controller="BackOffice" asp-action="Index">Back To Index</a>
+</p>
+
+
+@using (Html.BeginForm("Index", "Users", FormMethod.Get))
+{
+    <form class="search-bar-form" >
+        <input id="search_bar" type="text" name="SearchString" placeholder="  Search user by firstname or lastname" ViewBag.CurrentFilter/>
+    </form>
+    <br/>
+}
+
+
+
+<table style="width:100%" class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.ActionLink("User Id", "Index", new { sortOrder = ViewBag.UserIdSortParm, currentFilter=ViewBag.CurrentFilter })
+            </th>
+
+
+            <th>
+                @Html.ActionLink("First Name", "Index", new { sortOrder = ViewBag.FirstNameSortParm, currentFilter=ViewBag.CurrentFilter })
+            </th>
+
+
+            <th>
+                @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.LastNameSortParm, currentFilter=ViewBag.CurrentFilter })
+            </th>
+
+            <th>
+                E-mail
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.OnePageOfUsers)
+        {
+            if (item.FirstName != "*****")
+            {
+                <tr>
+                    <td>
+                        @item.UserId
+                        @*@Html.DisplayFor(modelItem => item.UserId)*@
+                    </td>
+                    <td>
+                        @item.FirstName
+                        @*@Html.DisplayFor(modelItem => item.FirstName)*@
+                    </td>
+                    <td>
+                        @item.LastName
+                        @*@Html.DisplayFor(modelItem => item.LastName)*@
+                    </td>
+                    <td>
+                        @item.Email
+                        @*@Html.DisplayFor(modelItem => item.Email)*@
+                    </td>
+
+                    <td>
+                        <div class="form-check-inline">
+                            <a id="Input_Style" type="button" class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.UserId">Edit</a>
+                            <a id="Input_Style" type="button" class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.UserId">Details</a>
+                            @*<a id="Input_Style" type="button" class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.UserId">Delete</a>*@
+                        </div>
+                    </td>
+                </tr>
+            }
+
+        }
+    </tbody>
+</table>
+
+<br />
+
+@Html.PagedListPager( (IPagedList)ViewBag.OnePageOfUsers, page => Url.Action("Index", new { page }) )
+
+

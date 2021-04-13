@@ -1,0 +1,87 @@
+﻿@model IEnumerable<SnurrtumlareWebSite.Models.User>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Profile</h1>
+
+<p>
+    <a id="Input_Style" type="button" class="btn btn-info btn-md" asp-controller="BackOffice" asp-action="Index">Back To Index</a>
+</p>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <table style="width:100%" class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            First Name
+                            @*@Html.DisplayNameFor(model => model.FirstName)*@
+                        </th>
+                        <th>
+                            Last Name
+                            @*@Html.DisplayNameFor(model => model.LastName)*@
+                        </th>
+                        @*<th>
+                            @Html.DisplayNameFor(model => model.Address)
+                            </th>
+                            <th>
+                            @Html.DisplayNameFor(model => model.ZipCode)
+                            </th>
+                            <th>
+                            @Html.DisplayNameFor(model => model.City)
+                            </th>*@
+                        <th>
+                            E-mail
+                            @*@Html.DisplayNameFor(model => model.Email)*@
+                        </th>
+                        @*<th>
+                            @Html.DisplayNameFor(model => model.Phone)
+                            </th>*@
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastName)
+                            </td>
+                            @*<td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                                </td>
+                                <td>
+                                @Html.DisplayFor(modelItem => item.ZipCode)
+                                </td>
+                                <td>
+                                @Html.DisplayFor(modelItem => item.City)
+                                </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            @*<td>
+                                @Html.DisplayFor(modelItem => item.Phone)
+                                </td>*@
+
+                            <td>
+                                <div class="form-check-inline">
+                                    <a id="Input_Style" type="button" class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.UserId">Edit</a>
+                                    <a id="Input_Style" type="button" class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.UserId">Details</a>
+                                </div>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

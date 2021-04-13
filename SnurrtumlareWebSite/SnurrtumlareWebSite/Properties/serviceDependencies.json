@@ -1,8 +1,15 @@
 {
   "dependencies": {
-    "mssql1": {
+    "secrets1": {
+      "type": "secrets"
+    },
+    "mssql3": {
       "type": "mssql",
-      "connectionId": "DefaultConnection"
+      "connectionId": "SnurrtumlareDB"
+    },
+    "mssql2": {
+      "type": "mssql",
+      "connectionId": "IdentityDB"
     }
   }
 }

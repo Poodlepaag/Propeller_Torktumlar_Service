@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "mssql2": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/grupp4testserver/databases/IdentityDB",
+      "type": "mssql.azure",
+      "connectionId": "IdentityDB",
+      "secretStore": "AzureAppSettings"
+    },
+    "mssql3": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/grupp4testserver/databases/SnurrtumlareDB",
+      "type": "mssql.azure",
+      "connectionId": "SnurrtumlareDB",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}

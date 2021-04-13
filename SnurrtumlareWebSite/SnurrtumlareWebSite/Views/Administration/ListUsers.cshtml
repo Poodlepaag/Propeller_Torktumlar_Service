@@ -1,0 +1,91 @@
+﻿@using Microsoft.AspNetCore.Identity
+@*@model IEnumerable<IdentityUser>*@
+
+@using X.PagedList.Mvc.Core.Fluent
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common
+@using X.PagedList;
+
+<link href="/css/PagedList.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+@{
+    ViewBag.Title = "All Users";
+
+    var users = ViewBag.OnePageOfUsers;
+}
+
+<h1>All Users</h1>
+
+@if (users.Count > 0)
+{
+    <a asp-area="Identity" asp-page="/Account/Register"
+   class="btn btn-primary mb-3" style="width:auto">
+        Create new user
+    </a>
+
+    <a asp-action="Index"
+   asp-controller="Administration"
+   class="btn btn-info mb-3"
+   style="width:auto">
+        Return to Index
+    </a>
+
+
+
+
+    @using (Html.BeginForm("ListUsers", "Administration", FormMethod.Get))
+    {
+        <form class="search-bar-form">
+            <input id="search_bar" type="text" name="SearchString" placeholder="  Search user by Email" />
+        </form>
+        <br />
+    }
+
+
+    @*<a asp-action="Register" asp-controller="Identity/Account"
+        class="btn btn-primary mb-3" style="width:auto">
+        Add new user
+        </a>*@
+    foreach (var user in ViewBag.OnePageOfUsers)
+    {
+        <div class="card mb-3">
+            <div class="card-header">
+                User Id : @user.Id
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">@user.UserName</h5>
+            </div>
+            @*<div class="card-footer">
+                <a href="#" class="btn btn-primary btn-sm">Edit</a>
+                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                </div>*@
+        </div>
+    }
+}
+else
+{
+    <div class="card">
+        <div class="card-header">
+            No users created yet
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">
+                Use the button below to create a user
+            </h5>
+            <a asp-area="Identity" asp-page="/Account/Register"
+           class="btn btn-primary mb-3" style="width:auto">
+                Add new user
+            </a>
+        </div>
+    </div>
+}
+
+
+<br />
+
+@Html.PagedListPager( (IPagedList)ViewBag.OnePageOfUsers, page => Url.Action("ListUsers", new { page }) )
+

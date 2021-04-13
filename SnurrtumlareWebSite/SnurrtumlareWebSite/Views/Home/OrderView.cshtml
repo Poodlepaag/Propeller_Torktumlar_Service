@@ -1,0 +1,179 @@
+﻿@using SnurrtumlareWebSite.Models
+@model IEnumerable<Order>
+
+@{
+    ViewData["Title"] = "OrderView";
+}
+
+
+
+
+
+
+
+<div>
+    <h1 class="pos2" style="font-size:300%;">Dina order</h1>
+</div>
+
+<center><img src="~/assets/icons/orderpicture.png" width="200" height="200" /></center>
+
+<p class="pos3">
+    <center>Nedan ser du information om dina tidigare beställningar, under "Detaljer" hittar du mera information om din order.</center>
+</p>
+<p class="pos3">
+    <center>Dina Beställningar</center>
+</p>
+
+
+<div class="row"></div>
+<div class="col-md-12"></div>
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+
+
+
+            <table style="width:100%" class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Ordernummer</th>
+                        <th>Kundnummer</th>
+                        <th>Namn</th>
+                        <th>Levererad</th>
+                        <th>Mera Information</th>
+                    </tr>
+                </thead>
+
+
+
+
+                <tbody>
+                    @foreach (var order in from i in Model where i.User.Email == "send_me_your_prayers@abdi.com" select i)
+
+
+
+                    {
+
+
+                        <tr>
+                            <td>@order.OrderId</td>
+                            <td>@order.User.UserId</td>
+                            <td>@order.User.FirstName @order.User.LastName</td>
+                            <td>@order.IsDelivered</td>
+
+
+                            <td>
+                                <div class="form-check-inline">
+
+
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter1">
+                                        Detaljer
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<p><a href="https://localhost:44392/Home/ProfileView"><center>Tillbaka till din profilsida</center></a></p>
+
+
+<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"><b>Beställning - Ordernummer # @foreach (var order in from i in Model where i.User.Email == "send_me_your_prayers@abdi.com" select i) { @order.OrderId}</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+
+                                <div class="col-6 col-sm-12">
+
+
+
+
+
+                                    @foreach (var order in from i in Model where i.User.Email == "send_me_your_prayers@abdi.com" select i)
+                                    {
+
+
+                                        <p>
+                                            <b>Kundnummer:</b> @order.User.UserId <br>
+
+                                        </p>
+
+                                        <p>
+                                            <b>Ordernummer:</b> @order.OrderId <br>
+
+                                        </p>
+
+
+                                        <p>
+                                            <b>Namn:</b> @order.User.FirstName @order.User.LastName<br>
+
+                                        </p>
+
+
+                                        <p>
+                                            <b>Leveransadress:</b> @order.User.Address , @order.User.ZipCode @order.User.City <br>
+
+                                        </p>
+
+                                        <p>
+                                            <b>Email:</b> @order.User.Email <br>
+
+                                        </p>
+
+                                        <p>
+                                            <b>Antal artiklar:</b> @order.OrderRows.Count <br>
+
+                                        </p>
+
+                                        <p>
+                                            <b>Total kostnad:</b> @order.TotalOrderCost <br>
+
+                                        </p>
+
+                                        <p>
+                                            <b>Leverad:</b> @order.IsDelivered <br>
+
+                                        </p>
+
+                                    }
+
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Stäng</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>

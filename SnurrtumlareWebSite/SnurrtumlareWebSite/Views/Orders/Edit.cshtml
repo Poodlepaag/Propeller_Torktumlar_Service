@@ -1,0 +1,194 @@
+﻿@model SnurrtumlareWebSite.Models.OrderViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Order details</h1>
+
+<hr />
+
+
+@if (Model.Order.User.FirstName != "*****")
+{
+
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label class="control-label">Order ID</label>
+                    <input class="form-control" type="text" asp-for="Order.OrderId" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">User ID</label>
+                    <input class="form-control" type="text" asp-for="Order.UserId" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">First name</label>
+                    <input class="form-control" type="text" asp-for="Order.User.FirstName" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Last name</label>
+                    <input class="form-control" type="text" asp-for="Order.User.LastName" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">E-mail</label>
+                    <input class="form-control" type="text" asp-for="Order.User.Email" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Total order cost</label>
+                    <input class="form-control" type="text" asp-for="Order.TotalOrderCost" readonly />
+                </div>
+
+                @if (Model.Order.IsDelivered == false)
+                {
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input-" asp-for="Order.IsDelivered" /> Mark order as delivered?
+                        </label>
+                    </div>
+                }
+                else
+                {
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input-" asp-for="Order.IsDelivered" disabled /> Order is delivered
+                        </label>
+                    </div>
+                }
+
+
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" id="Input_Style" />
+                    <a class="btn btn-info btn-md" id="Input_Style" asp-action="Index">Back to List</a>
+                </div>
+            </form>
+        </div>
+
+
+        <div class="col-md-8">
+            Order rows
+
+            <table style="width:100%" class="table table-bordered table-striped table-hover">
+                <tr>
+                    @*<th>Order row ID</th>*@
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                </tr>
+
+                @foreach (var orderRow in Model.Order.OrderRows)
+                {
+                    <tr>
+                        @*<td>
+                            @Html.DisplayFor(modelItem => orderRow.OrderRowId)
+                            </td>*@
+
+                        <td>
+                            @Html.DisplayFor(modelItem => orderRow.Product.ProductId)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => orderRow.Product.ProductName)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => orderRow.Quantity) pcs
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+
+    <div>
+    </div>
+}
+
+else
+{
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label class="control-label">Order ID</label>
+                    <input class="form-control" type="text" asp-for="Order.OrderId" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">User ID</label>
+                    <input class="form-control" type="text" asp-for="Order.UserId" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">First name</label>
+                    <input class="form-control" type="text" asp-for="Order.User.FirstName" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Last name</label>
+                    <input class="form-control" type="text" asp-for="Order.User.LastName" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">E-mail</label>
+                    <input class="form-control" type="text" asp-for="Order.User.Email" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Total order cost</label>
+                    <input class="form-control" type="text" asp-for="Order.TotalOrderCost" readonly />
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input-" asp-for="Order.IsDelivered" disabled /> Order is delivered
+                    </label>
+                </div>
+                <div class="form-group">
+                    <a class="btn btn-info btn-md" id="Input_Style" asp-action="Index">Back to List</a>
+                </div>
+            </form>
+        </div>
+
+
+        <div class="col-md-8">
+            Order rows
+
+            <table style="width:100%" class="table table-bordered table-striped table-hover">
+                <tr>
+                    <th>Order row ID</th>
+                    <th>Product Name</th>
+                    <th>Product ID</th>
+                    <th>Quantity</th>
+                </tr>
+
+                @foreach (var orderRow in Model.Order.OrderRows)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => orderRow.OrderRowId)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => orderRow.Product.ProductName)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => orderRow.Product.ProductId)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => orderRow.Quantity)
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+
+    <div>
+    </div>
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

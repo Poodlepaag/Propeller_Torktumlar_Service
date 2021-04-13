@@ -6,10 +6,14 @@
     <title>@ViewData["Title"] - SnurrtumlareWebSite</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" />
 </head>
-<body>
 
-    @Html.Partial("header") <!--Edit code in header.cshtml to change how the header looks-->
+<body>
+    <header>
+        @await Html.PartialAsync("_Header") <!--Edit code in header.cshtml to change how the header looks-->
+    </header>
 
     <div class="container">
         <main role="main" class="pb-3">
@@ -17,11 +21,15 @@
         </main>
     </div>
 
-    @Html.Partial("footer") <!--Edit code in footer.cshtml to change how the footer looks-->
+    <div class="footer">
+        @await Html.PartialAsync("_Footer") <!--Edit code in footer.cshtml to change how the footer looks-->
+    </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

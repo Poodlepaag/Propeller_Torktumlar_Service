@@ -1,0 +1,86 @@
+﻿@model SnurrtumlareWebSite.Models.Product
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Image Path</label>
+                @*<label asp-for="ImageLink" class="control-label"></label>*@
+                <br />
+                <select asp-for="ImageLink" class="form-control">
+                    <option value="/assets/pictures/Kepsar/Prop1.png">Keps 1</option>
+                    <option value="/assets/pictures/Kepsar/Prop2.png">Keps 2</option>
+                    <option value="/assets/pictures/Kepsar/Prop3.png">Keps 3</option>
+                    <option value="/assets/pictures/Kepsar/Prop4.png">Keps 4</option>
+                    <option value="/assets/pictures/Kepsar/Prop5.png">Keps 5</option>
+                    <option value="/assets/pictures/Kepsar/Prop6.png">Keps 6</option>
+                    <option value="/assets/pictures/Kepsar/Prop7.png">Keps 7</option>
+                    <option value="/assets/pictures/Kepsar/Prop8.png">Keps 8</option>
+                    <option value="/assets/pictures/Kepsar/Prop9.png">Keps 9</option>
+                    <option value="/assets/pictures/Kepsar/Prop10.png">Keps 10</option>
+                    <option value="/assets/pictures/Torktumlare/Tork1.png">Tork 1</option>
+                    <option value="/assets/pictures/Torktumlare/Tork2.png">Tork 2</option>
+                    <option value="/assets/pictures/Torktumlare/Tork3.png">Tork 3</option>
+                    <option value="/assets/pictures/Torktumlare/Tork4.png">Tork 4</option>
+                    <option value="/assets/pictures/Torktumlare/Tork5.png">Tork 5</option>
+                    <option value="/assets/pictures/Torktumlare/Tork6.png">Tork 6</option>
+                    <option value="/assets/pictures/Torktumlare/Tork7.png">Tork 7</option>
+                    <option value="/assets/pictures/Torktumlare/Tork8.png">Tork 8</option>
+                    <option value="/assets/pictures/Torktumlare/Tork9.png">Tork 9</option>
+                    <option value="/assets/pictures/Torktumlare/Tork10.png">Tork 10</option>
+                </select>
+
+                @*<input asp-for="ImageLink" class="form-control" />*@
+                <span asp-validation-for="ImageLink" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Product Name</label>
+                @*<label asp-for="ProductName" class="control-label"></label>*@
+                <input asp-for="ProductName" class="form-control" />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Category" class="control-label"></label>
+                <br />
+
+                <select asp-for="Category" class="form-control">
+                    <option value="Keps">Keps</option>
+                    <option value="Tork">Torktumlare</option>
+                </select>
+
+                @*<input asp-for="Category" class="form-control" />*@
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Description</label>
+                @*<label asp-for="ProductDescription" class="control-label"></label>*@
+                <input asp-for="ProductDescription" class="form-control" />
+                <span asp-validation-for="ProductDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Price</label>
+                @*<label asp-for="ProductPrice" class="control-label"></label>*@
+                <input asp-for="ProductPrice" class="form-control" />
+                <span asp-validation-for="ProductPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input id="Input_Style" type="submit" value="Create" class="btn btn-primary" />
+
+                 <a id="Input_Style" type="button" class="btn btn-info btn-md" asp-action="Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,47 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+<div class="information_bar">
+    <div class="information_text_left">
+        <ul id="information_bar_list">
+            <li id="information_bar_list_item_left"><img id="check_mark" src="~/assets/icons/check-mark.png"> Snurriga priser</li>
+            <li id="information_bar_list_item_left"><img id="check_mark" src="~/assets/icons/check-mark.png"> Snabba leveranser</li>
+            <li id="information_bar_list_item_left"><img id="check_mark" src="~/assets/icons/check-mark.png"> Personlig service</li>
+        </ul>
+    </div>
+    <div class="information_text_right">
+        <partial name="_LoginPartial" />
+    </div>
+</div>
+<div class="logo_search_cart">
+    <a asp-controller="Home" asp-action="Index"><img id="logo" src="~/assets/icons/Logo.png"></a>
+    <a asp-controller="Home" asp-action="ProfileView" class="small-logo"><img src="~/assets/icons/User-Icon.png"></a>
+    <a asp-controller="Cart" asp-action="Cart" class="small-logo"><img src="~/assets/icons/shopping-cart.png"></a>
+    <form class="search-bar-form" asp-controller="Home" asp-action="Products" method="get">
+        <input id="search_bar" type="text" name="SearchString" placeholder="  Sök bland våra produkter..."/>
+    </form>
+</div>
+
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light navbar-right border-bottom box-shadow justify-content-right mb-3">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+        <ul class="navbar-nav flex-grow-1" id="navbar_list">
+            <li id="navbar_item"><a id="navbar_link" asp-controller="Home" asp-action="Index">Hem</a></li>
+            <li id="navbar_item"><a id="navbar_link" asp-controller="Home" asp-action="Products">Webbutik</a></li>
+            <li id="navbar_item"><a id="navbar_link" asp-controller="Home" asp-action="Career">Karriär</a></li>
+            <li id="navbar_item"><a id="navbar_link" asp-controller="Home" asp-action="About">Om oss</a></li>
+
+            @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+            {
+                <li id="navbar_item"><a id="navbar_link" asp-controller="BackOffice" asp-action="Index">BackOffice</a></li>
+            }
+        </ul>
+    </div>
+</nav>

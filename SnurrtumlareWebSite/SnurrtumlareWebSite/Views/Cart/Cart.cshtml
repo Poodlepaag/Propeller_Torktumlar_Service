@@ -1,0 +1,98 @@
+﻿@model OrderViewModel
+
+@{
+    ViewData["Title"] = "Kundvagn";
+}
+
+<body>
+    <div class="container-fluid">
+        <h1>Din kundvagn</h1>
+        @if (Model != null && Model.Cart.ContainsItems == true)
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <table table style="width:100%" class="table table-bordered table-striped table-hover">
+                        <thead style="background-color: #f5b553">
+                            <tr>
+                                <th style="border-style: none"></th>
+                                <th>Produkt ID</th>
+                                <th>Namn</th>
+                                <th>Beskrivning</th>
+                                <th>á Pris</th>
+                                <th>Antal</th>
+                                <th>Summa</th>
+                                <th>Alternativ</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @if (Model != null && Model.Cart.ContainsItems == true)
+                            {
+                                @foreach (var item in Model.Cart.ProductsInCart)
+                                {
+                                    <tr>
+                                        <form asp-controller="Cart" method="post">
+                                            <th style="width: 35px"><img src="@item.ImageLink" style="width: 30px" alt="prdBild" /></th>
+                                            <th class="lit">@item.ProductId</th>
+                                            <th class="lit">@item.ProductName</th>
+                                            <th class="lit">@item.ProductDescription</th>
+                                            <th class="lit">@item.ProductPrice</th>
+                                            <th>
+                                                <input type="number" min="0" style="width: 50px" name="Quantity" value="@item.Quantity" />
+                                                <input type="hidden" name="ProductId" value="@item.ProductId" />
+                                            </th>
+                                            <th class="lit">@(item.ProductPrice * item.Quantity)</th>
+                                            <th>
+                                                <div class="form-check-inline">
+                                                    <button type="submit" class="shopping-cart-checkout-button" formaction="UpdateQuantity" value="@item.ProductId, @item.Quantity">Uppdatera</button>
+                                                    <button type="submit" class="shopping-cart-danger" formaction="DeleteItemFromCart" value="@item.ProductId">Ta bort</button>
+                                                </div>
+                                            </th>
+                                        </form>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>Inga produkter i kundvagnen</tr>
+                            }
+                        </tbody>
+                        <tfoot style="background-color: #f5b553">
+                            <tr>
+                                <th hidden></th>
+                                <th hidden></th>
+                                <th hidden></th>
+                                <th hidden></th>
+                                <th hidden></th>
+                                <th hidden></th>
+                                <th colspan="7" style="text-align: right">
+                                    <h3>Totalt: @Model.Cart.CartTotalCost</h3>
+                                </th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <ul>
+                        <li class="shopping-cart-button-list-item">
+                            <form asp-controller="Cart" method="post">
+                                <input type="submit" class="shopping-cart-danger" formaction="ResetCart" onclick="return confirm('Vill du verkligen ta bort kundvagnen?')" value="Ta bort kundvagn" />
+                            </form>
+                        </li>
+                        <li class="shopping-cart-button-list-item">
+                            <form asp-controller="Cart" asp-action="OrderConfirmation">
+                                <input type="submit" class="shopping-cart-checkout-button" formaction="OrderConfirmation" value="Till Kassan" />
+                            </form>
+
+                        </li>
+                        <li class="shopping-cart-button-list-item">
+                            <a href="~/Home/Products"><input type="submit" class="shopping-cart-checkout-button" value="Fortsätt handla" /></a> <!--TODO: Maby we should change this link to a more correct routing strategy?-->
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        }
+        else
+        {
+            <p>Inga produkter i varukorgen</p>
+        }
+    </div>
+</body>

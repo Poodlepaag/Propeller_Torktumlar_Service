@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            Welcome to the Snurrtumlare AB Identity Administration Section. You can access the following areas:
+            <ul>
+                <li>
+                    List Roles: View a list of all Roles currently in Identity Db
+                </li>
+                <li>
+                    Create Role: Create a new Role in Identity Db
+                </li>
+                <li>
+                    Add Role to User: Add a role to a specific User
+                </li>
+                @*<li>
+                    Profile: view your BackOffice user details, change your user password
+                    </li>*@
+            </ul>
+
+            @*Please contact your <a href="mailto:sysadmin@snurrtumlare.se">system administrator</a> if you run into errors or have questions.*@
+
+            <br>
+            <br>
+
+            Please contact your <a href="#bannerformmodal" data-toggle="modal" data-target="#exampleModal">system administrator</a> if you run into errors or have questions.
+
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="">
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                    <input type="text" value="sysadmin@snurrtumlare.se" class="form-control" id="recipient-name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-text" class="col-form-label">Message:</label>
+                                    <textarea class="form-control" id="message-text"></textarea>
+                                </div>
+                            </form>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Send message</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+@*Script to clear/reset modal on close*@
+
+<script type="text/javascript">
+
+    $('#exampleModal').on('hidden.bs.modal', function () {
+        $('#exampleModal form')[0].reset();
+    });
+
+
+</script>

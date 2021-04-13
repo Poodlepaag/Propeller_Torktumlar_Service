@@ -1,125 +1,50 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+﻿@model List<Product>
 
-    In future updates the products will be displayed by the help of a foreach-loop as follows:
-
-    @foreach (var product in Model)
-    {
-        <ul id="product_list">
-            <li id="product_list_item">
-                Produktbild
-                Produktnamn
-                Produktinfo
-                Pris
-                Button (Lägg i kundvagn)
-                Dropdown (Antal)
-            </li>
-        </ul>
-    }
-*@
 @{
-    /* model = list of products */
+    ViewData["Title"] = "Webbutik";
 }
-<style>
-    #products_page_wrapper {
-        width: 100%;
-        margin-top: 40px;
-    }
-
-    #product_image {
-        width: 80%;
-        border-radius: 15px;
-    }
-
-    #products_list_item {
-        list-style: none;
-        width: 22%;
-        margin: 1%;
-        border: 1px solid gray;
-        border-radius: 2%;
-        padding: 1%;
-        text-align: center;
-        display: inline-block;
-        background-color: whitesmoke;
-    }
-
-    #products_amount_box {
-        width: 50px;
-    }
-
-    #products_button_add_to_cart {
-        background-color: #f5b553;
-        border-radius: 8px;
-    }
-</style>
 
 <body>
-    <div id="products_page_wrapper">
-        <ul id="products_list">
-            <li id="products_list_item">
-                <img id="product_image" src="http://placeimg.com/640/360/any" alt="Produktbild" />
-                <h6 id="product_header">Produktnamn</h6>
-                <p id="product_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                <p id="product_price">169 SEK</p>
-                <input type="button" id="products_button_add_to_cart" value="Lägg i varukorg" />
-                <input type="number" id="products_amount_box" value="1" />
-            </li>
-            <li id="products_list_item">
-                <img id="product_image" src="http://placeimg.com/640/360/any" alt="Produktbild" />
-                <h6 id="product_header">Produktnamn</h6>
-                <p id="product_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                <p id="product_price">169 SEK</p>
-                <input type="button" id="products_button_add_to_cart" value="Lägg i varukorg" />
-                <input type="number" id="products_amount_box" value="1" />
-            </li>
-            <li id="products_list_item">
-                <img id="product_image" src="http://placeimg.com/640/360/any" alt="Produktbild" />
-                <h6 id="product_header">Produktnamn</h6>
-                <p id="product_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                <p id="product_price">169 SEK</p>
-                <input type="button" id="products_button_add_to_cart" value="Lägg i varukorg" />
-                <input type="number" id="products_amount_box" value="1" />
-            </li>
-            <li id="products_list_item">
-                <img id="product_image" src="http://placeimg.com/640/360/any" alt="Produktbild" />
-                <h6 id="product_header">Produktnamn</h6>
-                <p id="product_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                <p id="product_price">169 SEK</p>
-                <input type="button" id="products_button_add_to_cart" value="Lägg i varukorg" />
-                <input type="number" id="products_amount_box" value="1" />
-            </li>
-            <li id="products_list_item">
-                <img id="product_image" src="http://placeimg.com/640/360/any" alt="Produktbild" />
-                <h6 id="product_header">Produktnamn</h6>
-                <p id="product_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                <p id="product_price">169 SEK</p>
-                <input type="button" id="products_button_add_to_cart" value="Lägg i varukorg" />
-                <input type="number" id="products_amount_box" value="1" />
-            </li>
-            <li id="products_list_item">
-                <img id="product_image" src="http://placeimg.com/640/360/any" alt="Produktbild" />
-                <h6 id="product_header">Produktnamn</h6>
-                <p id="product_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                <p id="product_price">169 SEK</p>
-                <input type="button" id="products_button_add_to_cart" value="Lägg i varukorg" />
-                <input type="number" id="products_amount_box" value="1" />
-            </li>
-            <li id="products_list_item">
-                <img id="product_image" src="http://placeimg.com/640/360/any" alt="Produktbild" />
-                <h6 id="product_header">Produktnamn</h6>
-                <p id="product_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                <p id="product_price">169 SEK</p>
-                <input type="button" id="products_button_add_to_cart" value="Lägg i varukorg" />
-                <input type="number" id="products_amount_box" value="1" />
-            </li>
-            <li id="products_list_item">
-                <img id="product_image" src="http://placeimg.com/640/360/any" alt="Produktbild" />
-                <h6 id="product_header">Produktnamn</h6>
-                <p id="product_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                <p id="product_price">169 SEK</p>
-                <input type="button" id="products_button_add_to_cart" value="Lägg i varukorg" />
-                <input type="number" id="products_amount_box" value="1" />
-            </li>
-        </ul>
+    <div class="container-fluid">
+        <div class="row">
+            @if (Model == null)
+            {
+                <h3 style="text-align: center">Inga produkter hittades...</h3>
+            }
+            else
+            {
+                @foreach (var product in Model)
+                {
+                    <div class="col-md-3">
+                        <ul id="product-list">
+                            <li class="product-item">
+                                <div class="item-container">
+                                    <div class="image-container">
+                                        <img class="product-image" src="@product.ImageLink" alt="Produktbild" />
+                                    </div>
+                                    <div class="product-information-container">
+                                        <div class="product-information-header">
+                                            <h6 id="product-header">@product.ProductName</h6>
+                                        </div>
+                                        <div class="product-information-details-1">
+                                            <p id="product-description">@product.ProductDescription</p>
+                                        </div>
+                                        <div class="product-information-details-2">
+                                            <h6 id="product-price">@product.ProductPrice SEK</h6>
+                                        </div>
+                                        <div class="product-information-actions">
+                                            <form asp-controller="Cart" asp-action="AddItemToCart" method="post">
+                                                <input type="hidden" name="ProductId" value="@product.ProductId" />
+                                                <input type="submit" id="products_button_add_to_cart" value="Lägg i varukorgen" />
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                }
+            }
+        </div>
     </div>
 </body>

@@ -1,0 +1,95 @@
+﻿@using Microsoft.AspNetCore.Identity
+@*@model IEnumerable<IdentityRole>*@
+
+@using X.PagedList.Mvc.Core.Fluent
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common
+@using X.PagedList;
+
+<link href="/css/PagedList.css" rel="stylesheet" type="text/css" />
+
+
+ @{
+    ViewBag.Title = "Roles in Db";
+
+    var roles = ViewBag.OnePageOfRoles;
+}
+
+<h1>All Roles</h1>
+
+@if (roles.Count > 0)
+{
+    <a class="btn btn-primary mb-3" style="width:auto" asp-action="CreateRole" asp-controller="administration">Create new role</a>
+
+    <a class="btn btn-info mb-3" style="width:auto" asp-action="Index" asp-controller="administration">Back To Index</a>
+
+
+    @using (Html.BeginForm("ListRoles", "Administration", FormMethod.Get))
+    {
+        <form class="search-bar-form">
+            <input id="search_bar" type="text" name="SearchString" placeholder="  Search role by Name" />
+        </form>
+        <br />
+    }
+
+
+    foreach (var role in roles)
+    {
+        <div class="card mb-3">
+            <div class="card-header">
+                Role Id : @role.Id
+            </div>
+
+            <div class="card-body">
+                <h5 class="card-title">@role.Name</h5>
+            </div>
+
+            <div class="card-footer">
+                <form asp-action="DeleteRole" asp-route-id="@role.Id" method="post">
+
+                    <a class="btn btn-primary btn-sm"
+               asp-action="EditRole"
+               asp-controller="Administration"
+               asp-route-id="@role.Id">
+                        Edit
+                    </a>
+
+                    <span id="confirmDeleteSpan_@role.Id" style="display:none">
+                        <span>Are you sure you want to delete?</span>
+
+                        <button type="submit" class="btn btn-danger btn-sm">Yes</button>
+
+                        <a href="#" class="btn btn-primary btn-sm"
+                   onclick="confirmDelete('@role.Id', false)">No</a>
+                    </span>
+
+                    <span id="deleteSpan_@role.Id">
+                        <a href="#" class="btn btn-danger btn-sm"
+                   onclick="confirmDelete('@role.Id', true)">Delete</a>
+                    </span>
+                </form>
+
+
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="card">
+        <div class="card-header">
+            No roles created yet
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">
+                Use the button below to create a role
+            </h5>
+            <a class="btn btn-primary" style="width:auto"
+           asp-controller="administration" asp-action="CreateRole">
+                Create Role
+            </a>
+        </div>
+    </div>
+}
+
+@Html.PagedListPager( (IPagedList)ViewBag.OnePageOfRoles, page => Url.Action("ListRoles", new { page }) )
