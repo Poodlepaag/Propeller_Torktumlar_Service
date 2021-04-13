@@ -24,14 +24,20 @@
     <div class="row">
         <div class="col-md-12" style="text-align: center">
             <form asp-controller="Home" asp-action="UpdateProfile" method="post">
-                <table style="width:40%; text-align: left; margin-bottom: 20px; margin: auto" >
+                <table style="width:40%; text-align: left; margin-bottom: 20px; margin: auto">
                     <thead>
                         <tr>
                             <th>Förnamn</th>
                             @if (Model.FirstName == null)
                             {
                                 <td>
-                                    <input type="text" placeholder="Förnamn" name="FirstName" value="" />
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Förnamn" name="FirstName" required
+                                           pattern="^([A-ZÅÄÖ]\w*[a-zåäö]+|[A-ZÅÄÖ]\w*[a-zåäö]+\s[a-zA-ZåäöÅÄÖ]+)$"
+                                           title="Förnamn måste börja med stor bokstav" />
+                                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                                    </div>
+
                                 </td>
                             }
                             else
@@ -46,7 +52,15 @@
                             @if (Model.LastName == null)
                             {
                                 <td>
-                                    <input type="text" placeholder="Efternamn" name="LastName" value="" />
+                                    <div class="form-group">
+
+                                        <input type="text" placeholder="Efternamn" name="LastName" required
+                                           pattern="^([A-ZÅÄÖ]\w*[a-zåäö]+|[A-ZÅÄÖ]\w*[a-zåäö]+\s[a-zA-ZåäöÅÄÖ]+)$"
+                                           title="Efternamn måste börja med stor bokstav" />
+
+                                        <span asp-validation-for="LastName" class="text-danger"></span>
+                                    </div>
+
                                 </td>
                             }
                             else
@@ -62,7 +76,15 @@
                             @if (Model.Phone == null)
                             {
                                 <td>
-                                    <input type="text" placeholder="Telefon" name="Phone" value="" />
+                                    <div class="form-group">
+
+                                        <input type="text" placeholder="Telefon" name="Phone" required
+                                           pattern="^\d{4}\-?\s?\d{3}\-?\s?\d{3}$"
+                                           title="Telefon nr format 0707-123 456, 0707-123456, 0707-123-456, 0707 123 456" />
+
+                                        <span asp-validation-for="Phone" class="text-danger"></span>
+                                    </div>
+
                                 </td>
                             }
                             else
@@ -77,7 +99,15 @@
                             @if (Model.Address == null)
                             {
                                 <td>
-                                    <input type="text" placeholder="Adress" name="Address" value="" />
+                                    <div class="form-group">
+
+                                        <input type="text" placeholder="Adress" name="Address" required
+                                           pattern="^(([A-ZÅÄÖ]\w*[a-zåäö]+|[A-ZÅÄÖ]\w*[a-zåäö]+\s[a-zA-ZåäöÅÄÖ]\w*[a-zåäö]+)+\s?\d{0,3})+$"
+                                           title="Adress måste börja med storbokstav och kan ha en andra del och siffror på slutet" />
+
+                                        <span asp-validation-for="Address" class="text-danger"></span>
+                                    </div>
+
                                 </td>
                             }
                             else
@@ -92,7 +122,15 @@
                             @if (Model.City == null)
                             {
                                 <td>
-                                    <input type="text" placeholder="Stad" name="City" value="" />
+                                    <div class="form-group">
+
+                                        <input type="text" placeholder="Stad" name="City" required
+                                           pattern="^([A-ZÅÄÖ]\w*[a-zåäö]+|[A-ZÅÄÖ]\w*[a-zåäö]+\s[a-zA-ZåäöÅÄÖ]+)$"
+                                           title="Stad måste börja med storbokstav och kan ha en andra del ex. Malmö Stad" />
+
+                                        <span asp-validation-for="City" class="text-danger"></span>
+                                    </div>
+
                                 </td>
                             }
                             else
@@ -107,7 +145,13 @@
                             @if (Model.ZipCode == null)
                             {
                                 <td>
-                                    <input type="text" placeholder="Postnummer" name="ZipCode" value="" />
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Postnummer" name="ZipCode" required
+                                           pattern="^\d{5}$" title="Post nr format 12345" />
+
+                                        <span asp-validation-for="ZipCode" class="text-danger"></span>
+                                    </div>
+
                                 </td>
                             }
                             else
@@ -119,8 +163,8 @@
                         </tr>
                     </thead>
                 </table>
-                <div width="100%" style="text-align: center">
-                    <button type="submit" class="order-confirmation-button-style" value="@Model.Email, @Model.FirstName, @Model.LastName, @Model.Phone, @Model.Address, @Model.City, @Model.ZipCode">Spara</button>
+                <div width="100%" style="text-align: center" class="form-group">
+                    <input type="submit" class="order-confirmation-button-style" value="Spara" />
                 </div>
             </form>
         </div>
@@ -129,3 +173,8 @@
 @*<p><a asp-action="OrderView"><center>Se dina order</center></a></p>   /*Behöver av kommenteras om den ska skicka till OrderView*/*@
 <br>
 <br>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -12,15 +12,15 @@ namespace SnurrtumlareWebSite.Models
         public string FirstName { get; set; }
 
         [RegularExpression(@"^([A-ZÅÄÖ]\w*[a-zåäö]+|[A-ZÅÄÖ]\w*[a-zåäö]+\s[a-zA-ZåäöÅÄÖ]+)$",
-            ErrorMessage = "Firstname must start with capitol letter")]
+            ErrorMessage = "Lastname must start with capitol letter")]
         public string LastName { get; set; }
 
         [RegularExpression(@"^(([A-ZÅÄÖ]\w*[a-zåäö]+|[A-ZÅÄÖ]\w*[a-zåäö]+\s[a-zA-ZåäöÅÄÖ]\w*[a-zåäö]+)+\s?\d{0,3})+$",
             ErrorMessage = "Adress must start with capitol letter with optional second part and digits at end")]
         public string Address { get; set; }
 
-        [RegularExpression(@"^\d{3}\s?\d{2}$",
-            ErrorMessage = "Valid Zip Code format 123 45")]
+        [RegularExpression(@"^\d{5}$",
+            ErrorMessage = "Valid Zip Code format 12345")]
         public string ZipCode { get; set; }
 
         [RegularExpression(@"^([A-ZÅÄÖ]\w*[a-zåäö]+|[A-ZÅÄÖ]\w*[a-zåäö]+\s[a-zA-ZåäöÅÄÖ]+)$",
@@ -32,8 +32,8 @@ namespace SnurrtumlareWebSite.Models
         [Required]
         public string Email { get; set; }
 
-        [RegularExpression(@"^(\+?\d{2}\-?\s?)?\d{4}\-?\s?\d{3}\-?\s?\d{3}$",
-            ErrorMessage = "Valid phone no formats +46 0707-123 456, +46 0707-123456, +46 0707-123-456, 0707 123 456")]
+        [RegularExpression(@"^\d{4}\-?\s?\d{3}\-?\s?\d{3}$",
+            ErrorMessage = "Valid phone no formats 0707-123 456, 0707-123456, 0707-123-456, 0707 123 456")]
         public string Phone { get; set; }
 
         public virtual List<Order> Orders { get; set; }
