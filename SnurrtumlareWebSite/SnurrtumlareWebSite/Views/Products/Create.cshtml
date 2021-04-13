@@ -15,7 +15,35 @@
             <div class="form-group">
                 <label class="control-label">Image Path</label>
                 @*<label asp-for="ImageLink" class="control-label"></label>*@
-                <input asp-for="ImageLink" class="form-control" />
+                <br />
+                <select asp-for="ImageLink" class="form-control">
+                    <option value="/assets/pictures/Kepsar/Prop1.png">Keps 1</option>
+                    <option value="/assets/pictures/Kepsar/Prop2.png">Keps 2</option>
+                    <option value="/assets/pictures/Kepsar/Prop3.png">Keps 3</option>
+                    <option value="/assets/pictures/Kepsar/Prop4.png">Keps 4</option>
+                    <option value="/assets/pictures/Kepsar/Prop5.png">Keps 5</option>
+                    <option value="/assets/pictures/Kepsar/Prop6.png">Keps 6</option>
+                    <option value="/assets/pictures/Kepsar/Prop7.png">Keps 7</option>
+                    <option value="/assets/pictures/Kepsar/Prop8.png">Keps 8</option>
+                    <option value="/assets/pictures/Kepsar/Prop9.png">Keps 9</option>
+                    <option value="/assets/pictures/Kepsar/Prop10.png">Keps 10</option>
+                    <option value="/assets/pictures/Torktumlare/Tork1.png">Tork 1</option>
+                    <option value="/assets/pictures/Torktumlare/Tork2.png">Tork 2</option>
+                    <option value="/assets/pictures/Torktumlare/Tork3.png">Tork 3</option>
+                    <option value="/assets/pictures/Torktumlare/Tork4.png">Tork 4</option>
+                    <option value="/assets/pictures/Torktumlare/Tork5.png">Tork 5</option>
+                    <option value="/assets/pictures/Torktumlare/Tork6.png">Tork 6</option>
+                    <option value="/assets/pictures/Torktumlare/Tork7.png">Tork 7</option>
+                    <option value="/assets/pictures/Torktumlare/Tork8.png">Tork 8</option>
+                    <option value="/assets/pictures/Torktumlare/Tork9.png">Tork 9</option>
+                    <option value="/assets/pictures/Torktumlare/Tork10.png">Tork 10</option>
+
+                </select>
+
+
+
+
+                @*<input asp-for="ImageLink" class="form-control" />*@
                 <span asp-validation-for="ImageLink" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -26,7 +54,14 @@
             </div>
             <div class="form-group">
                 <label asp-for="Category" class="control-label"></label>
-                <input asp-for="Category" class="form-control" />
+                <br />
+
+                <select asp-for="Category" class="form-control">
+                    <option value="Keps">Keps</option>
+                    <option value="Tork">Torktumlare</option>
+                </select>
+
+                @*<input asp-for="Category" class="form-control" />*@
                 <span asp-validation-for="Category" class="text-danger"></span>
             </div>
             <div class="form-group">
