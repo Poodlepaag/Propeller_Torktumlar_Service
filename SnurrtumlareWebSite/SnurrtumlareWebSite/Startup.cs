@@ -32,19 +32,7 @@ namespace SnurrtumlareWebSite
             //Använd denna för Mikis AzureDb 
             services.AddDbContext<SnurrtumlareDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("SnurrtumlareDB")));
-
-
-
-            ////Använd denna för Roberts AzureDb 
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseSqlServer(
-            //        Configuration.GetConnectionString("RobertIdentityDB")));
-
-            ////Använd denna för Roberts AzureDb 
-            //services.AddDbContext<SnurrtumlareDbContext>(options =>
-            //    options.UseSqlServer(
-            //        Configuration.GetConnectionString("RobertSnurrtumlareDB")));
+                    Configuration.GetConnectionString("DefaultConnection")));
 
 
             services.AddDatabaseDeveloperPageExceptionFilter();
