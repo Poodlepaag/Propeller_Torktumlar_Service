@@ -12,16 +12,16 @@ Projektet är ett skolprojekt med syftet att skapa en webbapplikation i form av 
   - change (ändringar i befintlig kod eller design utan att det är en bug inblandad)
 
 * Db-migration instruktioner
-  - För ett cleant project, radera både aspnet-SnurrtumlareWebSite och SnurrtumlareDB databaserna från SQL Server/localdb
-  - Radera hela Migrations mappen från projektet
-  - I Package Manager Console kör nedan komandon
+  - För ett cleant project, radera både aspnet-SnurrtumlareWebSite och SnurrtumlareDB databaserna från SQL Server/localdb.
+  - Radera hela Migrations mappen från projektet.
+  - I Package Manager Console kör nedan komandon för att skapa databaserna och seeda dummy data.
     - add-migration InitialApplicationDbContext -context ApplicationDbContext
     - update-database -context ApplicationDbContext
     
     - add-migration InitialSnurrtumlareDbContext -context SnurrtulareDbContext
     - update-database -context SnurrtulareDbContext
 
-* Inloggnings Instruktioner
+* Inloggnings Instruktioner för admin
   - Email: send_me_your_prayers@abdi.com
   - Password: GudÄrGrejt1337!
 
