@@ -24,12 +24,11 @@ namespace SnurrtumlareWebSite
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //Använd denna för Mikis AzureDb 
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("IdentityDB")));
+                    Configuration.GetConnectionString("DefaultConnection")));
 
-            //Använd denna för Mikis AzureDb 
             services.AddDbContext<SnurrtumlareDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
